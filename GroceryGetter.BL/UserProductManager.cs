@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GroceryGetter.BL
 {
-    public class Class1
+    public class UserProductManager
     {
     }
 }
