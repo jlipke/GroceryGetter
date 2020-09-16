@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 
 namespace GroceryGetter.BL.Models
 {
-    public class Product
+    public class AisleProduct
     {
         public Guid Id { get; set; }
-        public string Title { get; set; }
+        public Guid AisleId { get; set; }
+        public Guid ProductId { get; set; }
 
         [Display(Name = "Aisle")]
         public string AisleNumber { get; set; }
