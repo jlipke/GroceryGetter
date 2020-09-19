@@ -71,6 +71,12 @@
     <Build Include="Tables\tblProduct.sql" />
     <Build Include="Tables\tblUser.sql" />
     <Build Include="Tables\tblUserProduct.sql" />
+    <Build Include="ForeignKeys\tblAisle_LayoutId.sql" />
+    <Build Include="ForeignKeys\tblAisleProduct_AisleId.sql" />
+    <Build Include="ForeignKeys\tblAisleProduct_ProductId.sql" />
+    <Build Include="ForeignKeys\tblLayout_StoreId.sql" />
+    <Build Include="ForeignKeys\tblUserProduct_UserId.sql" />
+    <Build Include="ForeignKeys\tblUserProducts_ProductId.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment1.sql" />
