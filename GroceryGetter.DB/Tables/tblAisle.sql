@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[tblAisle]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+	[LayoutId] UNIQUEIDENTIFIER NOT NULL, 
+    [Number] VARCHAR(30) NOT NULL, 
+    [Lineup] INT NOT NULL
+)

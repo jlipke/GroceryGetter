@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\tblStore.sql" />
+    <Build Include="Tables\tblLayout.sql" />
+    <Build Include="Tables\tblAisle.sql" />
+    <Build Include="Tables\tblAisleProduct.sql" />
+    <Build Include="Tables\tblProduct.sql" />
+    <Build Include="Tables\tblUser.sql" />
+    <Build Include="Tables\tblUserProduct.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment1.sql" />
