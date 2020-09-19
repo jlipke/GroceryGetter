@@ -9,4 +9,10 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-DROP TABLE IF EXISTS tblStore
+Drop table if exists [dbo].[tblUserProduct]
+Drop table if exists [dbo].[tblAisleProduct]
+Drop table if exists [dbo].[tblUser]
+Drop table if exists [dbo].[tblProduct]
+Drop table if exists [dbo].[tblLayout]
+Drop table if exists [dbo].[tblStore]
+Drop table if exists [dbo].[tblAisle]

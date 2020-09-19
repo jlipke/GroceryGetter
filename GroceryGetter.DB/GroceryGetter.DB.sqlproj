@@ -75,4 +75,16 @@
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment1.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="PostDeployment\DefaultData\AisleProducts.sql" />
+    <None Include="PostDeployment\DefaultData\Aisles.sql" />
+    <None Include="PostDeployment\DefaultData\Layouts.sql" />
+    <None Include="PostDeployment\DefaultData\Products.sql" />
+    <None Include="PostDeployment\DefaultData\Stores.sql" />
+    <None Include="PostDeployment\DefaultData\UserProducts.sql" />
+    <None Include="PostDeployment\DefaultData\Users.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment\Script.PostDeployment1.sql" />
+  </ItemGroup>
 </Project>
