@@ -10,7 +10,7 @@ namespace GroceryGetter.BL
 {
     public class AisleManager
     {
-        public static List<Aisle> LoadByLayoutId(Guid layoutId)
+        public static List<Aisle> LoadByLayoutId(Guid layoutId)  
         {
             try
             {

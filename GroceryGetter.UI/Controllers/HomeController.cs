@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GroceryGetter.BL;
+using GroceryGetter.BL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -20,8 +22,9 @@ namespace GroceryGetter.UI.Controllers
 
         public ActionResult Contact()
         {
-            
             return View();
         }
+
+        
     }
 }

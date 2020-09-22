@@ -10,6 +10,28 @@ namespace GroceryGetter.BL
 {
     public class ProductManager
     {
+        public static List<Product> LoadAll()
+        {
+            try
+            {
+                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                {
+                    List<Product> products = new List<Product>();
+                    dc.tblProducts.ToList().ForEach(p => products.Add(new Product
+                    {
+                        Id = p.Id,
+                        Title = p.Title
+                    }));
+
+                    return products;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public static List<Product> LoadByAisleId(Guid aisleId)
         {
             try
