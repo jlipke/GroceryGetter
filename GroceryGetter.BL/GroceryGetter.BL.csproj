@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AisleManager.cs" />
     <Compile Include="AisleProductManager.cs" />
     <Compile Include="LayoutManager.cs" />
     <Compile Include="ProductManager.cs" />
