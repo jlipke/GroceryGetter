@@ -15,6 +15,10 @@ namespace GroceryGetter.BL.Models
         public string UserPass { get; set; }
         public List<UserProduct> GroceryList { get; set; }
 
+        public User()
+        {
+
+        }
 
         public User(Guid userid, string firstname, string lastname, string email, string userpass)
         {
