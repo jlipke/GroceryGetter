@@ -12,59 +12,46 @@ namespace GroceryGetter.BL
     {
         public static List<Product> LoadAll()
         {
-            try
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                List<Product> products = new List<Product>();
+                dc.tblProducts.ToList().ForEach(p => products.Add(new Product
                 {
-                    List<Product> products = new List<Product>();
-                    dc.tblProducts.ToList().ForEach(p => products.Add(new Product
-                    {
-                        Id = p.Id,
-                        Title = p.Title
-                    }));
+                    Id = p.Id,
+                    Title = p.Title
+                }));
 
-                    return products;
+                return products;
 
-                }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            
         }
         public static List<Product> LoadByAisleId(Guid aisleId)
         {
-            try
+            List<Product> products = new List<Product>();
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                List<Product> products = new List<Product>();
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
-                {
                     
-                    var results = (from ap in dc.tblAisleProducts
-                                   join p in dc.tblProducts on ap.ProductId equals p.Id
-                                   join a in dc.tblAisles on ap.AisleId equals a.Id
-                                   where ap.AisleId == aisleId
-                                   select new
-                                   {
-                                       Id = p.Id,
-                                       Title = p.Title
-                                   }).ToList();
+                var results = (from ap in dc.tblAisleProducts
+                                join p in dc.tblProducts on ap.ProductId equals p.Id
+                                join a in dc.tblAisles on ap.AisleId equals a.Id
+                                where ap.AisleId == aisleId
+                                select new
+                                {
+                                    Id = p.Id,
+                                    Title = p.Title
+                                }).ToList();
 
 
 
-                    results.ForEach(p => products.Add(new Product
-                    {
-                        Id = p.Id,
-                        Title = p.Title,
-                    }));
-                }
-                return products;
+                results.ForEach(p => products.Add(new Product
+                {
+                    Id = p.Id,
+                    Title = p.Title,
+                }));
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            return products;
+          
         }
     }
 }
