@@ -57,12 +57,23 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="utUser.cs" />
+    <Compile Include="utAisle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GroceryGetter.BL.Models\GroceryGetter.BL.Models.csproj">
+      <Project>{391b5687-6bcf-4027-8ffe-e742b8a2c2c5}</Project>
+      <Name>GroceryGetter.BL.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\GroceryGetter.BL\GroceryGetter.BL.csproj">
+      <Project>{a1e32475-325f-4e1f-9d8e-f889d0e3dd10}</Project>
+      <Name>GroceryGetter.BL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

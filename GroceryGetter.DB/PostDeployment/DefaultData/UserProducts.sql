@@ -45,31 +45,31 @@
 	(NEWID(), @UserId, @ProductId, 0, 1, NULL)
 
 
-	SELECT @UserId = Id from tblUser where Email = 'Morrill9941@fvtc.edu'
+	SELECT @UserId = Id from tblUser where Email = 'TestUser@test.com'
 	SELECT @ProductId = Id from tblProduct where Title = 'Apple Juice'
 	INSERT INTO tblUserProduct(Id, UserId, ProductId, InCart, Amount, Notes)
 	VALUES
 	(NEWID(), @UserId, @ProductId, 1, 2, NULL)
 
-	--SELECT @UserId = Id from tblUser where Email = 'Morrill9941@fvtc.edu'
+	--SELECT @UserId = Id from tblUser where Email = 'TestUser@test.com'
 	SELECT @ProductId = Id from tblProduct where Title = 'Beef'
 	INSERT INTO tblUserProduct(Id, UserId, ProductId, InCart, Amount, Notes)
 	VALUES
 	(NEWID(), @UserId, @ProductId, 0, 2, 'Angus Steak')
 
-	--SELECT @UserId = Id from tblUser where Email = 'Morrill9941@fvtc.edu'
+	--SELECT @UserId = Id from tblUser where Email = 'TestUser@test.com'
 	SELECT @ProductId = Id from tblProduct where Title = 'Milk'
 	INSERT INTO tblUserProduct(Id, UserId, ProductId, InCart, Amount, Notes)
 	VALUES
 	(NEWID(), @UserId, @ProductId, 0, 1, '1%')
 
-	SELECT @UserId = Id from tblUser where Email = 'test@fvtc.edu'
+	SELECT @UserId = Id from tblUser where Email = 'Consumer@FoodProducts.com'
 	SELECT @ProductId = Id from tblProduct where Title = 'Carrots'
 	INSERT INTO tblUserProduct(Id, UserId, ProductId, InCart, Amount, Notes)
 	VALUES
 	(NEWID(), @UserId, @ProductId, 1, 1, 'Baby')
 
-	--SELECT @UserId = Id from tblUser where Email = 'test@fvtc.edu'
+	--SELECT @UserId = Id from tblUser where Email = 'Consumer@FoodProducts.com'
 	SELECT @ProductId = Id from tblProduct where Title = 'Bread (Bakery Fresh)'
 	INSERT INTO tblUserProduct(Id, UserId, ProductId, InCart, Amount, Notes)
 	VALUES
