@@ -89,6 +89,31 @@ namespace GroceryGetter.BL
             }
         }
 
+        public static int Delete(Guid id)
+        {
+            try
+            {
+                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                {
+                    tblAisle deletedrow = dc.tblAisles.FirstOrDefault(a => a.Id == id);
+
+                    if (deletedrow != null)
+                    {
+                        dc.tblAisles.Remove(deletedrow);
+                        return dc.SaveChanges();
+                    }
+                    else
+                    {
+                        return 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<Aisle> Load()
         {
             try
