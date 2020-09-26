@@ -22,7 +22,7 @@ namespace GroceryGetter.BL
                     if (tbllayout != null)
                     {
                         layout.Id = tbllayout.Id;
-                        layout.StoreId = (StoreManager.LoadByLayoutId(id)).Id;
+                        //layout.StoreId = (StoreManager.LoadByLayoutId(id)).Id;
                         layout.Title = tbllayout.Title;
 
                         return layout;
