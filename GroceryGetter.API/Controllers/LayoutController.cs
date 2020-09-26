@@ -37,9 +37,9 @@ namespace GroceryGetter.API.Controllers
         }
 
         // DELETE: api/Layout/5
-        public void Delete(Guid id)
-        {
-            LayoutManager.Delete(id);
-        }
+        //public void Delete(Guid id)
+        //{
+        //    LayoutManager.Delete(id);         // Until a Delete method is created
+        //}
     }
 }
