@@ -10,13 +10,22 @@ namespace MIB.GroceryGetter.BL.Test
     [TestClass]
     public class utUser
     {
-        [TestMethod]
+        //[TestMethod]
         public void RunAll()
         {
             LoadTest();
             InsertTest();
             UpdateTest();
             DeleteTest();
+        }
+
+        [TestMethod]
+        public void LoginInTest()
+        {
+            User user = UserManager.Load().FirstOrDefault();
+            //Console.WriteLine(user.Email);
+            //Assert.AreEqual("300019014@fvtc.edu", user.Email);
+            Assert.IsTrue(UserManager.Login(user));
         }
 
         public void LoadTest()

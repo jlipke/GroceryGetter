@@ -74,6 +74,10 @@
       <Project>{a1e32475-325f-4e1f-9d8e-f889d0e3dd10}</Project>
       <Name>GroceryGetter.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\GroceryGetter.PL\GroceryGetter.PL.csproj">
+      <Project>{3167E0AC-B894-4D91-9DC2-32F42107248C}</Project>
+      <Name>GroceryGetter.PL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

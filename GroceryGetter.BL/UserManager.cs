@@ -18,6 +18,8 @@ namespace GroceryGetter.BL
             {
                 User user = new User(Guid.NewGuid(), firstname, lastname, email, userpass);
             }
+
+
             catch (Exception ex)
             {
 
@@ -44,6 +46,7 @@ namespace GroceryGetter.BL
                     return dc.SaveChanges();
                 }
             }
+
             catch (Exception ex)
             {
 
@@ -231,29 +234,23 @@ namespace GroceryGetter.BL
 
         public static List<User> Load()
         {
-            try
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                List<User> users = new List<User>();
+                dc.tblUsers.ToList().ForEach(u => users.Add(new User
                 {
-                    List<User> users = new List<User>();
-                    dc.tblUsers.ToList().ForEach(u => users.Add(new User
-                    {
-                        Id = u.Id,
-                        FirstName = u.FirstName,
-                        LastName = u.LastName,
-                        UserPass = u.UserPass,
-                        Email = u.Email,
-                        GroceryList = UserProductManager.LoadByUserId(u.Id)
-                    }));
-                    return users;
-                }
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    LastName = u.LastName,
+                    UserPass = u.UserPass,
+                    Email = u.Email,
+                    GroceryList = UserProductManager.LoadByUserId(u.Id)
+                }));
+                return users;
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
+            
         }
+
 
         private static string GetHash(string userpass)
         {
@@ -264,54 +261,49 @@ namespace GroceryGetter.BL
             }
         }
 
+
+
         public static bool Login(User user)
         {
-            try
+            if (!string.IsNullOrEmpty(user.Email))
             {
-                if (!string.IsNullOrEmpty(user.Email))
+                if (!string.IsNullOrEmpty(user.UserPass))
                 {
-                    if (!string.IsNullOrEmpty(user.UserPass))
+                    using (GroceryGetterEntities dc = new GroceryGetterEntities())
                     {
-                        using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                        tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Email == user.Email);
+                        if(tbluser != null)
                         {
-                            tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Email == user.Email);
-                            if(tbluser != null)
+                            if(GetHash(tbluser.UserPass) == GetHash(user.UserPass)) //"gwhlGAT6y3ua+P/FOjOiLWocisI="
                             {
-                                if(tbluser.UserPass == GetHash(user.UserPass))
-                                {
-                                    user.FirstName = tbluser.FirstName;
-                                    user.LastName = tbluser.LastName;
-                                    user.Email = tbluser.Email;
-                                    user.Id = tbluser.Id;
-                                    user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
-                                    return true;
-                                }
-                                else
-                                {
-                                    throw new Exception("Cannot log in with these credentials!");
-                                }
+                                user.FirstName = tbluser.FirstName;
+                                user.LastName = tbluser.LastName;
+                                user.Email = tbluser.Email;
+                                user.Id = tbluser.Id;
+                                user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
+                                return true;
                             }
                             else
                             {
-                                throw new Exception("User could not be found!");
+                                throw new Exception("Cannot log in with these credentials!");
                             }
                         }
-                    }
-                    else
-                    {
-                        throw new Exception("Password was not set!");
+                        else
+                        {
+                            throw new Exception("User could not be found!");
+                        }
                     }
                 }
                 else
                 {
-                    throw new Exception("User Id was not set!");
+                    throw new Exception("Password was not set!");
                 }
             }
-            catch (Exception ex)
+            else
             {
-
-                throw ex;
+                throw new Exception("User Id was not set!");
             }
+            
         }
     }
 }
