@@ -9,7 +9,7 @@ namespace GroceryGetter.UI.Controllers
 {
     public class ProductController : Controller
     {
-        // GET: Product
+        // GET
         public ActionResult Index()
         {
             var products = ProductManager.LoadAll();
