@@ -21,14 +21,14 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Create()
+        public ActionResult SignUp()
         {
             return View();
         }
 
         // POST
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult SignUp(FormCollection collection)
         {
             try
             {
