@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
     padding-bottom: 20px;
+    background-color: lightgrey;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -21,4 +21,40 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+/* Format the Banner */
+.banner {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: maroon;
+
+}
+
+/* Format the Logo */
+#logo {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 15%;
+    height: 15%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 125px;
+}
+
+/* Center a group*/
+.block-center {
+    display: flex;
+    justify-content: center;
+
+}
+
+.login-container {
+    margin-left: 0px;
+    margin-right: 0px;
+    padding-left: 0em;
+    padding-right: 0em;
+    min-width: 350px;
 }
