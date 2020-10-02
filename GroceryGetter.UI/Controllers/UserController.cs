@@ -95,9 +95,11 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            // Might work
+            User user = UserManager.LoadById(id); 
+            return View(user);
         }
 
         // POST
@@ -107,6 +109,9 @@ namespace GroceryGetter.UI.Controllers
             try
             {
                 // TODO: Add update logic here
+
+
+                //UserManager.Update(user);
 
                 return RedirectToAction("Index");
             }
