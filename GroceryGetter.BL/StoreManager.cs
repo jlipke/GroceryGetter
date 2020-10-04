@@ -58,6 +58,11 @@ namespace GroceryGetter.BL
             }
         }
 
+        public void Insert()
+        {
+            throw new NotImplementedException();
+        }
+
         public static int Delete(Guid id)
         {
             try
