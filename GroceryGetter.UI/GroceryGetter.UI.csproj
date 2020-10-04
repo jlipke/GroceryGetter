@@ -285,13 +285,13 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
+    <Content Include="Views\UserProduct\UserProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Aisle\" />
     <Folder Include="Views\Layout\" />
-    <Folder Include="Views\UserProduct\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
