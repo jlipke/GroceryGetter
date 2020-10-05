@@ -23,7 +23,7 @@ namespace GroceryGetter.BL.Test
         {
             List<Aisle> aisles = AisleManager.Load();
 
-            int expected = 35;
+            int expected = 41;
             int actual = aisles.Count;
 
             Assert.AreEqual(expected, actual);

@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using GroceryGetter.BL;
 using GroceryGetter.BL.Models;
+using GroceryGetter.UI.Models;
+
 
 namespace GroceryGetter.UI.Controllers
 {
@@ -13,13 +15,12 @@ namespace GroceryGetter.UI.Controllers
         // GET: User
         public ActionResult Index()
         {
-            // Authenticate.cs needs to be added to the Models folder (DVDCentral)
-            /*if (Authenticate.IsAuthenticated())
+            if (Authenticate.IsAuthenticated())
             {
                 List<User> users = UserManager.Load();
                 return View(users);
             }
-            else*/
+            else
             {
                 //Need to authenticate
                 return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
