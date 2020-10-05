@@ -286,6 +286,7 @@
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
     <Content Include="Views\UserProduct\UserProducts.cshtml" />
+    <Content Include="Views\Store\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

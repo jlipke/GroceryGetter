@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GroceryGetter.BL;
+using GroceryGetter.BL.Models;
 
 namespace GroceryGetter.UI.Controllers
 {
@@ -31,23 +32,23 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Create()
         {
-            StoreManager store = new StoreManager();
+            Store store = new Store();
             return View(store);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Create(StoreManager i)
+        public ActionResult Create(Store store)
         {
             try
             {
                 // TODO: Add insert logic here
-                i.Insert();
+                StoreManager.Insert(store);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View(i);
+                return View(store);
             }
         }
 

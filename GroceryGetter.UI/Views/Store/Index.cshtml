@@ -6,5 +6,31 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>View</h2>
+<h2>Available Stores</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+    </tr>
+
+    @foreach (var store in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => store.Title)
+            </td>
+
+            <td>
+                @Html.ActionLink("Update", "Update", new { id = store.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = store.Id })
+            </td>
+        </tr>
+    }
+
+</table>
 
