@@ -20,10 +20,13 @@ namespace MIB.GroceryGetter.BL.Test
         }
 
         [TestMethod]
-        public void LoginInTest()
+        public void LoginTest()
         {
-            User user = UserManager.Load().FirstOrDefault();
-            //Console.WriteLine(user.Email);
+            List<User> users = new List<User>();
+            User user = new User { Id = Guid.NewGuid(), Email = "testemail@gmail.com", FirstName = "test name", LastName = "test name", UserPass = "testpassword" };
+            UserManager.Insert(user);
+            //User user = UserManager.Load().FirstOrDefault();
+             //Console.WriteLine(user.Email);
             //Assert.AreEqual("300019014@fvtc.edu", user.Email);
             Assert.IsTrue(UserManager.Login(user));
         }
@@ -38,6 +41,7 @@ namespace MIB.GroceryGetter.BL.Test
             Assert.IsTrue(theCheck);
         }
 
+        [TestMethod]
         public void LoadTest()
         {
             List<User> users = UserManager.Load();
@@ -46,6 +50,7 @@ namespace MIB.GroceryGetter.BL.Test
             Assert.AreNotEqual(0, actual);
         }
 
+        [TestMethod]
         public void InsertTest()
         {
             List<User> users = new List<User>();
@@ -53,6 +58,7 @@ namespace MIB.GroceryGetter.BL.Test
             Assert.IsTrue(Convert.ToBoolean(UserManager.Insert(user)));
         }
 
+        [TestMethod]
         public void UpdateTest()
         {
             List<User> users = UserManager.Load();
@@ -62,6 +68,7 @@ namespace MIB.GroceryGetter.BL.Test
             Assert.IsTrue(actual > 0);
         }
 
+        [TestMethod]
         public void DeleteTest()
         {
             List<User> users = UserManager.Load();
