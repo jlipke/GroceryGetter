@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using GroceryGetter.BL.Models;
@@ -38,7 +39,8 @@ namespace GroceryGetter.BL
                     newrow.FirstName = user.FirstName;
                     newrow.LastName = user.LastName;
                     newrow.Email = user.Email;
-                    newrow.UserPass = user.UserPass;
+                    //newrow.UserPass = user.UserPass;
+                    newrow.UserPass = CreateHash(user.UserPass);
 
                     user.Id = newrow.Id;
                     dc.tblUsers.Add(newrow);
@@ -66,7 +68,7 @@ namespace GroceryGetter.BL
                         updatedrow.FirstName = user.FirstName;
                         updatedrow.LastName = user.LastName;
                         updatedrow.Email = user.Email;
-                        updatedrow.UserPass = GetHash(user.UserPass);
+                        updatedrow.UserPass = CreateHash(user.UserPass);
                         return dc.SaveChanges();
                     }
                     else
@@ -210,6 +212,7 @@ namespace GroceryGetter.BL
                         user.LastName = tbluser.LastName;
                         user.Email = tbluser.Email;
                         user.UserPass = tbluser.UserPass;
+                        
 
                         tblUserProduct tbluserproduct = dc.tblUserProducts.FirstOrDefault(up => up.UserId == id);
 
@@ -252,17 +255,64 @@ namespace GroceryGetter.BL
         }
 
 
-        private static string GetHash(string userpass)
+        //private static string GetHash(string userpass)
+        //{
+        //    using (var haser = new System.Security.Cryptography.SHA1Managed())        Seems to be a one way hashing method that cant be recreated the same way every time
+        //    {                                                                         Also, it does not have a salt mixed in making it very easy to decrypt
+        //        var hashbytes = System.Text.Encoding.UTF8.GetBytes(userpass);
+        //        return Convert.ToBase64String(haser.ComputeHash(hashbytes));
+        //    }
+        //}
+
+        private static string CreateHash(string userpass)
         {
-            using (var haser = new System.Security.Cryptography.SHA1Managed())
-            {
-                var hashbytes = System.Text.Encoding.UTF8.GetBytes(userpass);
-                return Convert.ToBase64String(haser.ComputeHash(hashbytes));
-            }
+            // Create salt with PRNG
+            byte[] salt;
+            new RNGCryptoServiceProvider().GetBytes(salt = new byte[16]);
+
+            // Create Rfc2898DeriveBytes and get hashed value
+            var pbkdf2 = new Rfc2898DeriveBytes(userpass, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
+
+            // Combine salt and password 
+            byte[] hashBytes = new byte[36];
+            Array.Copy(salt, 0, hashBytes, 0, 16);
+            Array.Copy(hash, 0, hashBytes, 16, 20);
+
+            // Turn the combined salt+hash into a string and return
+            string savedPasswordHash = Convert.ToBase64String(hashBytes);
+            return savedPasswordHash;
+
         }
 
+        private static bool VerifyHash(string savedPasswordHash, string userEnteredPassword)
+        {
+            
+            // Extract bytes
+            byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
+
+            // Get salt
+            byte[] salt = new byte[16];
+            Array.Copy(hashBytes, 0, salt, 0, 16);
+
+            // Compute the hash on the entered password
+            var pbkdf2 = new Rfc2898DeriveBytes(userEnteredPassword, salt, 100000);
+            byte[] hash = pbkdf2.GetBytes(20);
 
 
+            // Compare results
+            bool result = true;
+            for (int i = 0; i < 20; i++)
+                if (hashBytes[i + 16] != hash[i])
+                    result = false;
+                
+            if (result == false)
+                return false;
+            else
+                return true;
+                
+        }
+        
         public static bool Login(User user)
         {
             if (!string.IsNullOrEmpty(user.Email))
@@ -274,7 +324,8 @@ namespace GroceryGetter.BL
                         tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Email == user.Email);
                         if(tbluser != null)
                         {
-                            if(GetHash(tbluser.UserPass) == GetHash(user.UserPass)) //"gwhlGAT6y3ua+P/FOjOiLWocisI="
+                            //if(GetHash(tbluser.UserPass) == GetHash(user.UserPass)) //"gwhlGAT6y3ua+P/FOjOiLWocisI="
+                            if(VerifyHash(tbluser.UserPass, user.UserPass))
                             {
                                 user.FirstName = tbluser.FirstName;
                                 user.LastName = tbluser.LastName;
