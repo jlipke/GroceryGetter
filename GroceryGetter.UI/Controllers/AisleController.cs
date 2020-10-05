@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GroceryGetter.BL;
+using GroceryGetter.BL.Models;
+using GroceryGetter.UI.Models;
 
 namespace GroceryGetter.UI.Controllers
 {
@@ -11,7 +14,18 @@ namespace GroceryGetter.UI.Controllers
         // GET:
         public ActionResult Index()
         {
-            return View();
+            // Remove commenting once login is fixed
+            //if (Authenticate.IsAuthenticated())
+            //{
+            
+            var AisleList = AisleManager.Load();
+            return View(AisleList);
+            //}
+            //else
+            //{
+            //    //Need to authenticate
+            //    return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            //}
         }
 
         // GET: 

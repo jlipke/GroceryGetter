@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GroceryGetter.BL;
 using GroceryGetter.BL.Models;
+using GroceryGetter.UI.Models;
 
 namespace GroceryGetter.UI.Controllers
 {
@@ -16,9 +17,18 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Index()
         {
-            //storeList = new StoreManager();
+            // Remove commenting once login is fixed
+            //if (Authenticate.IsAuthenticated())
+            //{
+                //storeList = new StoreManager();
             var storeList = StoreManager.Load();
             return View(storeList);
+            //}
+            //else
+            //{
+            //    //Need to authenticate
+            //    return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            //}
         }
 
         // GET
