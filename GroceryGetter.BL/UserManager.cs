@@ -49,10 +49,24 @@ namespace GroceryGetter.BL
                 }
             }
 
-            catch (Exception ex)
-            {
+            //catch (Exception ex)
+            //{
 
-                throw ex;
+            //    throw ex;
+            //}
+            catch (System.Data.Entity.Validation.DbEntityValidationException e)     // Use this to output validation errors in the output window
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
             }
         }
 

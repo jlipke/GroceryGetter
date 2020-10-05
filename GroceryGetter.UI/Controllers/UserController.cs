@@ -90,8 +90,9 @@ namespace GroceryGetter.UI.Controllers
                 UserManager.Insert(user);
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception ex)
             {
+                throw ex;
                 return View();
             }
         }

@@ -54,13 +54,27 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="tblAisle.cs" />
-    <Compile Include="tblAisleProduct.cs" />
-    <Compile Include="tblLayout.cs" />
-    <Compile Include="tblProduct.cs" />
-    <Compile Include="tblStore.cs" />
-    <Compile Include="tblUser.cs" />
-    <Compile Include="tblUserProduct.cs" />
+    <Compile Include="tblAisle.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblAisleProduct.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLayout.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblProduct.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblStore.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblUserProduct.cs">
+      <DependentUpon>UserProduct.tt</DependentUpon>
+    </Compile>
     <Compile Include="UserProduct.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

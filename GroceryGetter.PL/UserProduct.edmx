@@ -243,7 +243,7 @@
           <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPass" Type="String" MaxLength="32" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="UserPass" Type="String" MaxLength="48" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblUserProducts" Relationship="Self.tblUserProduct_UserId" FromRole="tblUser" ToRole="tblUserProduct" />
         </EntityType>
         <EntityType Name="tblUserProduct">
