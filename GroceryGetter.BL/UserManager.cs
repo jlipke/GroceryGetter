@@ -264,7 +264,7 @@ namespace GroceryGetter.BL
         //    }
         //}
 
-        private static string CreateHash(string userpass)
+        public static string CreateHash(string userpass)
         {
             // Create salt with PRNG
             byte[] salt;
@@ -285,7 +285,7 @@ namespace GroceryGetter.BL
 
         }
 
-        private static bool VerifyHash(string savedPasswordHash, string userEnteredPassword)
+        public static bool VerifyHash(string savedPasswordHash, string userEnteredPassword)
         {
             
             // Extract bytes
@@ -299,6 +299,8 @@ namespace GroceryGetter.BL
             var pbkdf2 = new Rfc2898DeriveBytes(userEnteredPassword, salt, 100000);
             byte[] hash = pbkdf2.GetBytes(20);
 
+
+            
 
             // Compare results
             bool result = true;
@@ -336,11 +338,13 @@ namespace GroceryGetter.BL
                             }
                             else
                             {
+                               // return false;
                                 throw new Exception("Cannot log in with these credentials!");
                             }
                         }
                         else
                         {
+                            //return false;
                             throw new Exception("User could not be found!");
                         }
                     }

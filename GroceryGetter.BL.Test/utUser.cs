@@ -28,6 +28,16 @@ namespace MIB.GroceryGetter.BL.Test
             Assert.IsTrue(UserManager.Login(user));
         }
 
+        [TestMethod]
+        public void HashTest()
+        {
+            string password = "wombat";
+            string input = UserManager.CreateHash(password);
+
+            bool theCheck = UserManager.VerifyHash(password, input);
+            Assert.IsTrue(theCheck);
+        }
+
         public void LoadTest()
         {
             List<User> users = UserManager.Load();
