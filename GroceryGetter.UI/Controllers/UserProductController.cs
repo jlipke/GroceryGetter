@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GroceryGetter.BL;
+using GroceryGetter.BL.Models;
 
 namespace GroceryGetter.UI.Controllers
 {
     public class UserProductController : Controller
     {
         // GET
-        public ActionResult Index()
+        public ActionResult Index(User user)
         {
-            return View();
+            Session["user"] = user;
+            var userProductList = UserProductManager.LoadByUserId(user.Id);
+            return View(userProductList);
         }
 
         // GET
