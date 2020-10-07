@@ -20,7 +20,7 @@ namespace GroceryGetter.UI.Controllers
             // Remove commenting once login is fixed
             //if (Authenticate.IsAuthenticated())
             //{
-                //storeList = new StoreManager();
+            //storeList = new StoreManager();
             var storeList = StoreManager.Load();
             return View(storeList);
             //}
@@ -63,46 +63,48 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            Store store = StoreManager.LoadbyId(id);
+            return View(store);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include ="Id, Title")] Store store)
         {
             try
             {
                 // TODO: Add update logic here
-
+                StoreManager.Update(store);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(store);
             }
         }
 
         // GET
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            Store store = StoreManager.LoadbyId(id);
+            return View(store);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, Store store)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                StoreManager.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(id);
             }
         }
     }

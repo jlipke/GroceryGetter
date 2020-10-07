@@ -37,44 +37,46 @@ namespace GroceryGetter.UI.Controllers
         // GET: 
         public ActionResult Create()
         {
-            return View();
+            Aisle aisle = new Aisle();
+            return View(aisle);
         }
 
         // POST: 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Aisle aisle)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                AisleManager.Insert(aisle);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(aisle);
             }
         }
 
         // GET:
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid layoutId)
         {
-            return View();
+            List<Aisle> aisle = AisleManager.LoadByLayoutId(layoutId);
+            return View(layoutId);
         }
 
         // POST: 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "Number, Lineup")] Aisle aisle, Guid LayoutId)
         {
             try
             {
                 // TODO: Add update logic here
-
+                AisleManager.Update(aisle);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(aisle);
             }
         }
 

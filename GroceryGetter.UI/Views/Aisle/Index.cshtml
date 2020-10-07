@@ -1,0 +1,49 @@
+﻿@model IEnumerable<GroceryGetter.BL.Models.Aisle>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Aisles</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Number)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Lineup)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.LayoutId)
+        </th>
+    </tr>
+
+    @foreach (var aisle in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => aisle.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => aisle.Lineup)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => aisle.LayoutId)
+            </td>
+
+            <td>
+                @Html.ActionLink("Update", "Edit", new { id = aisle.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = aisle.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
