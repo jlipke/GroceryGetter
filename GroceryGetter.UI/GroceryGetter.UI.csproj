@@ -286,7 +286,7 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\Create.cshtml" />
     <Content Include="Views\Store\Index.cshtml" />
-    <Content Include="Views\UserProduct\UserProducts.cshtml" />
+    <Content Include="Views\UserProduct\Index.cshtml" />
     <Content Include="Views\Store\Create.cshtml" />
     <Content Include="Views\Store\Edit.cshtml" />
     <Content Include="Views\Store\Delete.cshtml" />
