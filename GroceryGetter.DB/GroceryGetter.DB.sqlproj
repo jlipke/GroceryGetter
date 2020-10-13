@@ -89,6 +89,7 @@
     <None Include="PostDeployment\DefaultData\Stores.sql" />
     <None Include="PostDeployment\DefaultData\UserProducts.sql" />
     <None Include="PostDeployment\DefaultData\Users.sql" />
+    <None Include="GroceryGetter.DB.Local.publish.xml" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\Script.PostDeployment1.sql" />
