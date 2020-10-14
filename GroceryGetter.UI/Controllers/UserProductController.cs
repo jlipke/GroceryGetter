@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GroceryGetter.BL;
 using GroceryGetter.BL.Models;
+using GroceryGetter.UI.Models;
 using GroceryGetter.UI.ViewModels;
 
 namespace GroceryGetter.UI.Controllers
@@ -28,10 +29,16 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Create()
         {
-            UpProducts upProducts = new UpProducts();
-            upProducts.UserProduct = new UserProduct();
-            upProducts.Products = ProductManager.LoadAll();
-            return View(upProducts);
+            if (Authenticate.IsAuthenticated())
+            {
+                UpProducts upProducts = new UpProducts();
+                upProducts.UserProduct = new UserProduct();
+                upProducts.Products = ProductManager.LoadAll();
+                return View(upProducts);
+            }
+
+            return View();
+            
         }
 
         // POST
