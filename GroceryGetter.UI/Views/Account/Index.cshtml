@@ -1,0 +1,27 @@
+﻿@model GroceryGetter.BL.Models.User
+
+@{
+    ViewBag.Title = "Account Settings";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<h2>Account Settings</h2>
+<hr />
+
+<div class="body-content">
+    <h4>Personal Information</h4>
+
+    <h6>Full Name: </h6>
+    <p>@Model.FirstName @Model.LastName @Html.ActionLink("edit", "Edit")</p>
+
+    <h6>Email: </h6>
+    <p>@Model.Email @Html.ActionLink("edit", "Edit")</p>
+
+    @Html.ActionLink("Change your Password", "ChangePassword")
+
+</div>
+
+
+
+

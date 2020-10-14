@@ -12,16 +12,12 @@ namespace GroceryGetter.UI.Controllers
     public class AccountController : Controller
     {
         // GET: Account
-        public ActionResult Index(User user)
+        public ActionResult Index()
         {
             if (Authenticate.IsAuthenticated())
             {
-                //List<User> users = UserManager.Load();
-                //return View(users);
-
-                Session["user"] = user;
-                var userInfoList = UserManager.LoadById(user.Id);
-                return View(userInfoList);
+                var user = Session["user"] as User;
+                return View(user);
 
             }
             else

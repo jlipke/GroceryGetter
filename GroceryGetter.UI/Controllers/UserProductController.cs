@@ -14,7 +14,6 @@ namespace GroceryGetter.UI.Controllers
         public ActionResult Index()
         {
             var user = Session["user"] as User;
-            //Session["user"] = user;
             var userProductList = UserProductManager.LoadByUserId(user.Id);
             return View(userProductList);
         }

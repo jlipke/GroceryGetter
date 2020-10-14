@@ -294,8 +294,8 @@
     <Content Include="Views\Aisle\Index.cshtml" />
     <Content Include="Views\Aisle\Create.cshtml" />
     <Content Include="Views\Aisle\Edit.cshtml" />
-    <Content Include="Views\Account\Settings.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
