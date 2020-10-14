@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GroceryGetter.BL;
 using GroceryGetter.BL.Models;
+using GroceryGetter.UI.ViewModels;
 
 namespace GroceryGetter.UI.Controllers
 {
@@ -27,17 +28,20 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Create()
         {
-            return View();
+            UpProducts upProducts = new UpProducts();
+            upProducts.UserProduct = new UserProduct();
+            upProducts.Products = ProductManager.LoadAll();
+            return View(upProducts);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(UpProducts upProducts)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                UserProductManager.Insert(upProducts.UserProduct);
                 return RedirectToAction("Index");
             }
             catch

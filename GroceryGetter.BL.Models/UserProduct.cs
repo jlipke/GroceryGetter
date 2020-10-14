@@ -16,7 +16,7 @@ namespace GroceryGetter.BL.Models
         public int Amount { get; set; }
         public string Notes { get; set; }
 
-        [Display(Name = "Title")]
+        [Display(Name = "Name")]
         public string ProductTitle { get; set; }
 
         [Display(Name = "Aisle")]
