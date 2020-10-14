@@ -15,9 +15,19 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Index()
         {
-            var user = Session["user"] as User;
-            var userProductList = UserProductManager.LoadByUserId(user.Id);
-            return View(userProductList);
+            if (Authenticate.IsAuthenticated())
+            {
+                var user = Session["user"] as User;
+                var userProductList = UserProductManager.LoadByUserId(user.Id);
+                ViewBag.Message = ViewBag.Message;
+                return View(userProductList);
+            }
+            else
+            {
+                //Need to authenticate
+                return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            }
+            
         }
 
         // GET
