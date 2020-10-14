@@ -52,10 +52,11 @@ namespace GroceryGetter.UI.Controllers
                 {
                     // Login worked. Save User to session
                     Session["user"] = user;
-                   // if (!String.IsNullOrEmpty(returnurl))
+                    // if (!String.IsNullOrEmpty(returnurl))
                     //    return Redirect(returnurl);
-                   // else
-                        return RedirectToAction("Index", "UserProduct");
+                    // else
+                    return RedirectToAction("Index", "UserProduct"); 
+                    //return RedirectToAction("Index", "Account");
                 }
                 ViewBag.Message = "Login could not be completed.";
                 return View(user);
