@@ -18,17 +18,18 @@ namespace GroceryGetter.UI.Controllers
         public ActionResult Index()
         {
             // Remove commenting once login is fixed
-            //if (Authenticate.IsAuthenticated())
-            //{
-            //storeList = new StoreManager();
-            var storeList = StoreManager.Load();
-            return View(storeList);
-            //}
-            //else
-            //{
-            //    //Need to authenticate
-            //    return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
-            //}
+            if (Authenticate.IsAuthenticated())
+            {
+                //storeList = new StoreManager();
+                var storeList = StoreManager.Load();
+                ViewBag.Message = ViewBag.Message;
+                return View(storeList);
+            }
+            else
+            {
+                //Need to authenticate
+                return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            }
         }
 
         // GET

@@ -18,6 +18,7 @@ namespace GroceryGetter.UI.Controllers
             if (Authenticate.IsAuthenticated())
             {
                 List<User> users = UserManager.Load();
+                ViewBag.Message = ViewBag.Message;
                 return View(users);
             }
             else
@@ -52,10 +53,10 @@ namespace GroceryGetter.UI.Controllers
                 {
                     // Login worked. Save User to session
                     Session["user"] = user;
-                    // if (!String.IsNullOrEmpty(returnurl))
-                    //    return Redirect(returnurl);
-                    // else
-                    return RedirectToAction("Index", "UserProduct"); 
+                    if (!String.IsNullOrEmpty(returnurl))
+                        return Redirect(returnurl);
+                    else
+                        return RedirectToAction("Index", "UserProduct"); 
                     //return RedirectToAction("Index", "Account");
                 }
                 ViewBag.Message = "Login could not be completed.";

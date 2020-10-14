@@ -15,16 +15,17 @@ namespace GroceryGetter.UI.Controllers
         public ActionResult Index()
         {
             // Remove commenting once login is fixed
-            //if (Authenticate.IsAuthenticated())
-            //{
-            var products = ProductManager.LoadAll();
-            return View(products);
-            //}
-            //else
-            //{
-            //    //Need to authenticate
-            //    return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
-            //}
+            if (Authenticate.IsAuthenticated())
+            {
+                var products = ProductManager.LoadAll();
+                ViewBag.Message = ViewBag.Message;
+                return View(products);
+            }
+            else
+            {
+                //Need to authenticate
+                return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            }
         }
     }
 }
