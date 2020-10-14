@@ -39,10 +39,16 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Create()
         {
-            UpProducts upProducts = new UpProducts();
-            upProducts.UserProduct = new UserProduct();
-            upProducts.Products = ProductManager.LoadAll();
-            return View(upProducts);
+            if (Authenticate.IsAuthenticated())
+            {
+                UpProducts upProducts = new UpProducts();
+                upProducts.UserProduct = new UserProduct();
+                upProducts.Products = ProductManager.LoadAll();
+                return View(upProducts);
+            }
+
+            return View();
+            
         }
 
         // POST
