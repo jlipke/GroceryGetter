@@ -49,10 +49,12 @@
     </div>
 
     <div class="container body-content">
+        <div class="header rounded-top">
+        </div>
         @RenderBody()
         <hr />
-        <footer>
-            <p>@DateTime.Now - Grocery Getter&copy;  </p>
+        <footer class="col-md-4">
+            <p>&copy; @DateTime.Now.Year - Grocery Getter</p>
         </footer>
     </div>
 
@@ -61,3 +63,4 @@
     @RenderSection("scripts", required: false)
 </body>
 </html>
+

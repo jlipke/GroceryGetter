@@ -22,5 +22,7 @@ namespace GroceryGetter.BL.Models
         [Display(Name = "Aisle")]
         public string ProductAisle { get; set; }
 
+        // If we want the ability to have multiple shopping lists per user, code below must be added. As well as database changes and more.
+        // public string GroceryListName { get; set; }
     }
 }

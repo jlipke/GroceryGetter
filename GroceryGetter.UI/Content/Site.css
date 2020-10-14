@@ -25,11 +25,16 @@ textarea {
 
 /* Format the Banner */
 .banner {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    width: 100%;
+    max-height: 150px;
     background-color: maroon;
+}
 
+#account-banner {
+    position: relative;
+    margin-left: 23px;
+    column-width: 300px;
 }
 
 /* Format the Logo */
@@ -38,10 +43,8 @@ textarea {
     padding-bottom: 5px;
     width: 15%;
     height: 15%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
     min-width: 125px;
+    min-height: 75px;
 }
 
 #list {
@@ -51,11 +54,10 @@ textarea {
     padding-bottom: 5px;
 }
 
-/* Center a group*/
+/* Center a group */
 .block-center {
     display: flex;
     justify-content: center;
-
 }
 
 .login-container {
@@ -64,4 +66,36 @@ textarea {
     padding-left: 0em;
     padding-right: 0em;
     min-width: 350px;
+}
+
+.side-container {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+/* ---------Sidebar--------- */
+.sidebar {
+    margin: 10px 0px 0px 10px;
+    border-width: 1px;
+    border-style: solid;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: ghostwhite;
+    margin-bottom: 10px;
+    min-width: 172px;
+}
+
+.sidebar hr {
+    margin-top: 0px;
+    margin-bottom: 4px;
+}
+
+/* ---------Main---------- */
+.main {
+    margin: 10px 10px 10px 10px;
+    padding-left: 10px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: ghostwhite;
 }

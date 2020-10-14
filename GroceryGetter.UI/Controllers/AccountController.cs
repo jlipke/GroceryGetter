@@ -17,6 +17,7 @@ namespace GroceryGetter.UI.Controllers
             if (Authenticate.IsAuthenticated())
             {
                 var user = Session["user"] as User;
+                ViewBag.Message = ViewBag.Message;
                 return View(user);
 
             }
@@ -25,6 +26,14 @@ namespace GroceryGetter.UI.Controllers
                 //Need to authenticate
                 return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
             }
+        }
+
+        [ChildActionOnly]
+        public ActionResult AccountBannerbar()
+        {
+            var user = Session["user"] as User;
+            return PartialView(user);
+                   
         }
 
         public ActionResult Settings()

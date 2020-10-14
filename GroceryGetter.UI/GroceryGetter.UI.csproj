@@ -298,6 +298,10 @@
     <Content Include="Views\Account\ChangePassword.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\UserProduct\Create.cshtml" />
+    <Content Include="Views\Store\StoreSidebar.cshtml" />
+    <Content Include="Views\Shared\_GGLayout.cshtml" />
+    <Content Include="Views\Account\AccountBannerbar.cshtml" />
+    <Content Include="Views\User\Logout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

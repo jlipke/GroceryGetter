@@ -32,6 +32,13 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+        [ChildActionOnly]
+        public ActionResult StoreSidebar()
+        {
+            List<Store> stores = StoreManager.Load();
+            return PartialView(stores);
+        }
+
         // GET
         /*
         public ActionResult Details(int id)
