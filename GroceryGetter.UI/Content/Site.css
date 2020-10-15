@@ -1,4 +1,11 @@
-﻿body {
+﻿* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
     padding-bottom: 20px;
     background-color: lightgrey;
 }
@@ -22,8 +29,22 @@ select,
 textarea {
     max-width: 280px;
 }
+/* ---------- Home/Login/Logout Banner ---------- */
+.banner-big {
+    text-align: center;
+    max-height: 200px;
+    width: 100%;
+    background-color: maroon;
+    min-height: 75px;
+}
 
-/* Format the Banner */
+    .banner-big img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+    }
+
+/* ---------- Format the Banner ---------- */
 .banner {
     display: flex;
     width: 100%;
@@ -37,22 +58,22 @@ textarea {
     column-width: 300px;
 }
 
-/* Format the Logo */
-#logo {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    width: 15%;
-    height: 15%;
-    min-width: 125px;
-    min-height: 75px;
+.user-info {
+    margin: 95px 170px 0px 10px;
+    flex: 0 0 10%;
+    max-width: 10%;
 }
 
-#list {
-    margin-left: 50px;
-    background-color: white;
-    padding-top: 5px;
-    padding-bottom: 5px;
+.logo_main {
+    flex: 0 0 50%;
+    max-width: 50%;
+    margin: 0 auto;
 }
+
+    .logo_main img {
+        padding: 10px 5px;
+        max-height: 150px;
+    }
 
 /* Center a group */
 .block-center {
@@ -60,13 +81,6 @@ textarea {
     justify-content: center;
 }
 
-.login-container {
-    margin-left: 0px;
-    margin-right: 0px;
-    padding-left: 0em;
-    padding-right: 0em;
-    min-width: 350px;
-}
 
 .side-container {
     -ms-flex: 0 0 20%;
@@ -79,17 +93,15 @@ textarea {
     margin: 10px 0px 0px 10px;
     border-width: 1px;
     border-style: solid;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding: 0 10px 10px 10px;
     background-color: ghostwhite;
-    margin-bottom: 10px;
     min-width: 172px;
 }
 
-.sidebar hr {
-    margin-top: 0px;
-    margin-bottom: 4px;
-}
+    .sidebar hr {
+        margin-top: 0px;
+        margin-bottom: 4px;
+    }
 
 /* ---------Main---------- */
 .main {

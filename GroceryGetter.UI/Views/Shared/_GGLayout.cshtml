@@ -8,25 +8,26 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    
     <div class="banner">
-        <div id="account-banner">
-            <div>
-                @{ Html.RenderAction("AccountBannerbar", "Account");}
-            </div>
+        <div class="user-info">
+            @{ Html.RenderAction("AccountBannerbar", "Account");}
         </div>
-        <div class="block-center">
-            <a href="~/" class="block-center">
-                <img id="logo" src="~/Images/LogoPlaceholder.png" />
+        <div class="logo_main">
+            <a href="~/">
+                <img id="logo" src="~/Images/logo_main.png" />
             </a>
         </div>
     </div>
 
+
+
+
+
     <div class="container-fluid">
         <div class="row">
-            <div class="side-container rounded-top">
+            <div class="side-container">
 
-                <div class="sidebar rounded-top">
+                <div class="sidebar rounded-top rounded-bottom">
                     <div>
                         <h3>Select Store</h3>
                         <hr />
