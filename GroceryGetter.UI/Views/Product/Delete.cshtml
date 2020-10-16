@@ -10,12 +10,13 @@
 <div>
     <hr />
     
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
 
 <div class="form-actions no-color">
     <input type="submit" value="Delete" class="btn btn-danger" />
     <a href="~/Product" ><input type="button" value="Cancel" class="btn btn-secondary" /></a>
 </div>
- 
+    }
 </div>
