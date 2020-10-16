@@ -107,5 +107,43 @@ namespace GroceryGetter.BL
                 throw ex;
             }
         }
+
+        public static int Delete(Guid id)
+        {
+            
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
+            {
+                tblProduct deleterow = dc.tblProducts.FirstOrDefault(p => p.Id == id);
+                if (deleterow != null)
+                {
+                    dc.tblProducts.Remove(deleterow);
+                    return dc.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Row was not found!!");
+                }
+            }
+            
+        }
+
+        public static int Insert(Product product)
+        {
+           
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
+            {
+                    
+                tblProduct newRow = new tblProduct();
+
+                    
+                newRow.Id = Guid.NewGuid();
+                newRow.Title = product.Title;
+                    
+                dc.tblProducts.Add(newRow);
+                return dc.SaveChanges();
+            }
+           
+        }
+
     }
 }

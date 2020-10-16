@@ -36,6 +36,12 @@ namespace GroceryGetter.UI.Controllers
             return View(product);
         }
 
+        public ActionResult Delete(Guid id)
+        {
+            Product product = ProductManager.LoadById(id);
+            return View(product);
+        }
+
         // POST: Product/Edit/5
         [HttpPost]
         public ActionResult Edit(Guid id, Product product)
@@ -51,5 +57,52 @@ namespace GroceryGetter.UI.Controllers
                 return View();
             }
         }
+
+
+        public ActionResult Create()
+        {
+            if (Authenticate.IsAuthenticated())
+            {
+                Product product = new Product();
+                return View(product);
+            }
+
+            return View();
+
+        }
+
+        
+        [HttpPost]
+        public ActionResult Create(Product p)
+        {
+            try
+            {
+                ProductManager.Insert(p);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+
+        [HttpPost]
+        public ActionResult Delete(Guid id, Store store)
+        {
+            try
+            {
+                
+                ProductManager.Delete(id);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View(id);
+            }
+        }
+
     }
 }

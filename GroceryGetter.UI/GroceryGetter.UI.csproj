@@ -306,6 +306,8 @@
     <Content Include="Views\Account\AccountBannerbar.cshtml" />
     <Content Include="Views\User\Logout.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Delete.cshtml" />
     <Content Include="Views\UserProduct\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

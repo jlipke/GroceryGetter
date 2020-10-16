@@ -274,5 +274,34 @@ namespace GroceryGetter.BL
                 throw ex;
             }
         }
+
+        public static UserProduct LoadById(Guid id)
+        {
+            
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
+            {
+                tblUserProduct exsitingRow = dc.tblUserProducts.FirstOrDefault(u => u.Id == id);
+                if (exsitingRow != null)
+                {
+                    UserProduct uProduct = new UserProduct
+                    {
+                        Id = exsitingRow.Id,
+                        UserId = exsitingRow.UserId,
+                        ProductId = exsitingRow.ProductId,
+                        InCart = exsitingRow.InCart,
+                        Amount = exsitingRow.Amount,
+                        Notes = exsitingRow.Notes
+
+                           
+                    };
+                    return uProduct;
+                }
+                else
+                {
+                    throw new Exception("Row was not found.");
+                }
+            }
+            
+        }
     }
 }

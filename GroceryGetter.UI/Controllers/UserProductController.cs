@@ -93,6 +93,33 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+
+        //// GET
+        //public ActionResult Edit(Guid id)
+        //{
+        //    UserProduct userProduct = UserProductManager.LoadById(id);
+        //    //UpProducts upProducts = new UpProducts();
+        //    //upProducts.UserProduct = new UserProduct();
+        //    //upProducts.Products = ProductManager.LoadAll();
+        //    return View(userProduct);
+        //}
+
+        //// POST
+        //[HttpPost]
+        //public ActionResult Edit(UpProducts upProducts, FormCollection collection)
+        //{
+        //    try
+        //    {
+        //        UserProductManager.Update(upProducts.UserProduct);
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+
         // GET
         public ActionResult Delete(int id)
         {

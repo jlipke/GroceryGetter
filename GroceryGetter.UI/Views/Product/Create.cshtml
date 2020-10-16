@@ -1,10 +1,11 @@
-﻿@model GroceryGetter.BL.Models.Store
+﻿@model GroceryGetter.BL.Models.Product
 
 @{
     ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
 
-<h2>Add a Store</h2>
+<h2>Add a Product</h2>
 
 
 @using (Html.BeginForm()) 
@@ -23,14 +24,21 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.AisleNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AisleNumber, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AisleNumber, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Create" class="btn btn-success" />
-                <a href="~/Store"><input type="button" value="Cancel" class="btn btn-secondary" /></a>
+                <a href="~/Product"><input type="button" value="Cancel" class="btn btn-secondary" /></a>
             </div>
         </div>
     </div>
 }
-
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
