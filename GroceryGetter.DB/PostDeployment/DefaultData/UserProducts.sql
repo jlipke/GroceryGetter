@@ -75,4 +75,10 @@
 	VALUES
 	(NEWID(), @UserId, @ProductId, 0, 1, 'French')
 
+	SELECT @UserId = Id from tblUser where Email = 'email@email.com'
+	SELECT @ProductId = Id from tblProduct where Title = 'Carrots'
+	INSERT INTO tblUserProduct(Id, UserId, ProductId, InCart, Amount, Notes)
+	VALUES
+	(NEWID(), @UserId, @ProductId, 1, 1, 'and knuckles')
+
 END
