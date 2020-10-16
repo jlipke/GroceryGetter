@@ -70,10 +70,11 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Edit(Guid id)
         {
-            UpProducts upProducts = new UpProducts();
-            upProducts.UserProduct = new UserProduct();
-            upProducts.Products = ProductManager.LoadAll();
-            return View(upProducts);
+            UserProduct userProduct = UserProductManager.LoadById(id);
+            //UpProducts upProducts = new UpProducts();
+            //upProducts.UserProduct = new UserProduct();
+            //upProducts.Products = ProductManager.LoadAll();
+            return View(userProduct);
         }
 
         // POST
