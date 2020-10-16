@@ -68,19 +68,21 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            UpProducts upProducts = new UpProducts();
+            upProducts.UserProduct = new UserProduct();
+            upProducts.Products = ProductManager.LoadAll();
+            return View(upProducts);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(UpProducts upProducts, FormCollection collection)
         {
             try
             {
-                // TODO: Add update logic here
-
+                UserProductManager.Update(upProducts.UserProduct);
                 return RedirectToAction("Index");
             }
             catch

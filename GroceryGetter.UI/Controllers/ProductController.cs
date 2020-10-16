@@ -27,5 +27,29 @@ namespace GroceryGetter.UI.Controllers
                 return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
             }
         }
+
+        // GET: Product/Edit/5
+        public ActionResult Edit(Guid id)
+        {
+            Product product = ProductManager.LoadById(id);
+            ViewBag.Title = "Edit Product";
+            return View(product);
+        }
+
+        // POST: Product/Edit/5
+        [HttpPost]
+        public ActionResult Edit(Guid id, Product product)
+        {
+            try
+            {
+                // TODO: Add update logic here
+                ProductManager.Update(product);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
     }
 }

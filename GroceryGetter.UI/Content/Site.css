@@ -52,11 +52,11 @@ textarea {
     background-color: maroon;
 }
 
-#account-banner {
+/*#account-banner {
     position: relative;
     margin-left: 23px;
     column-width: 300px;
-}
+}*/
 
 .user-info {
     margin: 95px 170px 0px 10px;
@@ -68,6 +68,7 @@ textarea {
     flex: 0 0 50%;
     max-width: 50%;
     margin: 0 auto;
+    background-color: maroon;
 }
 
     .logo_main img {
@@ -83,19 +84,21 @@ textarea {
 
 
 .side-container {
-    -ms-flex: 0 0 20%;
-    flex: 0 0 20%;
-    max-width: 20%;
+    /*-ms-flex: 0 0 15%;
+    flex: 0 0 15%;
+    max-width: 15%;*/
+    column-width: 250px;
 }
 
 /* ---------Sidebar--------- */
 .sidebar {
-    margin: 10px 0px 0px 10px;
+    margin-top: 10px;
+    margin: 10px auto;
     border-width: 1px;
     border-style: solid;
     padding: 0 10px 10px 10px;
     background-color: ghostwhite;
-    min-width: 172px;
+    width: 172px;
 }
 
     .sidebar hr {
@@ -104,10 +107,34 @@ textarea {
     }
 
 /* ---------Main---------- */
-.main {
-    margin: 10px 10px 10px 10px;
+.main_content {
+    display: block;
+    margin: 10px;
     padding-left: 10px;
+    padding-right: 10px;
     border-width: 1px;
     border-style: solid;
     background-color: ghostwhite;
+}
+
+.main_container {
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    max-width: 60%;
+    min-width: 550px;
+}
+
+/* ---------- UserProducts ---------- */
+.user_products_table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    width: 100%;
+    min-width: 530px;
+    font-size: 0.9em;
+
+    background-color: forestgreen;
+}
+
+.user_products_table thead tr {
+    background-color: aqua;
 }
