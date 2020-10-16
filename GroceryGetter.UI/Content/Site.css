@@ -50,6 +50,7 @@ textarea {
     width: 100%;
     max-height: 150px;
     background-color: maroon;
+    margin-bottom: 5px;
 }
 
 /*#account-banner {
@@ -84,21 +85,20 @@ textarea {
 
 
 .side-container {
-    /*-ms-flex: 0 0 15%;
-    flex: 0 0 15%;
-    max-width: 15%;*/
-    column-width: 250px;
+/*    display: flex;
+    justify-content: right;*/
+    width: 250px;
 }
 
 /* ---------Sidebar--------- */
 .sidebar {
-    margin-top: 10px;
-    margin: 10px auto;
+    margin: 5px;
     border-width: 1px;
     border-style: solid;
     padding: 0 10px 10px 10px;
     background-color: ghostwhite;
-    width: 172px;
+    min-width: 172px;
+    max-width: 240px;
 }
 
     .sidebar hr {
@@ -109,7 +109,7 @@ textarea {
 /* ---------Main---------- */
 .main_content {
     display: block;
-    margin: 10px;
+    margin: 5px;
     padding-left: 10px;
     padding-right: 10px;
     border-width: 1px;
@@ -131,10 +131,21 @@ textarea {
     width: 100%;
     min-width: 530px;
     font-size: 0.9em;
-
-    background-color: forestgreen;
 }
 
 .user_products_table thead tr {
-    background-color: aqua;
+    background-color: forestgreen;
+}
+
+.user_products_table th,
+.user_products_table td {
+    padding:4px 6px;
+}
+
+.user_products_table tbody tr {
+    border: 1px solid #dddddd;
+}
+
+.user_products_table tbody tr:nth-of-type(odd) {
+    background-color: #f3f3f3;
 }
