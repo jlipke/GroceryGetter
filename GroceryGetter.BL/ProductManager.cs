@@ -127,5 +127,23 @@ namespace GroceryGetter.BL
             
         }
 
+        public static int Insert(Product product)
+        {
+           
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
+            {
+                    
+                tblProduct newRow = new tblProduct();
+
+                    
+                newRow.Id = Guid.NewGuid();
+                newRow.Title = product.Title;
+                    
+                dc.tblProducts.Add(newRow);
+                return dc.SaveChanges();
+            }
+           
+        }
+
     }
 }

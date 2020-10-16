@@ -58,8 +58,37 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+
+        public ActionResult Create()
+        {
+            if (Authenticate.IsAuthenticated())
+            {
+                Product product = new Product();
+                return View(product);
+            }
+
+            return View();
+
+        }
+
         
-        
+        [HttpPost]
+        public ActionResult Create(Product p)
+        {
+            try
+            {
+                ProductManager.Insert(p);
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+
+
         [HttpPost]
         public ActionResult Delete(Guid id, Store store)
         {
