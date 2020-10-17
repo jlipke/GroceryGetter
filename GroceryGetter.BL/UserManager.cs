@@ -13,21 +13,6 @@ namespace GroceryGetter.BL
 {
     public class UserManager
     {
-        public static void Insert(string firstname, string lastname, string email, string userpass)
-        {
-            try
-            {
-                User user = new User(Guid.NewGuid(), firstname, lastname, email, userpass);
-            }
-
-
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
-        }
-
         public static int Insert(User user)
         {
             try
@@ -40,7 +25,6 @@ namespace GroceryGetter.BL
                     newrow.LastName = user.LastName;
                     newrow.Email = user.Email;
                     newrow.GroceryList = user.GroceryList;
-                    //newrow.UserPass = user.UserPass;
                     newrow.UserPass = CreateHash(user.UserPass);
 
                     user.Id = newrow.Id;
@@ -50,11 +34,6 @@ namespace GroceryGetter.BL
                 }
             }
 
-            //catch (Exception ex)
-            //{
-
-            //    throw ex;
-            //}
             catch (System.Data.Entity.Validation.DbEntityValidationException e)     // Use this to output validation errors in the output window
             {
                 foreach (var eve in e.EntityValidationErrors)
@@ -73,105 +52,87 @@ namespace GroceryGetter.BL
 
         public static int Update(User user)
         {
-            try
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                tblUser updatedrow = dc.tblUsers.Where(c => c.Id == user.Id).FirstOrDefault();
+                if (updatedrow != null)
                 {
-                    tblUser updatedrow = dc.tblUsers.Where(c => c.Id == user.Id).FirstOrDefault();
-                    if(updatedrow != null)
-                    {
-                        updatedrow.FirstName = user.FirstName;
-                        updatedrow.LastName = user.LastName;
-                        updatedrow.Email = user.Email;
-                        updatedrow.UserPass = CreateHash(user.UserPass);
-                        return dc.SaveChanges();
-                    }
-                    else
-                    {
-                        throw new Exception("Row was not found!");
-                    }
+                    updatedrow.FirstName = user.FirstName;
+                    updatedrow.LastName = user.LastName;
+                    updatedrow.GroceryList = user.GroceryList;
+                    updatedrow.Email = user.Email;
+                    updatedrow.UserPass = CreateHash(user.UserPass);
+
+                    return dc.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Row was not found!");
                 }
             }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
         }
 
-        public static int UpdateGroceryList(User user)
+        public static int UpdateGroceryList(User user) // As of now, this isn't used anywhere
         {
-            try
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Id == u.Id);
+
+                if (tbluser != null)
                 {
-                    tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Id == u.Id);
+                    tbluser.FirstName = user.FirstName;
+                    tbluser.LastName = user.LastName;
+                    tbluser.Email = user.Email;
+                    tbluser.UserPass = user.UserPass;
 
-                    if(tbluser != null)
+                    var existing = dc.tblUserProducts.Where(up => up.UserId == user.Id);
+                    dc.tblUserProducts.RemoveRange(existing);
+
+                    List<tblUserProduct> tblUserProducts = new List<tblUserProduct>();
+
+                    foreach (UserProduct up in user.GroceryListObj)
                     {
-                        tbluser.FirstName = user.FirstName;
-                        tbluser.LastName = user.LastName;
-                        tbluser.Email = user.Email;
-                        tbluser.UserPass = user.UserPass;
-
-                        var existing = dc.tblUserProducts.Where(up => up.UserId == user.Id);
-                        dc.tblUserProducts.RemoveRange(existing);
-
-                        List<tblUserProduct> tblUserProducts = new List<tblUserProduct>();
-
-                        foreach (UserProduct up in user.GroceryListObj)
-                        {
-                            tblUserProduct tbluserproduct = new tblUserProduct();
-                            tbluserproduct.Id = Guid.NewGuid();
-                            tbluserproduct.UserId = user.Id;
-                            tbluserproduct.ProductId = up.Id;
-                            tbluserproduct.InCart = up.InCart;
-                            tbluserproduct.Amount = up.Amount;
-                            tbluserproduct.Notes = up.Notes;
-                            tblUserProducts.Add(tbluserproduct);
-                        }
-
-                        dc.tblUserProducts.AddRange(tblUserProducts);
-
-                        int result = dc.SaveChanges();
-                        return result;
+                        tblUserProduct tbluserproduct = new tblUserProduct();
+                        tbluserproduct.Id = Guid.NewGuid();
+                        tbluserproduct.UserId = user.Id;
+                        tbluserproduct.ProductId = up.Id;
+                        tbluserproduct.InCart = up.InCart;
+                        tbluserproduct.Amount = up.Amount;
+                        tbluserproduct.Notes = up.Notes;
+                        tblUserProducts.Add(tbluserproduct);
                     }
-                    else
-                    {
-                        throw new Exception("Row was not found!!");
-                    }
+
+                    dc.tblUserProducts.AddRange(tblUserProducts);
+
+                    int result = dc.SaveChanges();
+                    return result;
+                }
+                else
+                {
+                    throw new Exception("Row was not found!!");
                 }
             }
-            catch (Exception ex) 
-            {
 
-                throw ex;
-            }
         }
 
         public static int Delete(Guid id)
         {
-            try
+
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                tblUser deleterow = dc.tblUsers.FirstOrDefault(c => c.Id == id);
+                if (deleterow != null)
                 {
-                    tblUser deleterow = dc.tblUsers.FirstOrDefault(c => c.Id == id);
-                    if(deleterow != null)
-                    {
-                        dc.tblUsers.Remove(deleterow);
-                        return dc.SaveChanges();
-                    }
-                    else
-                    {
-                        throw new Exception("Row was not found!!!");
-                    }
+                    dc.tblUsers.Remove(deleterow);
+                    return dc.SaveChanges();
+                }
+                else
+                {
+                    throw new Exception("Row was not found!!!");
                 }
             }
-            catch (Exception ex)
-            {
 
-                throw ex;
-            }
         }
 
         public static void Seed()
@@ -182,74 +143,55 @@ namespace GroceryGetter.BL
 
         public static User LoadByEmail(string email)
         {
-            try
-            {
-                List<User> users = new List<User>();
 
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+            List<User> users = new List<User>();
+
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
+            {
+                var results = (from u in dc.tblUsers
+                               where u.Email == email
+                               select u).ToList();
+
+                results.ForEach(u => users.Add(new User
                 {
-                    var results = (from u in dc.tblUsers
-                                   where u.Email == email
-                                   select u).ToList();
-
-                    results.ForEach(u => users.Add(new User
-                    {
-                        Id = u.Id,
-                        FirstName = u.FirstName,
-                        GroceryList = u.GroceryList,
-                        LastName = u.LastName,
-                        Email = u.Email,
-                        UserPass = u.UserPass
-                    }));
-                }
-                return users.FirstOrDefault();
+                    Id = u.Id,
+                    FirstName = u.FirstName,
+                    GroceryList = u.GroceryList,
+                    LastName = u.LastName,
+                    Email = u.Email,
+                    UserPass = u.UserPass
+                }));
             }
-            catch (Exception ex)
-            {
+            return users.FirstOrDefault();
 
-                throw ex;
-            }
         }
 
         public static User LoadById(Guid id)
         {
-            try
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Id == id);
+                User user = new User();
+
+                if (tbluser != null)
                 {
-                    tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Id == id);
-                    User user = new User();
+                    user.Id = tbluser.Id;
+                    user.FirstName = tbluser.FirstName;
+                    user.LastName = tbluser.LastName;
+                    user.Email = tbluser.Email;
+                    user.GroceryList = tbluser.GroceryList;
+                    user.UserPass = tbluser.UserPass;
 
-                    if (tbluser != null)
-                    {
-                        user.Id = tbluser.Id;
-                        user.FirstName = tbluser.FirstName;
-                        user.LastName = tbluser.LastName;
-                        user.Email = tbluser.Email;
-                        user.GroceryList = tbluser.GroceryList;
-                        user.UserPass = tbluser.UserPass;
-                        
 
-                        tblUserProduct tbluserproduct = dc.tblUserProducts.FirstOrDefault(up => up.UserId == id);
-
-                        if(tbluserproduct != null)
-                        {
-                            //user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
-                        }
-                        return user;
-                    }
-                    else
-                    {
-                        throw new Exception("Row was not found!!!!");
-                    }
+                    return user;
+                }
+                else
+                {
+                    throw new Exception("Row was not found!!!!");
                 }
             }
-            catch (Exception ex)
-            {
-
-                throw ex;
-            }
         }
+
 
         public static List<User> Load()
         {
@@ -266,7 +208,7 @@ namespace GroceryGetter.BL
                 }));
                 return users;
             }
-            
+
         }
 
 
@@ -302,7 +244,7 @@ namespace GroceryGetter.BL
 
         public static bool VerifyHash(string savedPasswordHash, string userEnteredPassword)
         {
-            
+
             // Extract bytes
             byte[] hashBytes = Convert.FromBase64String(savedPasswordHash);
 
@@ -315,21 +257,21 @@ namespace GroceryGetter.BL
             byte[] hash = pbkdf2.GetBytes(20);
 
 
-            
+
 
             // Compare results
             bool result = true;
             for (int i = 0; i < 20; i++)
                 if (hashBytes[i + 16] != hash[i])
                     result = false;
-                
+
             if (result == false)
                 return false;
             else
                 return true;
-                
+
         }
-        
+
         public static bool Login(User user)
         {
             if (!string.IsNullOrEmpty(user.Email))
@@ -339,10 +281,10 @@ namespace GroceryGetter.BL
                     using (GroceryGetterEntities dc = new GroceryGetterEntities())
                     {
                         tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Email == user.Email);
-                        if(tbluser != null)
+                        if (tbluser != null)
                         {
                             //if(GetHash(tbluser.UserPass) == GetHash(user.UserPass)) //"gwhlGAT6y3ua+P/FOjOiLWocisI="
-                            if(VerifyHash(tbluser.UserPass, user.UserPass))
+                            if (VerifyHash(tbluser.UserPass, user.UserPass))
                             {
                                 user.FirstName = tbluser.FirstName;
                                 user.LastName = tbluser.LastName;
@@ -352,7 +294,7 @@ namespace GroceryGetter.BL
                             }
                             else
                             {
-                               // return false;
+                                // return false;
                                 throw new Exception("Cannot log in with these credentials!");
                             }
                         }
@@ -372,7 +314,8 @@ namespace GroceryGetter.BL
             {
                 throw new Exception("User Id was not set!");
             }
-            
+
         }
     }
+
 }
