@@ -60,10 +60,10 @@ namespace Playground
 
             userProducts = ProductHelper.JsonToOjects(output);
 
-            var filteredList = userProducts.Where(p => p.Store == Product.StoreLoction.WALMART).ToString();
+            var filteredList = userProducts.Where(p => p.Store == Product.StoreLoction.WALMART).ToList();
             Console.WriteLine(filteredList.Count());
 
-            var filteredList2 = userProducts.Where(p => p.Aisle == Product.AisleLoction.PRODUCE).ToString();
+            var filteredList2 = userProducts.Where(p => p.Aisle == Product.AisleLoction.PRODUCE).ToList();
             Console.WriteLine(filteredList.Count());
 
 
