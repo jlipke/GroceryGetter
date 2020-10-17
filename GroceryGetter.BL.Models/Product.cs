@@ -10,6 +10,7 @@ namespace GroceryGetter.BL.Models
     public class Product
     {
         public Guid Id { get; set; }
+        [Display(Name = "Item Name")]
         public string Title { get; set; }
         public enum StoreLoction
         {

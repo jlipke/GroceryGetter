@@ -203,6 +203,7 @@ namespace GroceryGetter.BL
                     Id = u.Id,
                     FirstName = u.FirstName,
                     LastName = u.LastName,
+                    GroceryList = u.GroceryList,
                     UserPass = u.UserPass,
                     Email = u.Email
                 }));
@@ -288,6 +289,7 @@ namespace GroceryGetter.BL
                             {
                                 user.FirstName = tbluser.FirstName;
                                 user.LastName = tbluser.LastName;
+                                user.GroceryList = tbluser.GroceryList;
                                 user.Email = tbluser.Email;
                                 user.Id = tbluser.Id;
                                 return true;

@@ -53,10 +53,12 @@ namespace GroceryGetter.UI.Controllers
                 {
                     // Login worked. Save User to session
                     Session["user"] = user;
+                    user.GroceryListObj = ProductHelper.JsonToOjects(user.GroceryList);
                     if (!String.IsNullOrEmpty(returnurl))
                         return Redirect(returnurl);
                     else
-                        return RedirectToAction("Index", "UserProduct"); 
+                        //return RedirectToAction("Index", "User");
+                    return RedirectToAction("Index", "UserProduct"); 
                     //return RedirectToAction("Index", "Account");
                 }
                 ViewBag.Message = "Login could not be completed.";
@@ -94,7 +96,6 @@ namespace GroceryGetter.UI.Controllers
             }
             catch(Exception ex)
             {
-                throw ex;
                 return View();
             }
         }

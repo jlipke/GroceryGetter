@@ -21,7 +21,7 @@ namespace GroceryGetter.UI.Controllers
                 //var userProductList = UserProductManager.LoadByUserId(user.Id);
                 var userProductList = new List<UserProduct>(); 
                 ViewBag.Message = ViewBag.Message;
-                return View(userProductList);
+                return View(user);
             }
             else
             {

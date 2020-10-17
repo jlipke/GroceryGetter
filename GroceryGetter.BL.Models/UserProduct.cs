@@ -9,7 +9,7 @@ namespace GroceryGetter.BL.Models
 {
     public class UserProduct : Product
     {
-
+        [Display(Name = "In Cart")]
         public bool InCart { get; set; }
         public int Amount { get; set; }
         public string Notes { get; set; }
