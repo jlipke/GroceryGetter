@@ -59,11 +59,17 @@ namespace Playground
 
 
             userProducts = ProductHelper.JsonToOjects(output);
-            var oo = userProducts.Where(p => p.Store == Product.StoreLoction.WALMART).FirstOrDefault();
-            Console.WriteLine(oo.Title);
-            
 
-            foreach(UserProduct x in userProducts)
+            var filteredList = userProducts.Where(p => p.Store == Product.StoreLoction.WALMART).ToString();
+            Console.WriteLine(filteredList.Count());
+
+            var filteredList2 = userProducts.Where(p => p.Aisle == Product.AisleLoction.PRODUCE).ToString();
+            Console.WriteLine(filteredList.Count());
+
+
+
+
+            foreach (UserProduct x in userProducts)
             {
                 Console.WriteLine($"Title = {x.Title}");
                 Console.WriteLine($"Notes = {x.Notes}");
