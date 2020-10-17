@@ -18,7 +18,8 @@ namespace GroceryGetter.UI.Controllers
             if (Authenticate.IsAuthenticated())
             {
                 var user = Session["user"] as User;
-                var userProductList = UserProductManager.LoadByUserId(user.Id);
+                //var userProductList = UserProductManager.LoadByUserId(user.Id);
+                var userProductList = new List<UserProduct>(); 
                 ViewBag.Message = ViewBag.Message;
                 return View(userProductList);
             }
@@ -58,7 +59,7 @@ namespace GroceryGetter.UI.Controllers
             try
             {
                 // TODO: Add insert logic here
-                UserProductManager.Insert(upProducts.UserProduct);
+                //UserProductManager.Insert(upProducts.UserProduct);
                 return RedirectToAction("Index");
             }
             catch
@@ -73,8 +74,10 @@ namespace GroceryGetter.UI.Controllers
             var user = Session["user"] as User;
             //UpProducts upProducts = new UpProducts();
             //upProducts.UserProduct = UserProductManager.SearchGroceryByProduct(user.Id, userProduct.ProductTitle);
-            UserProduct userProduct = UserProductManager.SearchGroceryByProduct(user.Id, product.Title);
+            //UserProduct userProduct = UserProductManager.SearchGroceryByProduct(user.Id, product.Title);
 
+
+            var userProduct = new List<UserProduct>();
             return View(userProduct);
         }
 
@@ -84,7 +87,7 @@ namespace GroceryGetter.UI.Controllers
         {
             try
             {
-                UserProductManager.Update(userProduct);
+               // UserProductManager.Update(userProduct);
                 return RedirectToAction("Index");
             }
             catch

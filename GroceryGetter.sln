@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryGetter.PL.Test", "Gr
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GroceryGetter.DB", "GroceryGetter.DB\GroceryGetter.DB.sqlproj", "{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Playground", "Playground\Playground.csproj", "{D357A177-D28D-4576-A0F8-07A82135F066}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D357A177-D28D-4576-A0F8-07A82135F066}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D357A177-D28D-4576-A0F8-07A82135F066}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D357A177-D28D-4576-A0F8-07A82135F066}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D357A177-D28D-4576-A0F8-07A82135F066}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -39,6 +39,7 @@ namespace GroceryGetter.BL
                     newrow.FirstName = user.FirstName;
                     newrow.LastName = user.LastName;
                     newrow.Email = user.Email;
+                    newrow.GroceryList = user.GroceryList;
                     //newrow.UserPass = user.UserPass;
                     newrow.UserPass = CreateHash(user.UserPass);
 
@@ -118,7 +119,7 @@ namespace GroceryGetter.BL
 
                         List<tblUserProduct> tblUserProducts = new List<tblUserProduct>();
 
-                        foreach (UserProduct up in user.GroceryList)
+                        foreach (UserProduct up in user.GroceryListObj)
                         {
                             tblUserProduct tbluserproduct = new tblUserProduct();
                             tbluserproduct.Id = Guid.NewGuid();
@@ -184,21 +185,21 @@ namespace GroceryGetter.BL
             try
             {
                 List<User> users = new List<User>();
+
                 using (GroceryGetterEntities dc = new GroceryGetterEntities())
                 {
                     var results = (from u in dc.tblUsers
-                                   join up in dc.tblUserProducts on u.Id equals up.UserId
-                                   join p in dc.tblProducts on up.ProductId equals p.Id
                                    where u.Email == email
                                    select u).ToList();
+
                     results.ForEach(u => users.Add(new User
                     {
                         Id = u.Id,
                         FirstName = u.FirstName,
+                        GroceryList = u.GroceryList,
                         LastName = u.LastName,
                         Email = u.Email,
-                        UserPass = u.UserPass,
-                        GroceryList = UserProductManager.LoadByUserId(u.Id)
+                        UserPass = u.UserPass
                     }));
                 }
                 return users.FirstOrDefault();
@@ -225,6 +226,7 @@ namespace GroceryGetter.BL
                         user.FirstName = tbluser.FirstName;
                         user.LastName = tbluser.LastName;
                         user.Email = tbluser.Email;
+                        user.GroceryList = tbluser.GroceryList;
                         user.UserPass = tbluser.UserPass;
                         
 
@@ -232,7 +234,7 @@ namespace GroceryGetter.BL
 
                         if(tbluserproduct != null)
                         {
-                            user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
+                            //user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
                         }
                         return user;
                     }
@@ -260,8 +262,7 @@ namespace GroceryGetter.BL
                     FirstName = u.FirstName,
                     LastName = u.LastName,
                     UserPass = u.UserPass,
-                    Email = u.Email,
-                    GroceryList = UserProductManager.LoadByUserId(u.Id)
+                    Email = u.Email
                 }));
                 return users;
             }
@@ -347,7 +348,6 @@ namespace GroceryGetter.BL
                                 user.LastName = tbluser.LastName;
                                 user.Email = tbluser.Email;
                                 user.Id = tbluser.Id;
-                                user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
                                 return true;
                             }
                             else

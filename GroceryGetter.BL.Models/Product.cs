@@ -11,8 +11,32 @@ namespace GroceryGetter.BL.Models
     {
         public Guid Id { get; set; }
         public string Title { get; set; }
+        public enum StoreLoction
+        {
+            WALMART,
+            ALDI,
+            KROGGER,
+            FESTIVAL,
+            ALPHABETICAL
+            
 
-        [Display(Name = "Aisle")]
-        public string AisleNumber { get; set; }
+        }
+
+        public enum AisleLoction
+        {
+           
+            BREAD,
+            CLEANING,
+            DAIRY,
+            PRODUCE,
+            CEREAL,
+            HOUSEHOLD
+        }
+
+        public StoreLoction Store { get; set; }
+        public AisleLoction Aisle { get; set; }
+
+        //[Display(Name = "Aisle")]
+        //public string AisleNumber { get; set; }
     }
 }

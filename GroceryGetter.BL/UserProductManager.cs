@@ -10,6 +10,8 @@ namespace GroceryGetter.BL
 {
     public class UserProductManager
     {
+
+        /*
         public static int Insert(UserProduct userProduct)
         {
             try
@@ -303,5 +305,9 @@ namespace GroceryGetter.BL
             }
             
         }
+    }
+}
+
+        */
     }
 }
