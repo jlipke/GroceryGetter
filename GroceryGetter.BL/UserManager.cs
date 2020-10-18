@@ -192,7 +192,6 @@ namespace GroceryGetter.BL
             }
         }
 
-
         public static List<User> Load()
         {
             using (GroceryGetterEntities dc = new GroceryGetterEntities())
@@ -211,16 +210,6 @@ namespace GroceryGetter.BL
             }
 
         }
-
-
-        //private static string GetHash(string userpass)
-        //{
-        //    using (var haser = new System.Security.Cryptography.SHA1Managed())        Seems to be a one way hashing method that cant be recreated the same way every time
-        //    {                                                                         Also, it does not have a salt mixed in making it very easy to decrypt
-        //        var hashbytes = System.Text.Encoding.UTF8.GetBytes(userpass);
-        //        return Convert.ToBase64String(haser.ComputeHash(hashbytes));
-        //    }
-        //}
 
         public static string CreateHash(string userpass)
         {

@@ -53,7 +53,15 @@ namespace GroceryGetter.UI.Controllers
                 {
                     // Login worked. Save User to session
                     Session["user"] = user;
-                    user.GroceryListObj = ProductHelper.JsonToOjects(user.GroceryList);
+                    if (user.GroceryList.Length == 1)
+                    {
+                        user.GroceryListObj = ProductHelper.GetSomeDummyData();  // to add default data (temp fix)
+                    }
+                    else
+                    {
+                        user.GroceryListObj = ProductHelper.JsonToOjects(user.GroceryList);
+                    }
+                    
                     if (!String.IsNullOrEmpty(returnurl))
                         return Redirect(returnurl);
                     else

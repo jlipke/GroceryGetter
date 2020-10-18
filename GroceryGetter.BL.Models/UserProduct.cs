@@ -13,13 +13,13 @@ namespace GroceryGetter.BL.Models
         public bool InCart { get; set; }
 
         public string Notes { get; set; }
-
+        private int _amount; 
         public UserProduct()
         {
             // When a user adds an item, it defulats to one
             // if they want more, they press the up button
             // that call AmountUp() method
-            this.Amount = 1;
+            this._amount = 1;
         }
 
         public int Amount
@@ -27,13 +27,13 @@ namespace GroceryGetter.BL.Models
             get
             {
                 // To prevent negitives.
-                if (Amount < 0)
+                if (_amount < 1)
                     return 1;
                 else
-                    return Amount;
+                    return _amount;
             }
 
-            private set
+            set
             {
                 // The user doesn't need to enter a number, 
                 // just increse/decrease the amount
@@ -44,12 +44,12 @@ namespace GroceryGetter.BL.Models
 
         public void AmountUp()
         {
-            this.Amount++;
+            this._amount++;
         }
 
         public void AmountDown()
         {
-            this.Amount--;
+            this._amount--;
         }
 
 
