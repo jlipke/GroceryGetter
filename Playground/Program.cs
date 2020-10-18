@@ -29,7 +29,7 @@ namespace Playground
             product.Store = Product.StoreLoction.KROGGER;
             product.Notes = "Get a fresh date";
             product.InCart = false;
-            product.Amount = 4;
+            //product.Amount = 4;
             userProducts.Add(product);
 
             product = new UserProduct();
@@ -40,7 +40,7 @@ namespace Playground
             product.Store = Product.StoreLoction.WALMART;
             product.Notes = "2% fat";
             product.InCart = false;
-            product.Amount = 3;
+            //product.Amount = 3;
             userProducts.Add(product);
 
 
@@ -73,7 +73,7 @@ namespace Playground
             {
                 Console.WriteLine($"Title = {x.Title}");
                 Console.WriteLine($"Notes = {x.Notes}");
-                Console.WriteLine($"Store = {x.Store}");
+                Console.WriteLine($"Store = {x.Amount}");
             }
              
             

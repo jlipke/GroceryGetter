@@ -22,7 +22,7 @@ namespace GroceryGetter.BL
             product.Store = Product.StoreLoction.KROGGER;
             product.Notes = "Get a fresh date";
             product.InCart = false;
-            product.Amount = 4;
+            //product.Amount = 4;
             userProducts.Add(product);
 
             product = new UserProduct();
@@ -33,7 +33,7 @@ namespace GroceryGetter.BL
             product.Store = Product.StoreLoction.WALMART;
             product.Notes = "2% fat";
             product.InCart = false;
-            product.Amount = 3;
+            //product.Amount = 3;
             userProducts.Add(product);
 
             product = new UserProduct();
@@ -43,7 +43,7 @@ namespace GroceryGetter.BL
             product.Title = "Cheese";
             product.Store = Product.StoreLoction.WALMART;
             product.InCart = false;
-            product.Amount = 2;
+            //product.Amount = 2;
             userProducts.Add(product);
 
             product = new UserProduct();
@@ -53,7 +53,7 @@ namespace GroceryGetter.BL
             product.Title = "Cork Flakes";
             product.Store = Product.StoreLoction.ALDI;
             product.InCart = true;
-            product.Amount = 2;
+            //product.Amount = 2;
             userProducts.Add(product);
 
 
@@ -72,7 +72,20 @@ namespace GroceryGetter.BL
             return json;
         }
 
+        public static List<UserProduct> AddItemToList(UserProduct p, List<UserProduct> list)
+        {
+            List<UserProduct> tempList = list;
+            tempList.Add(p);
+            return tempList;
+        }
 
+        public static List<UserProduct> RemoveItemToList(UserProduct p, List<UserProduct> list)
+        {
+            List<UserProduct> tempList = list;
+            tempList.RemoveAll(x => x.Id == p.Id); // Removes the product from the list that
+                                                    // matches the product that was passed in
+            return tempList;
+        }
 
     }
 }
