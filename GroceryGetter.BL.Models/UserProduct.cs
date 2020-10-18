@@ -22,6 +22,7 @@ namespace GroceryGetter.BL.Models
             this._amount = 1;
         }
 
+
         public int Amount
         {
             get
@@ -40,13 +41,18 @@ namespace GroceryGetter.BL.Models
                 // See methods below
             }
         }
-        
 
+        /// <summary>
+        /// Increases the item's amount property by one
+        /// </summary>
         public void AmountUp()
         {
             this._amount++;
         }
 
+        /// <summary>
+        /// Decreases the item's amount property by one
+        /// </summary>
         public void AmountDown()
         {
             this._amount--;
@@ -55,6 +61,8 @@ namespace GroceryGetter.BL.Models
 
 
         /*
+         * 
+         * Remove this Later
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid ProductId { get; set; }

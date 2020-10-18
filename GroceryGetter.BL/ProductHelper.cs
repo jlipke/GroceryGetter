@@ -11,6 +11,10 @@ namespace GroceryGetter.BL
         static List<UserProduct> products = new List<UserProduct>();
         static string json; 
         
+        /// <summary>
+        /// Creates a list of defalut User Products.
+        /// </summary>
+        /// <returns></returns>
         public static List<UserProduct> GetSomeDummyData()
         {
             UserProduct product = new UserProduct();
@@ -56,18 +60,34 @@ namespace GroceryGetter.BL
             return userProducts; 
         }
 
+        /// <summary>
+        /// Takes in a JSON string and returns a list of User Products
+        /// </summary>
+        /// <param name="input">A string of JSON </param>
+        /// <returns></returns>
         public static List<UserProduct> JsonToOjects(string input)
         {
             products = JsonConvert.DeserializeObject<List<UserProduct>>(input);
             return products;
         } 
 
+        /// <summary>
+        /// Takes in a list of User Products and returns a string (for database) 
+        /// </summary>
+        /// <param name="input">A list of User Products</param>
+        /// <returns></returns>
         public static string ObjectToJson(List<UserProduct> input)
         {
             json = JsonConvert.SerializeObject(input, Formatting.Indented);
             return json;
         }
 
+        /// <summary>
+        /// Takes in a list of UserProducts, add an item, then returns the new list
+        /// </summary>
+        /// <param name="p">The product you want to remove</param>
+        /// <param name="list">The list you want to change</param>
+        /// <returns></returns>
         public static List<UserProduct> AddItemToList(UserProduct p, List<UserProduct> list)
         {
             List<UserProduct> tempList = list;
@@ -75,6 +95,12 @@ namespace GroceryGetter.BL
             return tempList;
         }
 
+        /// <summary>
+        /// Takes in a list of UserProducts, removes an item, then returns the new list
+        /// </summary>
+        /// <param name="p">The product you want to remove</param>
+        /// <param name="list">The list you want to change</param>
+        /// <returns></returns>
         public static List<UserProduct> RemoveItemToList(UserProduct p, List<UserProduct> list)
         {
             List<UserProduct> tempList = list;
