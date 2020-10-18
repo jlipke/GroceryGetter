@@ -42,6 +42,14 @@ namespace GroceryGetter.UI.Controllers
             return View(product);
         }
 
+
+        public ActionResult Details(Guid id)
+        {
+            Product product = ProductManager.LoadById(id);
+            ViewBag.Title = "Details";
+            return View(product);
+        }
+
         // POST: Product/Edit/5
         [HttpPost]
         public ActionResult Edit(Guid id, Product product)
