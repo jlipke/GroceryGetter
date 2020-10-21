@@ -28,6 +28,13 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+        public ActionResult ChangePassword()
+        {
+            var user = Session["user"] as User;
+            PasswordResetManager.SendMessage(user.Email); 
+            return RedirectToAction("Index");
+        }
+
         [ChildActionOnly]
         public ActionResult AccountBannerbar()
         {

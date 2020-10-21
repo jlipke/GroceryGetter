@@ -24,9 +24,13 @@ namespace GroceryGetter.BL
                     newrow.FirstName = user.FirstName;
                     newrow.LastName = user.LastName;
                     newrow.Email = user.Email;
-                    newrow.GroceryList = user.GroceryList;
-                    newrow.UserPass = CreateHash(user.UserPass);
 
+                    if (user.GroceryList == null)
+                        newrow.GroceryList = "Empty";           // Temporary fix, Can't create a user without a grocerylist even though the DB permits null values
+                    else
+                        newrow.GroceryList = user.GroceryList;
+
+                    newrow.UserPass = CreateHash(user.UserPass);
                     user.Id = newrow.Id;
                     dc.tblUsers.Add(newrow);
 
