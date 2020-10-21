@@ -7,37 +7,40 @@ using System.Threading.Tasks;
 
 namespace GroceryGetter.BL.Models
 {
+
+
+    public enum StoreLocation
+    {
+        WALMART,
+        ALDI,
+        KROGGER,
+        FESTIVAL,
+        ALPHABETICAL
+
+
+    }
+
+    public enum AisleLocation
+    {
+
+        BREAD,
+        CLEANING,
+        DAIRY,
+        PRODUCE,
+        CEREAL,
+        HOUSEHOLD
+    }
+
+
     public class Product
     {
         public Guid Id { get; set; }
         [Display(Name = "Item Name")]
         public string Title { get; set; }
-        public enum StoreLoction
-        {
-            WALMART,
-            ALDI,
-            KROGGER,
-            FESTIVAL,
-            ALPHABETICAL
-            
+        
 
-        }
+        public StoreLocation Store { get; set; }
+        public AisleLocation Aisle { get; set; }
 
-        public enum AisleLoction
-        {
-           
-            BREAD,
-            CLEANING,
-            DAIRY,
-            PRODUCE,
-            CEREAL,
-            HOUSEHOLD
-        }
-
-        public StoreLoction Store { get; set; }
-        public AisleLoction Aisle { get; set; }
-
-        //[Display(Name = "Aisle")]
-        //public string AisleNumber { get; set; }
     }
 }

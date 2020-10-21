@@ -24,9 +24,9 @@ namespace Playground
             List<UserProduct> userProducts = new List<UserProduct>();
 
             product.Id = Guid.NewGuid();
-            product.Aisle = Product.AisleLoction.BREAD;
+            product.Aisle = AisleLocation.BREAD;
             product.Title = "Whole Wheat Bread";
-            product.Store = Product.StoreLoction.KROGGER;
+            product.Store = StoreLocation.KROGGER;
             product.Notes = "Get a fresh date";
             product.InCart = false;
             //product.Amount = 4;
@@ -35,9 +35,9 @@ namespace Playground
             product = new UserProduct();
 
             product.Id = Guid.NewGuid();
-            product.Aisle = Product.AisleLoction.DAIRY;
+            product.Aisle = AisleLocation.DAIRY;
             product.Title = "Milk";
-            product.Store = Product.StoreLoction.WALMART;
+            product.Store = StoreLocation.WALMART;
             product.Notes = "2% fat";
             product.InCart = false;
             //product.Amount = 3;
@@ -60,11 +60,13 @@ namespace Playground
 
             userProducts = ProductHelper.JsonToOjects(output);
 
-            var filteredList = userProducts.Where(p => p.Store == Product.StoreLoction.WALMART).ToList();
+            var filteredList = userProducts.Where(p => p.Store == StoreLocation.WALMART).ToList();
             Console.WriteLine(filteredList.Count());
 
-            var filteredList2 = userProducts.Where(p => p.Aisle == Product.AisleLoction.PRODUCE).ToList();
+            var filteredList2 = userProducts.Where(p => p.Aisle == AisleLocation.PRODUCE).ToList();
             Console.WriteLine(filteredList.Count());
+
+            
 
 
 
