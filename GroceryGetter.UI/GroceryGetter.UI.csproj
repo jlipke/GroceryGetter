@@ -299,7 +299,7 @@
     <Content Include="Views\Aisle\Index.cshtml" />
     <Content Include="Views\Aisle\Create.cshtml" />
     <Content Include="Views\Aisle\Edit.cshtml" />
-    <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\User\ChangePassword.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\UserProduct\Create.cshtml" />
     <Content Include="Views\Store\StoreSidebar.cshtml" />
