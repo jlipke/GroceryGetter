@@ -28,22 +28,24 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Create()
         {
-            return View();
+            Layout layout = new Layout();
+            return View(layout);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Layout layout)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                LayoutManager.Insert(layout);
                 return RedirectToAction("Index");
+
             }
             catch
             {
-                return View();
+                return View(layout);
             }
         }
 

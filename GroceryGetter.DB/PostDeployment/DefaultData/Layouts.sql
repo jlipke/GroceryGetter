@@ -19,3 +19,5 @@
 	VALUES
 	(NEWID(), @StoreId, 'L_Aldi-De Pere')
 END
+
+select * from dbo.tblLayout;
