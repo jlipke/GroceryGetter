@@ -312,10 +312,10 @@
     <Content Include="Views\UserProduct\Edit.cshtml" />
     <Content Include="Views\UserProduct\Index.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
+    <Content Include="Views\Layout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Layout\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -326,7 +326,7 @@
       <Name>GroceryGetter.BL.Models</Name>
     </ProjectReference>
     <ProjectReference Include="..\GroceryGetter.BL\GroceryGetter.BL.csproj">
-      <Project>{A1E32475-325F-4E1F-9D8E-F889D0E3DD10}</Project>
+      <Project>{a1e32475-325f-4e1f-9d8e-f889d0e3dd10}</Project>
       <Name>GroceryGetter.BL</Name>
     </ProjectReference>
   </ItemGroup>

@@ -1,0 +1,43 @@
+﻿
+@model IEnumerator<GroceryGetter.BL.Models.Layout>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Layouts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.StoreId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+
+    </tr>
+
+    @foreach (var lay in Model)
+    {
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => lay.StoreId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => lay.Title)
+            </td>
+
+            
+        </tr>
+    }
+
+</table>
+
