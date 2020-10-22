@@ -12,7 +12,7 @@ namespace GroceryGetter.UI.Controllers
     public class LayoutController : Controller
     {
         // GET
-        public ActionResult Index(Guid id, Guid StoreId, )
+        public ActionResult Index(Guid id)
         {
             var layoutList = LayoutManager.LoadById(id);
             ViewBag.Message = ViewBag.Message;
