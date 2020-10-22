@@ -7,7 +7,7 @@ namespace GroceryGetter.BL
 {
     public static class ProductHelper
     {
-        
+        /*
         static List<UserProduct> products = new List<UserProduct>();
         static string json; 
         
@@ -109,7 +109,7 @@ namespace GroceryGetter.BL
             return tempList;
         }
 
-
+    */
        
 
     }

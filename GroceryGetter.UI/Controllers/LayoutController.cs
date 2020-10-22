@@ -1,17 +1,22 @@
-﻿ using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GroceryGetter.BL;
+using GroceryGetter.BL.Models;
+using GroceryGetter.UI.Models;
 
 namespace GroceryGetter.UI.Controllers
 {
     public class LayoutController : Controller
     {
         // GET
-        public ActionResult Index()
+        public ActionResult Index(Guid id)
         {
-            return View();
+            var layoutList = LayoutManager.LoadById(id);
+            ViewBag.Message = ViewBag.Message;
+            return View(layoutList);
         }
 
         // GET
