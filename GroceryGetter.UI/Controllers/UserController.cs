@@ -86,6 +86,38 @@ namespace GroceryGetter.UI.Controllers
             return View();
         }
 
+        public ActionResult ChangePassword()
+        {
+            User user = new User();
+            ViewBag.Title = "Reset Password";
+            return View(user);
+            
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
+        {
+            try
+            {
+                //var user = Session["user"] as User;
+                PasswordResetManager.SendMessage(user.Email);
+                return RedirectToAction("EmailSent");
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
+        }
+
+        public ActionResult EmailSent()
+        {
+            ViewBag.Title = "Email Sent";
+            return View();
+        }
+        
+
         // GET: User/Create
         public ActionResult Create()
         {

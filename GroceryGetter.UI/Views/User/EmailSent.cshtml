@@ -1,0 +1,21 @@
+﻿@model GroceryGetter.BL.Models.User
+@{
+    ViewBag.Title = "Email Sent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <br />
+        <br />
+        <div class="block-center">
+
+            <p>Password reset email sent successfully</p>
+            
+        </div>
+    </div>
+}
