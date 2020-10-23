@@ -7,7 +7,7 @@ namespace GroceryGetter.BL
 {
     public static class ProductHelper
     {
-        /*
+        
         static List<UserProduct> products = new List<UserProduct>();
         static string json; 
         
@@ -21,9 +21,9 @@ namespace GroceryGetter.BL
             List<UserProduct> userProducts = new List<UserProduct>();
 
             product.Id = Guid.NewGuid();
-            product.Aisle = Product.AisleLoction.BREAD;
+            product.Aisle = AisleLocation.BREAD;
             product.Title = "Whole Wheat Bread";
-            product.Store = Product.StoreLoction.KROGGER;
+            product.Store = StoreLocation.KROGGER;
             product.Notes = "Get a fresh date";
             product.InCart = false;
             userProducts.Add(product);
@@ -31,9 +31,9 @@ namespace GroceryGetter.BL
             product = new UserProduct();
 
             product.Id = Guid.NewGuid();
-            product.Aisle = Product.AisleLoction.DAIRY;
+            product.Aisle = AisleLocation.DAIRY;
             product.Title = "Milk";
-            product.Store = Product.StoreLoction.WALMART;
+            product.Store = StoreLocation.WALMART;
             product.Notes = "2% fat";
             product.InCart = false;
             userProducts.Add(product);
@@ -41,18 +41,18 @@ namespace GroceryGetter.BL
             product = new UserProduct();
 
             product.Id = Guid.NewGuid();
-            product.Aisle = Product.AisleLoction.DAIRY;
+            product.Aisle = AisleLocation.DAIRY;
             product.Title = "Cheese";
-            product.Store = Product.StoreLoction.WALMART;
+            product.Store = StoreLocation.WALMART;
             product.InCart = false;
             userProducts.Add(product);
 
             product = new UserProduct();
 
             product.Id = Guid.NewGuid();
-            product.Aisle = Product.AisleLoction.CEREAL;
+            product.Aisle = AisleLocation.CEREAL;
             product.Title = "Cork Flakes";
-            product.Store = Product.StoreLoction.ALDI;
+            product.Store = StoreLocation.ALDI;
             product.InCart = true;
             userProducts.Add(product);
 
@@ -109,7 +109,7 @@ namespace GroceryGetter.BL
             return tempList;
         }
 
-    */
+    
        
 
     }
