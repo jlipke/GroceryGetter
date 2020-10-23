@@ -317,6 +317,7 @@
     <Content Include="Views\Layout\Edit.cshtml" />
     <Content Include="Views\Layout\Delete.cshtml" />
     <Content Include="Views\User\EmailSent.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

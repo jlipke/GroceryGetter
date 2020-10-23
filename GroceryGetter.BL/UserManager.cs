@@ -54,7 +54,7 @@ namespace GroceryGetter.BL
             }
         }
 
-        public static int Update(User user)
+        public static bool Update(User user)
         {
             using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
@@ -67,7 +67,8 @@ namespace GroceryGetter.BL
                     updatedrow.Email = user.Email;
                     updatedrow.UserPass = CreateHash(user.UserPass);
 
-                    return dc.SaveChanges();
+                    dc.SaveChanges();
+                    return true;
                 }
                 else
                 {
@@ -76,6 +77,8 @@ namespace GroceryGetter.BL
             }
 
         }
+
+
 
         public static int UpdateGroceryList(User user) // As of now, this isn't used anywhere
         {

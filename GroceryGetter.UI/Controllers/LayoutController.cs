@@ -86,7 +86,7 @@ namespace GroceryGetter.UI.Controllers
             try
             {
                 // TODO: Add delete logic here
-                LayoutManager.Delete(id);
+                //LayoutManager.Delete(id);
                 return RedirectToAction("Index");
             }
             catch

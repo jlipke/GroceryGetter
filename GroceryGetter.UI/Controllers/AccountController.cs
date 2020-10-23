@@ -28,10 +28,56 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+        public ActionResult Edit()
+        {
+            User user = new User();
+            ViewBag.Title = "Edit Settings";
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(User updateduser)
+        {
+            try
+            {
+                var user = Session["user"] as User;
+
+                if (updateduser.FirstName != user.FirstName && updateduser.FirstName != null)
+                    user.FirstName = updateduser.FirstName;
+
+                if(updateduser.LastName != user.LastName && updateduser.LastName != null)
+                    user.LastName = updateduser.LastName;
+
+                if (updateduser.Email != user.Email && updateduser.Email != null)
+                    user.Email = updateduser.Email;
+
+                if(UserManager.Update(user))
+                {
+                    Session["user"] = user;
+                }
+                
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+        }
+
+
+
         public ActionResult ChangePassword()
         {
-            var user = Session["user"] as User;
-            PasswordResetManager.SendMessage(user.Email); 
+            //var user = Session["user"] as User;
+            //PasswordResetManager.SendMessage(user.Email); 
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ChangePassword(User user)
+        {
+            //var user = Session["user"] as User;
+            //PasswordResetManager.SendMessage(user.Email); 
             return RedirectToAction("Index");
         }
 
@@ -51,19 +97,19 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // POST: User/Settings
-        [HttpPost]
-        public ActionResult Settings(User user)
-        {
-            try
-            {
-                UserManager.Insert(user);
-                return RedirectToAction("Index");
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+        //[HttpPost]
+        //public ActionResult Settings(User user)
+        //{
+        //    try
+        //    {
+        //        UserManager.Insert(user);
+        //        return RedirectToAction("Index");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+        //}
 
 
     }
