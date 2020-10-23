@@ -17,80 +17,50 @@
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
 
-
-    <p>
-    <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Item 1
-            <span class="badge badge-primary badge-pill">14</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Item 2
-            <span class="badge badge-primary badge-pill">2</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-            Item 3
-            <span class="badge badge-primary badge-pill">1</span>
-        </li>
-    </ul>
-
-    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseDiv" aria-expanded="false" aria-controls="collapseDiv">
-        This will be item
-    </button>
-    
-    <div class="collapse" id="collapseDiv">
-        <div class="card card-body">
-            This will be th info for the item.
-        </div>
-    </div>
-    </p>
-
+<ul class="list-group">
+    @{int i = 0;}
     @foreach (var item in Model.GroceryListObj)
     {
-        <div>
-            <div>
-                @Html.LabelFor(modelItem => item.Title, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DisplayFor(modelItem => item.Title)
-            </div>
-            <div>
-                @Html.LabelFor(modelItem => item.InCart, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DisplayFor(modelItem => item.InCart)
 
 
-            </div>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <span> @item.Title </span>
+            <span data-toggle="collapse" data-target="#@item.Id" aria-expanded="false" aria-controls="@item.Id"><button type="button" class="btn btn-default">Info</button></span>
+            <span><button type="button" class="btn btn-success">+</button></span>
+            <span class="badge badge-primary badge-pill">Quntity: @item.Amount</span>
 
-            <div>
-                @Html.LabelFor(modelItem => item.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DisplayFor(modelItem => item.Amount)
+            <span><button type="button" class="btn btn-danger">-</button></span>
+            <span class="badge badge-primary badge-pill">@item.InCart</span>
+        </li>
+
+
+        <div class="collapse" id="#@item.Id">
+            <div class="card card-body">
+
+                <ul>
+                    <li>Notes: @item.Notes</li>
+                    <li>Store: @item.Store</li>
+                    <li>Alise: @item.Aisle</li>
+                </ul>
             </div>
-            <div>
-                @Html.LabelFor(modelItem => item.Notes, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DisplayFor(modelItem => item.Notes)
-            </div>
-            <div>
-                @Html.LabelFor(modelItem => item.Store, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DisplayFor(modelItem => item.Store)
-            </div>
-            <div>
-                @Html.LabelFor(modelItem => item.Aisle, htmlAttributes: new { @class = "control-label col-md-2" })
-                @Html.DisplayFor(modelItem => item.Aisle)
-            </div>
-            <div>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </div>
-            <hr />
         </div>
+        {i++;
+        }
+
+        
+
+
     }
+</ul>
 
+    
 
-
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
         </div>
     </div>
-</div>
     }
 
 <div>
