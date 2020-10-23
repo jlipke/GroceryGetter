@@ -14,7 +14,7 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Index(Guid id)
         {
-            var layoutList = LayoutManager.LoadById(id);
+            var layoutList = LayoutManager.LoadById(id); //Manually add LayoutId to url for now
             ViewBag.Message = ViewBag.Message;
             return View(layoutList);
         }
@@ -50,41 +50,43 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Edit(int id)
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            Layout layout = LayoutManager.LoadById(id);
+            return View(layout);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit([Bind(Include = "Id, StoreId, Title")] Layout layout)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                LayoutManager.Update(layout);
+                return RedirectToAction("Index/" + layout.Id);
             }
             catch
             {
-                return View();
+                return View(layout);
             }
         }
 
         // GET
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            Layout layout = LayoutManager.LoadById(id);
+            return View(layout);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Guid id, Layout layout)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                LayoutManager.Delete(id);
                 return RedirectToAction("Index");
             }
             catch
