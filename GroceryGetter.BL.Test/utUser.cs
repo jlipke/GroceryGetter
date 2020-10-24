@@ -89,8 +89,8 @@ namespace MIB.GroceryGetter.BL.Test
             List<User> users = UserManager.Load();
             User user = users.Where(u => u.Email == "testemail@gmail.com").FirstOrDefault();
             user.Email = "updatedemail@gmail.com";
-            int actual = UserManager.Update(user);
-            Assert.IsTrue(actual > 0);
+            bool actual = UserManager.Update(user);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod]

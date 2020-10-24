@@ -95,6 +95,15 @@ namespace GroceryGetter.BL
             return tempList;
         }
 
+        public static void AddFromMaster(Product p, List<UserProduct> list, User user)
+        {
+            UserProduct up = (UserProduct)p; 
+            List<UserProduct> tempList = list;
+            user.GroceryListObj.Add(up);
+            //tempList.Add(up);
+            //return tempList;
+        }
+
         /// <summary>
         /// Takes in a list of UserProducts, removes an item, then returns the new list
         /// </summary>
