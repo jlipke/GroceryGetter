@@ -81,17 +81,17 @@ namespace GroceryGetter.UI.Controllers
 
         // POST
         [HttpPost]
-        public ActionResult Delete(Guid id, Layout layout)
+        public ActionResult Delete(Layout layout)
         {
             try
             {
                 // TODO: Add delete logic here
-                //LayoutManager.Delete(id);
+                LayoutManager.Delete(layout);
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(layout);
             }
         }
     }
