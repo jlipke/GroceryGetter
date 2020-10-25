@@ -19,8 +19,8 @@ namespace GroceryGetter.UI.Controllers
             {
                 var user = Session["user"] as User;
                 //var userProductList = UserProductManager.LoadByUserId(user.Id);
-                var userProductList = new List<UserProduct>(); 
-                ViewBag.Message = ViewBag.Message;
+                //var userProductList = new List<UserProduct>(); 
+                //ViewBag.Message = ViewBag.Message;
                 return View(user);
             }
             else
@@ -30,6 +30,35 @@ namespace GroceryGetter.UI.Controllers
             }
             
         }
+
+        // GET
+        [HttpPost]
+        public ActionResult Index(Product p)
+        {
+            if (Authenticate.IsAuthenticated())
+            {
+                var x = HttpContext.Request.Form["ItemName"];
+                var user = Session["user"] as User;
+
+                UserProduct up = new UserProduct();
+                up.Aisle = p.Aisle;
+                up.Id = p.Id;
+                up.Store = p.Store;
+                //up.Title = p.Title;
+                up.Title = x;
+
+                ProductHelper.AddItemToList(up, user.GroceryListObj);
+                ViewBag.Message = x;
+                return View(user);
+            }
+            else
+            {
+                //Need to authenticate
+                return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            }
+
+        }
+
 
         // GET
         public ActionResult Details(int id)
@@ -144,5 +173,9 @@ namespace GroceryGetter.UI.Controllers
                 return View();
             }
         }
+
+
+        
+
     }
 }
