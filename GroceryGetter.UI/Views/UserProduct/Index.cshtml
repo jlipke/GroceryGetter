@@ -1,4 +1,5 @@
 ﻿@using GroceryGetter.BL
+@using GroceryGetter.BL.Models
 @model GroceryGetter.BL.Models.User
 
 @{
@@ -6,8 +7,19 @@
     Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
 
-    
+@functions {
 
+    void AddItem(Product p, User u)
+    {
+        //p = (UserProduct)p;
+        ProductHelper.AddItemToList((UserProduct)p, u.GroceryListObj);
+
+    }
+
+
+}
+
+<h1>@ViewBag.Message</h1>
 
 @using (Html.BeginForm())
 {
@@ -20,76 +32,131 @@
 
 
         @{var masterList = ProductManager.LoadAll(); }
+        @{User user = Model; }
 
-        <h2>Master List</h2>
-        <div class="overflow-auto" style="max-width: 260px; max-height: 200px;">
-            <ul class="list-group">
+        <div class="form-horizontal">
+
+
+
+
+
+            <h2>Master List</h2>
+            <div class="overflow-auto" style="max-width: 260px; max-height: 200px;">
+                <ul class="list-group">
+                    @foreach (var m in masterList)
+                    {
+
+                        @*<form asp-action="Index" asp-controller="Form" id="HideMe" method="post" type="hidden" style="display:none;">
+                    <fieldset>
+                        <legend>Hide me later</legend>
+                        <input type="text" name="ItemName" asp-for="ItemName" value="@m.Title" />
+
+                        <input type="text" name="ItemStore" asp-for="ItemStore" value="@m.Store" />
+
+                        <input type="text" name="ItemAisle" asp-for="ItemAisle" value="@m.Aisle" />
+
+                        <input type="text" name="ItemId" asp-for="ItemId" value="@m.Id" />
+                    </fieldset>
+                </form>*@
+
+                        <li class="list-group-item">
+                            @m.Title
+
+
+
+
+
+
+                        </li>
+                    }
+                </ul>
+
                 @foreach (var m in masterList)
                 {
-                    <li class="list-group-item">@m.Title <button type="button" class="btn btn-sm btn-success" onclick="">Add</button> </li>
+                    <form asp-action="Index" asp-controller="Form" id="HideMe + @m.Id" method="post" type="hidden" style="display:none;">
+
+
+                        <input type="text" name="ItemName" asp-for="ItemName" value="@m.Title" />
+
+                        <input type="text" name="ItemStore" asp-for="ItemStore" value="@m.Store" />
+
+                        <input type="text" name="ItemAisle" asp-for="ItemAisle" value="@m.Aisle" />
+
+                        <input type="text" name="ItemId" asp-for="ItemId" value="@m.Id" />
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Add @m.Title" class="btn btn-success" />
+                            </div>
+                        </div>
+                    </form>
+                }
+
+
+            </div>
+
+
+            <h2>@Model.FirstName's List</h2>
+
+            <ul class="list-group">
+
+
+
+
+
+
+
+                @foreach (var item in Model.GroceryListObj)
+                {
+
+
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <span> @item.Title </span>
+                        <span data-toggle="collapse" data-target="#@item.Id" aria-expanded="false" aria-controls="@item.Id"><button type="button" class="btn btn-default">Info</button></span>
+
+
+
+                        <span><button type="button" class="btn btn-success">+</button></span>
+                        <span class="badge badge-primary badge-pill">Quntity: @item.Amount</span>
+
+                        <span><button type="button" class="btn btn-danger">-</button></span>
+                        <span class="badge badge-primary badge-pill">@item.InCart</span>
+                    </li>
+
+
+                    <div class="collapse" id="#@item.Id">
+                        <div class="card card-body">
+
+                            <ul>
+                                <li>Notes: @item.Notes</li>
+                                <li>Store: @item.Store</li>
+                                <li>Alise: @item.Aisle</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+
+
                 }
             </ul>
 
-        </div>
 
 
-        <h2>@Model.FirstName's List</h2>
-
-        <ul class="list-group">
-
-
-
-
-
-
-
-            @foreach (var item in Model.GroceryListObj)
-            {
-
-
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span> @item.Title </span>
-                    <span data-toggle="collapse" data-target="#@item.Id" aria-expanded="false" aria-controls="@item.Id"><button type="button" class="btn btn-default">Info</button></span>
-                    <span><button type="button" class="btn btn-success">+</button></span>
-                    <span class="badge badge-primary badge-pill">Quntity: @item.Amount</span>
-
-                    <span><button type="button" class="btn btn-danger">-</button></span>
-                    <span class="badge badge-primary badge-pill">@item.InCart</span>
-                </li>
-
-
-                <div class="collapse" id="#@item.Id">
-                    <div class="card card-body">
-
-                        <ul>
-                            <li>Notes: @item.Notes</li>
-                            <li>Store: @item.Store</li>
-                            <li>Alise: @item.Aisle</li>
-                        </ul>
-                    </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
                 </div>
-
-
-
-
-
-            }
-        </ul>
-
-
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
     </div>
-    }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
+}
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

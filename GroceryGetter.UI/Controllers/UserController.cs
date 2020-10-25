@@ -67,7 +67,7 @@ namespace GroceryGetter.UI.Controllers
                     else
 
                         //return RedirectToAction("Index", "User");
-                        return RedirectToAction("Index", "UserProduct"); 
+                        return RedirectToAction("Index", "UserProduct");
                     //return RedirectToAction("Index", "Account");
                 }
                 ViewBag.Message = "Login could not be completed.";
@@ -91,7 +91,7 @@ namespace GroceryGetter.UI.Controllers
             User user = new User();
             ViewBag.Title = "Reset Password";
             return View(user);
-            
+
         }
 
         [HttpPost]
@@ -108,7 +108,7 @@ namespace GroceryGetter.UI.Controllers
 
                 throw ex;
             }
-            
+
         }
 
         public ActionResult EmailSent()
@@ -116,7 +116,7 @@ namespace GroceryGetter.UI.Controllers
             ViewBag.Title = "Email Sent";
             return View();
         }
-        
+
 
         // GET: User/Create
         public ActionResult Create()
@@ -130,22 +130,16 @@ namespace GroceryGetter.UI.Controllers
         [HttpPost]
         public ActionResult Create(User user)
         {
-            try
-            {
-                UserManager.Insert(user);
-                return RedirectToAction("Index");
-            }
-            catch(Exception ex)
-            {
-                return View();
-            }
+
+            UserManager.Insert(user);
+            return RedirectToAction("Index");
         }
 
         // GET
         public ActionResult Edit(Guid id)
         {
             // Might work
-            User user = UserManager.LoadById(id); 
+            User user = UserManager.LoadById(id);
             return View(user);
         }
 

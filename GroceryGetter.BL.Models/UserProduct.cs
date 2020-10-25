@@ -20,6 +20,8 @@ namespace GroceryGetter.BL.Models
             // if they want more, they press the up button
             // that call AmountUp() method
             this._amount = 1;
+            this.Notes = "";
+            this.InCart = false;
         }
 
 
