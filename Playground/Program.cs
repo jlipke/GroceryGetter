@@ -32,6 +32,16 @@ namespace Playground
             //product.Amount = 4;
             userProducts.Add(product);
 
+            product.Id = Guid.NewGuid();
+            product.Aisle = AisleLocation.CLEANING;
+            product.Title = "Should be last";
+            product.Store = StoreLocation.KROGGER;
+            product.Notes = "Get a fresh date";
+            product.InCart = false;
+            //product.Amount = 4;
+            userProducts.Add(product);
+
+
             product = new UserProduct();
 
             product.Id = Guid.NewGuid();
@@ -41,6 +51,15 @@ namespace Playground
             product.Notes = "2% fat";
             product.InCart = false;
             //product.Amount = 3;
+            userProducts.Add(product);
+
+            product.Id = Guid.NewGuid();
+            product.Aisle = AisleLocation.BREAD;
+            product.Title = "Old Wheat Bread";
+            product.Store = StoreLocation.KROGGER;
+            product.Notes = "Get a fresh date";
+            product.InCart = false;
+            //product.Amount = 4;
             userProducts.Add(product);
 
 
@@ -81,7 +100,13 @@ namespace Playground
             
 
 
-            //Console.WriteLine(userProducts);
+            var orderedList = ProductHelper.OderByLayout(userProducts);
+
+            foreach (UserProduct x in orderedList)
+            {
+                Console.WriteLine($"Title = {x.Title}");
+            }
+
             Console.ReadLine();
 
 

@@ -17,12 +17,11 @@ namespace GroceryGetter.BL.Models
         FESTIVAL,
         ALPHABETICAL
 
-
     }
 
     public enum AisleLocation
     {
-
+        // This is where the rest of the aisles need to go. The order here does NOT matter -devonte
         BREAD,
         CLEANING,
         DAIRY,

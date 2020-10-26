@@ -2,15 +2,16 @@
 using System;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace GroceryGetter.BL
 {
     public static class ProductHelper
     {
-        
+
         static List<UserProduct> products = new List<UserProduct>();
-        static string json; 
-        
+        static string json;
+
         /// <summary>
         /// Creates a list of defalut User Products.
         /// </summary>
@@ -57,7 +58,7 @@ namespace GroceryGetter.BL
             userProducts.Add(product);
 
 
-            return userProducts; 
+            return userProducts;
         }
 
         /// <summary>
@@ -69,7 +70,7 @@ namespace GroceryGetter.BL
         {
             products = JsonConvert.DeserializeObject<List<UserProduct>>(input);
             return products;
-        } 
+        }
 
         /// <summary>
         /// Takes in a list of User Products and returns a string (for database) 
@@ -97,7 +98,7 @@ namespace GroceryGetter.BL
 
         public static void AddFromMaster(Product p, List<UserProduct> list, User user)
         {
-            UserProduct up = (UserProduct)p; 
+            UserProduct up = (UserProduct)p;
             List<UserProduct> tempList = list;
             user.GroceryListObj.Add(up);
             //tempList.Add(up);
@@ -114,12 +115,48 @@ namespace GroceryGetter.BL
         {
             List<UserProduct> tempList = list;
             tempList.RemoveAll(x => x.Id == p.Id); // Removes the product from the list that
-                                                    // matches the product that was passed in
+                                                   // matches the product that was passed in
             return tempList;
         }
 
-    
-       
+
+        /// <summary>
+        /// Takes in a list then orders it by store layout. 
+        /// </summary>
+        /// <param name="input">The list of user products that need ordering</param>
+        /// <param name="store">The name of the store</param>
+        /// <returns></returns>
+        public static List<UserProduct> OderByLayout(List<UserProduct> input /*,Dictionary<AisleLocation, int> store*/) // might replace 2nd param with emun or string -devonte
+        {
+
+            // Will use switch case to figure out with dictionary to load up - devonte
+
+
+            // Once all the dictionaries are fillout, this one will be removed. -devonte
+            var walmartLayout = new Dictionary<AisleLocation, int>() {
+                { AisleLocation.BREAD, 0 },
+                { AisleLocation.CEREAL, 1 },
+                { AisleLocation.PRODUCE, 2 },
+                { AisleLocation.CLEANING, 3 }
+            };
+
+            var orderedList = input.OrderBy(m => walmartLayout[m.Aisle]).ToList();
+
+            return orderedList;
+
+            /* old way. will need to remove once completely done with new way -devonte
+            var sortedResult = input
+           .OrderBy(z => z.Aisle == AisleLocation.BREAD ? 1 : 2)
+           .ThenBy(z => z.Aisle == AisleLocation.CEREAL ? 1 : 2)
+           .ThenBy(z => z.Aisle == AisleLocation.PRODUCE ? 1 : 2)
+           .ToList();
+
+            return sortedResult;
+            */
+
+        }
+
+
 
     }
 }
