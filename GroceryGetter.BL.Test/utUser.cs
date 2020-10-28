@@ -50,34 +50,18 @@ namespace MIB.GroceryGetter.BL.Test
             Assert.AreNotEqual(0, actual);
         }
 
-        [TestMethod]
-        public void LoadTimJackson()
-        {
-            var id = "timtiml@gmail.com";
-            User tim = UserManager.LoadByEmail(id);
-
-            List<UserProduct> timsStuff = ProductHelper.JsonToOjects(tim.GroceryList);
-
-            int actual = timsStuff.Count;
-            Assert.AreEqual(4, actual);
-        }
+        
 
         [TestMethod]
         public void InsertTest()
         {
             //List<User> users = new List<User>();
 
-
-            List<UserProduct> stuff = ProductHelper.GetSomeDummyData();
-
-
-
             User user = new User();
             user.Email = "timtiml@gmail.com";
             user.FirstName = "tim";
             user.LastName = "jackson";
             user.UserPass = "testpassword";
-            user.GroceryList = ProductHelper.ObjectToJson(stuff);
             
 
             Assert.IsTrue(Convert.ToBoolean(UserManager.Insert(user)));

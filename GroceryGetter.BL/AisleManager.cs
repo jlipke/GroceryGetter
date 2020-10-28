@@ -12,55 +12,46 @@ namespace GroceryGetter.BL
     {
         public static int Insert(Aisle aisle)
         {
-            try
-            {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
-                {
-                    tblAisle tblaisle = new tblAisle();
-                    tblaisle.Id = Guid.NewGuid();
-                    tblaisle.LayoutId = aisle.LayoutId;
-                    tblaisle.Number = aisle.Number;
-                    tblaisle.Lineup = aisle.Lineup;
 
-                    aisle.Id = tblaisle.Id;
-
-                    dc.tblAisles.Add(tblaisle);
-                    return dc.SaveChanges();
-                }
-            }
-            catch (Exception ex)
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                throw ex;
+                tblAisle tblaisle = new tblAisle();
+                tblaisle.Id = Guid.NewGuid();
+                tblaisle.LayoutId = aisle.LayoutId;
+                tblaisle.Number = aisle.Number;
+                tblaisle.Lineup = aisle.Lineup;
+
+                aisle.Id = tblaisle.Id;
+
+                dc.tblAisles.Add(tblaisle);
+                return dc.SaveChanges();
             }
+
+
 
         }
 
         public static int Update(Aisle aisle)
         {
-            try
+
+            using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                tblAisle tblaisle = dc.tblAisles.FirstOrDefault(a => a.Id == aisle.Id);
+
+                if (tblaisle != null)
                 {
-                    tblAisle tblaisle = dc.tblAisles.FirstOrDefault(a => a.Id == aisle.Id);
+                    tblaisle.LayoutId = aisle.LayoutId;
+                    tblaisle.Number = aisle.Number;
+                    tblaisle.Lineup = aisle.Lineup;
 
-                    if (tblaisle != null)
-                    {
-                        tblaisle.LayoutId = aisle.LayoutId;
-                        tblaisle.Number = aisle.Number;
-                        tblaisle.Lineup = aisle.Lineup;
-
-                        return dc.SaveChanges();
-                    }
-                    else
-                    {
-                        return 0;
-                    }
+                    return dc.SaveChanges();
+                }
+                else
+                {
+                    return 0;
                 }
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
         }
 
         public static int Delete(Aisle aisle)
@@ -139,14 +130,14 @@ namespace GroceryGetter.BL
             }
         }
 
-        public static List<Aisle> LoadByLayoutId(Guid layoutId)  
+        public static List<Aisle> LoadByLayoutId(Guid layoutId)
         {
             try
             {
                 List<Aisle> aisles = new List<Aisle>();
                 using (GroceryGetterEntities dc = new GroceryGetterEntities())
                 {
-                   
+
                     var results = dc.tblAisles.Where(a => a.LayoutId == layoutId);
 
                     foreach (var aisle in results)

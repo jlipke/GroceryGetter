@@ -17,8 +17,7 @@ namespace GroceryGetter.BL.Models
         public string Email { get; set; }
         [DisplayName("Password")]
         public string UserPass { get; set; }
-        public string GroceryList { get; set; }
-        public List<UserProduct> GroceryListObj { get; set; } 
+        public List<UserProduct> GroceryList { get; set; } 
 
         public User()
         {
