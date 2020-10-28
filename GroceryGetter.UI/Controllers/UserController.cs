@@ -7,6 +7,7 @@ using GroceryGetter.BL;
 using GroceryGetter.BL.Models;
 using GroceryGetter.UI.Models;
 using GroceryGetter.UI.ViewModels;
+using GroceryGetter.PL;
 using WebMatrix.WebData;
 
 
@@ -101,8 +102,9 @@ namespace GroceryGetter.UI.Controllers
         {
             try
             {
-                WebSecurity.InitializeDatabaseConnection(, );
-
+                
+                WebSecurity.InitializeDatabaseConnection("GroceryGetterEntities", "tblUser", "Id", "Email", false);
+                
                 if (ModelState.IsValid)
                 {
 
