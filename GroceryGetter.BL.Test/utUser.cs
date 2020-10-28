@@ -55,8 +55,6 @@ namespace MIB.GroceryGetter.BL.Test
         [TestMethod]
         public void InsertTest()
         {
-            //List<User> users = new List<User>();
-
             User user = new User();
             user.Email = "timtiml@gmail.com";
             user.FirstName = "tim";
