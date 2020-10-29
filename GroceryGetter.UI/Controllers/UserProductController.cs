@@ -66,17 +66,18 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Guid id)
         {
             var user = Session["user"] as User;
-            UserProduct userProduct = UserProductManager.SearchGroceryByProduct(user.Id, product.Title);
+            UserProduct userProduct = UserProductManager.LoadById(id);
+            //UserProduct userProduct = UserProductManager.SearchGroceryByProduct(user.Id, product.Title);
 
             return View(userProduct);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Edit(UserProduct userProduct)
+        public ActionResult Edit(UserProduct userProduct, FormCollection collection)
         {
             try
             {
