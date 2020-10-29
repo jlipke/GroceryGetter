@@ -19,6 +19,7 @@ namespace GroceryGetter.UI.Controllers
             {
                 var user = Session["user"] as User;
                 var userProductList = UserProductManager.LoadByUserId(user.Id);
+                ViewBag.Message = ViewBag.Message;
                 return View(userProductList);
             }
             else
@@ -65,19 +66,21 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Edit(FormCollection collection)
+        public ActionResult Edit(Product product)
         {
-            
-            return View();
+            var user = Session["user"] as User;
+            UserProduct userProduct = UserProductManager.SearchGroceryByProduct(user.Id, product.Title);
+
+            return View(userProduct);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(UserProduct userProduct)
         {
             try
             {
-               
+                UserProductManager.Update(userProduct);
                 return RedirectToAction("Index");
             }
             catch
@@ -85,8 +88,6 @@ namespace GroceryGetter.UI.Controllers
                 return View();
             }
         }
-
-
 
         // GET
         public ActionResult Delete(int id)

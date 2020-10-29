@@ -28,25 +28,18 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+        public ActionResult Details(Guid id)
+        {
+            Product product = ProductManager.LoadById(id);
+            ViewBag.Title = "Details";
+            return View(product);
+        }
+
         // GET: Product/Edit/5
         public ActionResult Edit(Guid id)
         {
             Product product = ProductManager.LoadById(id);
             ViewBag.Title = "Edit Product";
-            return View(product);
-        }
-
-        public ActionResult Delete(Guid id)
-        {
-            Product product = ProductManager.LoadById(id);
-            return View(product);
-        }
-
-
-        public ActionResult Details(Guid id)
-        {
-            Product product = ProductManager.LoadById(id);
-            ViewBag.Title = "Details";
             return View(product);
         }
 
@@ -95,6 +88,11 @@ namespace GroceryGetter.UI.Controllers
         }
 
 
+        public ActionResult Delete(Guid id)
+        {
+            Product product = ProductManager.LoadById(id);
+            return View(product);
+        }
 
 
         [HttpPost]

@@ -11,12 +11,16 @@ namespace GroceryGetter.BL.Models
     {
         public Guid Id { get; set; }
         [DisplayName("First Name")]
+
         public string FirstName { get; set; }
         [DisplayName("Last Name")]
+        
         public string LastName { get; set; }
         public string Email { get; set; }
+        
         [DisplayName("Password")]
         public string UserPass { get; set; }
+        
         public List<UserProduct> GroceryList { get; set; } 
 
         public User()
