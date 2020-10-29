@@ -30,7 +30,7 @@ namespace GroceryGetter.PL
         public virtual DbSet<tblLayout> tblLayouts { get; set; }
         public virtual DbSet<tblProduct> tblProducts { get; set; }
         public virtual DbSet<tblStore> tblStores { get; set; }
-        public virtual DbSet<tblUser> tblUsers { get; set; }
         public virtual DbSet<tblUserProduct> tblUserProducts { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
     }
 }

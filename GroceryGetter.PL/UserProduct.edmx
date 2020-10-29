@@ -53,7 +53,6 @@
           <Property Name="LastName" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="UserPass" Type="varchar" MaxLength="48" Nullable="false" />
-          <Property Name="GroceryList" Type="varchar" MaxLength="2000" Nullable="false" />
         </EntityType>
         <EntityType Name="tblUserProduct">
           <Key>
@@ -235,18 +234,6 @@
           <Property Name="Title" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="tblLayouts" Relationship="Self.tblLayout_StoreId" FromRole="tblStore" ToRole="tblLayout" />
         </EntityType>
-        <EntityType Name="tblUser">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="UserPass" Type="String" MaxLength="48" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="tblUserProducts" Relationship="Self.tblUserProduct_UserId" FromRole="tblUser" ToRole="tblUserProduct" />
-          <Property Name="GroceryList" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="tblUserProduct">
           <Key>
             <PropertyRef Name="Id" />
@@ -258,7 +245,7 @@
           <Property Name="Amount" Type="Int32" Nullable="false" />
           <Property Name="Notes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tblProduct" Relationship="Self.tblUserProduct_ProductId" FromRole="tblUserProduct" ToRole="tblProduct" />
-          <NavigationProperty Name="tblUser" Relationship="Self.tblUserProduct_UserId" FromRole="tblUserProduct" ToRole="tblUser" />
+          <NavigationProperty Name="tblUser" Relationship="AzureDBModel.tblUserProduct_UserId" FromRole="tblUserProduct" ToRole="tblUser" />
         </EntityType>
         <Association Name="tblAisle_LayoutId">
           <End Role="tblLayout" Type="Self.tblLayout" Multiplicity="1">
@@ -330,27 +317,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="tblUserProduct_UserId">
-          <End Role="tblUser" Type="Self.tblUser" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tblUserProduct" Type="Self.tblUserProduct" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblUser">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="tblUserProduct">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="GroceryGetterEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblAisles" EntityType="Self.tblAisle" />
           <EntitySet Name="tblAisleProducts" EntityType="Self.tblAisleProduct" />
           <EntitySet Name="tblLayouts" EntityType="Self.tblLayout" />
           <EntitySet Name="tblProducts" EntityType="Self.tblProduct" />
           <EntitySet Name="tblStores" EntityType="Self.tblStore" />
-          <EntitySet Name="tblUsers" EntityType="Self.tblUser" />
           <EntitySet Name="tblUserProducts" EntityType="Self.tblUserProduct" />
           <AssociationSet Name="tblAisle_LayoutId" Association="Self.tblAisle_LayoutId">
             <End Role="tblLayout" EntitySet="tblLayouts" />
@@ -372,11 +344,37 @@
             <End Role="tblProduct" EntitySet="tblProducts" />
             <End Role="tblUserProduct" EntitySet="tblUserProducts" />
           </AssociationSet>
-          <AssociationSet Name="tblUserProduct_UserId" Association="Self.tblUserProduct_UserId">
+          <EntitySet Name="tblUsers" EntityType="AzureDBModel.tblUser" />
+          <AssociationSet Name="tblUserProduct_UserId" Association="AzureDBModel.tblUserProduct_UserId">
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblUserProduct" EntitySet="tblUserProducts" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="tblUser">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPass" Type="String" Nullable="false" MaxLength="48" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tblUserProducts" Relationship="AzureDBModel.tblUserProduct_UserId" FromRole="tblUser" ToRole="tblUserProduct" />
+        </EntityType>
+        <Association Name="tblUserProduct_UserId">
+          <End Type="AzureDBModel.tblUser" Role="tblUser" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="AzureDBModel.tblUserProduct" Role="tblUserProduct" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUserProduct">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -427,18 +425,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblUsers">
-            <EntityTypeMapping TypeName="AzureDBModel.tblUser">
-              <MappingFragment StoreEntitySet="tblUser">
-                <ScalarProperty Name="GroceryList" ColumnName="GroceryList" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="UserPass" ColumnName="UserPass" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblUserProducts">
             <EntityTypeMapping TypeName="AzureDBModel.tblUserProduct">
               <MappingFragment StoreEntitySet="tblUserProduct">
@@ -448,6 +434,17 @@
                 <ScalarProperty Name="InCart" ColumnName="InCart" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="AzureDBModel.tblUser">
+              <MappingFragment StoreEntitySet="tblUser">
+                <ScalarProperty Name="UserPass" ColumnName="UserPass" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

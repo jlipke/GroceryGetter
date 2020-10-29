@@ -10,14 +10,14 @@
         <EntityTypeShape EntityType="AzureDBModel.tblLayout" Width="1.5" PointX="1.5" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AzureDBModel.tblProduct" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
         <EntityTypeShape EntityType="AzureDBModel.tblStore" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="AzureDBModel.tblUser" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="AzureDBModel.tblUserProduct" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="AzureDBModel.tblAisle_LayoutId" ManuallyRouted="false" />
         <AssociationConnector Association="AzureDBModel.tblAisleProduct_AisleId" ManuallyRouted="false" />
         <AssociationConnector Association="AzureDBModel.tblAisleProduct_ProductId" ManuallyRouted="false" />
         <AssociationConnector Association="AzureDBModel.tblLayout_StoreId" ManuallyRouted="false" />
         <AssociationConnector Association="AzureDBModel.tblUserProduct_ProductId" ManuallyRouted="false" />
-        <AssociationConnector Association="AzureDBModel.tblUserProduct_UserId" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="AzureDBModel.tblUser" Width="1.5" PointX="5.375" PointY="0.875" />
+        <AssociationConnector Association="AzureDBModel.tblUserProduct_UserId" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
