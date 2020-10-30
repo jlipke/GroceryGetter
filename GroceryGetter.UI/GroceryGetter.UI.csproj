@@ -146,6 +146,7 @@
     <Compile Include="Models\Authenticate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\EmailManager.cs" />
+    <Compile Include="ViewModels\UserUserProduct.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -326,6 +327,9 @@
     <Content Include="Views\Shared\_EditLayout.cshtml" />
     <Content Include="Views\UserProduct\Edit.cshtml" />
     <Content Include="Views\UserProduct\EditIndex.cshtml" />
+    <Content Include="Views\UserProduct\AddProduct.cshtml" />
+    <Content Include="Views\UserProduct\AddProduct1.cshtml" />
+    <Content Include="Views\UserProduct\AddProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -8,16 +8,10 @@
 <h2>Grocery List</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Add Product", "AddProducts")
 </p>
 <table class="user_products_table">
     <tr>
-        @*<th>
-                @Html.DisplayNameFor(model => model.UserId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ProductId)
-            </th>*@
         <th>
             @Html.DisplayNameFor(model => model.InCart)
         </th>
@@ -39,12 +33,6 @@
     @foreach (var item in Model)
     {
         <tr>
-            @*<td>
-                    @Html.DisplayFor(modelItem => item.UserId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ProductId)
-                </td>*@
             <td>
                 @Html.DisplayFor(modelItem => item.InCart)
             </td>

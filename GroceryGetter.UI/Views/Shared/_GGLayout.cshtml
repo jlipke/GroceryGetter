@@ -41,26 +41,19 @@
 
             </div>
 
-            <div class="row-cols-5 user_product_container">
+            <div class=" user_product_container">
                 <div class="sidebar rounded-top rounded-bottom">
                     <div>
-                        @*<h3>Edit Product</h3>*@
-                        <hr />
-                    </div>
-                    <div>
-                        @*@{ Html.RenderAction("Edit", "UserProduct");}*@
-                        <img src="~/Images/icon.jpg"/>
+                        <img src="~/Images/icon.jpg" />
                     </div>
                 </div>
             </div>
 
         </div>
-
-        <footer class="block-center">
-            <p>&copy; @DateTime.Now.Year - Grocery Getter</p>
-        </footer>
     </div>
-
+    <footer class="block-center">
+        <p>&copy; @DateTime.Now.Year - Grocery Getter</p>
+    </footer>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

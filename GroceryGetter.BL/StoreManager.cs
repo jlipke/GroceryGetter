@@ -171,6 +171,7 @@ namespace GroceryGetter.BL
             }
         }
 
+        // TODO: Add code to sort the list alphabetically by Store.Title
         public static List<Store> Load()
         {
             try

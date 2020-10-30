@@ -10,6 +10,8 @@ namespace GroceryGetter.BL
 {
     public class ProductManager
     {
+
+        // TODO: Add code to order list of Products alphabetically
         public static List<Product> LoadAll()
         {
             using (GroceryGetterEntities dc = new GroceryGetterEntities())

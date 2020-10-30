@@ -86,11 +86,13 @@ namespace GroceryGetter.BL
                     tbluser.Email = user.Email;
                     tbluser.UserPass = user.UserPass;
 
+                    // Delete all the tblUserProduct rows and add back in.
                     var existing = dc.tblUserProducts.Where(up => up.UserId == user.Id);
                     dc.tblUserProducts.RemoveRange(existing);
 
                     List<tblUserProduct> tblUserProducts = new List<tblUserProduct>();
 
+                    // Also make sense of the tblUserProducts
                     foreach (UserProduct up in user.GroceryList)
                     {
                         tblUserProduct tbluserproduct = new tblUserProduct();

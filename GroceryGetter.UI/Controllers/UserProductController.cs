@@ -55,15 +55,58 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Create()
+        public ActionResult AddProducts()
         {
             if (Authenticate.IsAuthenticated())
             {
-                return View();
+                UserUserProduct uup = new UserUserProduct();
+
+                var user = Session["user"] as User;
+                uup.User = user;
+                uup.Products = ProductManager.LoadAll();
+                uup.UserProduct = new UserProduct();
+                ViewBag.Message = ViewBag.Message;
+
+                return View(uup);
             }
 
             return View();
             
+        }
+
+        // POST
+        [HttpPost]
+        public ActionResult AddProducts(UserUserProduct uup, FormCollection collection)
+        {
+            try
+            {
+                // TODO: Add insert logic here
+                UserProductManager.Insert(uup.UserProduct);
+                //uup.Products.ToList().ForEach(p => ProductManager.)
+
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        // GET
+        public ActionResult Create()
+        {
+            if (Authenticate.IsAuthenticated())
+            {
+                var user = Session["user"] as User;
+                List<Product> products = ProductManager.LoadAll();
+                ViewBag.Message = ViewBag.Message;
+
+
+                return View(products);
+            }
+
+            return View();
+
         }
 
         // POST
@@ -73,7 +116,7 @@ namespace GroceryGetter.UI.Controllers
             try
             {
                 // TODO: Add insert logic here
-                
+
                 return RedirectToAction("Index");
             }
             catch
