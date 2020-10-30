@@ -289,9 +289,11 @@ namespace GroceryGetter.BL
                         Id = exsitingRow.Id,
                         UserId = exsitingRow.UserId,
                         ProductId = exsitingRow.ProductId,
+                        ProductTitle = exsitingRow.tblProduct.Title,
                         InCart = exsitingRow.InCart,
                         Amount = exsitingRow.Amount,
-                        Notes = exsitingRow.Notes
+                        Notes = exsitingRow.Notes,
+                        //ProductAisle = exsitingRow.tblAisleProduct.Aisle
 
                            
                     };

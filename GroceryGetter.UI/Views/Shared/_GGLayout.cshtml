@@ -19,13 +19,9 @@
         </div>
     </div>
 
-
-
-
-
     <div class="container-fluid">
         <div class="row">
-            <div class="side-container">
+            <div class="row-cols-5">
                 <div class="sidebar rounded-top rounded-bottom">
                     <div>
                         <h3>Select Store</h3>
@@ -37,20 +33,33 @@
                 </div>
             </div>
 
-            @*<div class="col-md-9 main body-content rounded-top">*@
-
-                <div class="main_content main_container rounded-top">
-                    <div class="header rounded-top">
-                    </div>
-                    @RenderBody()
-                    <hr />
-                    <footer class="col-md-4">
-                        <p>&copy; @DateTime.Now.Year - Grocery Getter</p>
-                    </footer>
+            <div class="main_container main_content rounded-top">
+                <div class="header rounded-top">
                 </div>
+                @RenderBody()
+                <hr />
 
             </div>
+
+            <div class="row-cols-5 user_product_container">
+                <div class="sidebar rounded-top rounded-bottom">
+                    <div>
+                        @*<h3>Edit Product</h3>*@
+                        <hr />
+                    </div>
+                    <div>
+                        @*@{ Html.RenderAction("Edit", "UserProduct");}*@
+                        <img src="~/Images/icon.jpg"/>
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+        <footer class="block-center">
+            <p>&copy; @DateTime.Now.Year - Grocery Getter</p>
+        </footer>
+    </div>
 
 
     @Scripts.Render("~/bundles/jquery")

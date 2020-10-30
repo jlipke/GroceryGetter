@@ -107,14 +107,34 @@ textarea {
     justify-content: center;
 }
 
+/* ---------- Containers ---------- */
+/* ----- Main ----- */
+.main_content {
+    display: block;
+    margin: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-width: 1px;
+    border-style: solid;
+    background-color: ghostwhite;
+    min-width: 700px;
+}
 
-.side-container {
-/*    display: flex;
-    justify-content: right;*/
+.main_container {
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
+    max-width: 60%;
+    min-width: 550px;
+}
+
+/* ----- Store Sidebar ----- */
+.store-container {
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
     width: 250px;
 }
 
-/* ---------Sidebar--------- */
 .sidebar {
     margin: 5px;
     border-width: 1px;
@@ -130,48 +150,18 @@ textarea {
         margin-bottom: 4px;
     }
 
-/* ---------Main---------- */
-.main_content {
-    display: block;
-    margin: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    border-width: 1px;
-    border-style: solid;
-    background-color: ghostwhite;
+/* ----- UserProduct Sidebar ----- */
+.user_product_container {
+    /*display: flex;*/
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
+    width: 279px;
 }
 
-.main_container {
-    -ms-flex: 0 0 60%;
-    flex: 0 0 60%;
-    max-width: 60%;
-    min-width: 550px;
-}
-
-/* ---------- UserProducts ---------- */
-.user_products_table {
-    border-collapse: collapse;
-    margin: 10px 0;
-    width: 100%;
-    min-width: 530px;
-    font-size: 0.9em;
-}
-
-.user_products_table thead tr {
-    background-color: forestgreen;
-}
-
-.user_products_table th,
-.user_products_table td {
-    padding:4px 6px;
-}
-
-.user_products_table tbody tr {
-    border: 1px solid #dddddd;
-}
-
-.user_products_table tbody tr:nth-of-type(odd) {
-    background-color: #f3f3f3;
+.sidebar img {
+    border-radius: 8px;
+    max-width:220px;
 }
 
 .note_editor {
@@ -188,3 +178,5 @@ textarea {
     border-radius: 0.25rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
+
+
