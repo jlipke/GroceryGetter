@@ -84,9 +84,7 @@ textarea {
 }
 
     .user-info a {
-        color: black;
-        font-weight: bold;
-        text-shadow: -0.5px -0.5px #ced4da; 
+        color: lightgrey;
     }
 
 .logo_main {
