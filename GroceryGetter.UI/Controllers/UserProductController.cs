@@ -27,7 +27,7 @@ namespace GroceryGetter.UI.Controllers
                 //Need to authenticate
                 return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
             }
-            
+
         }
 
         // Index used for the Edit screen
@@ -71,25 +71,20 @@ namespace GroceryGetter.UI.Controllers
             }
 
             return View();
-            
+
         }
 
         // POST
         [HttpPost]
         public ActionResult AddProducts(UserUserProduct uup, FormCollection collection)
         {
-            try
-            {
-                // TODO: Add insert logic here
-                UserProductManager.Insert(uup.UserProduct);
-                //uup.Products.ToList().ForEach(p => ProductManager.)
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+            // TODO: Add insert logic here
+            UserProductManager.Insert(uup.UserProduct);
+            //uup.Products.ToList().ForEach(p => ProductManager.)
+
+            return RedirectToAction("Index");
+
         }
 
         // GET
