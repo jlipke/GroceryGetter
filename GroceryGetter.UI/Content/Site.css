@@ -179,4 +179,35 @@ textarea {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
+.inactive {
+    pointer-events: none;
+    /* for "disabled" effect */
+    opacity: 0.5;
+    background: #CCC;
+}
 
+/* ---------- UserProducts ---------- */
+.user_products_table {
+    border-collapse: collapse;
+    margin: 10px 0;
+    width: 100%;
+    min-width: 530px;
+    font-size: 0.9em;
+}
+
+    .user_products_table thead tr {
+        background-color: forestgreen;
+    }
+
+    .user_products_table th,
+    .user_products_table td {
+        padding: 4px 6px;
+    }
+
+    .user_products_table tbody tr {
+        border: 1px solid #dddddd;
+    }
+
+        .user_products_table tbody tr:nth-of-type(odd) {
+            background-color: #f3f3f3;
+        }

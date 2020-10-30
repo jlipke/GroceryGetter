@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Grocery Getter</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="banner">
+        <div class="user-info">
+            @{ Html.RenderAction("AccountBannerbar", "Account");}
+        </div>
+        <div class="logo_main">
+            <a href="~/">
+                <img id="logo" src="~/Images/logo_main.png" />
+            </a>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="row-cols-5">
+                <div class="sidebar rounded-top rounded-bottom inactive">
+                    <div>
+                        <h3>Select Store</h3>
+                        <hr />
+                    </div>
+                    <div>
+                        @{ Html.RenderAction("StoreSidebar", "Store");}
+                    </div>
+                </div>
+            </div>
+
+            <div class="main_container main_content rounded-top inactive">
+                <div class="header rounded-top">
+                </div>
+                @{ Html.RenderAction("EditIndex", "UserProduct");}
+                <hr />
+
+            </div>
+
+            <div class="row-cols-5 user_product_container">
+                <div class="sidebar rounded-top rounded-bottom">
+                    <div>
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <footer class="block-center">
+            <p>&copy; @DateTime.Now.Year - Grocery Getter</p>
+        </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

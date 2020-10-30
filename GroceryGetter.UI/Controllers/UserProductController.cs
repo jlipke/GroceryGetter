@@ -30,7 +30,24 @@ namespace GroceryGetter.UI.Controllers
             
         }
 
-      
+        // Index used for the Edit screen
+        public ActionResult EditIndex()
+        {
+            if (Authenticate.IsAuthenticated())
+            {
+                var user = Session["user"] as User;
+                var userProductList = UserProductManager.LoadByUserId(user.Id);
+                ViewBag.Message = ViewBag.Message;
+                return View(userProductList);
+            }
+            else
+            {
+                //Need to authenticate
+                return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            }
+
+        }
+
         // GET
         public ActionResult Details(int id)
         {

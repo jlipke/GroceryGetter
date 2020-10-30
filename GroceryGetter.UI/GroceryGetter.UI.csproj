@@ -316,7 +316,6 @@
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Delete.cshtml" />
-    <Content Include="Views\UserProduct\Edit.cshtml" />
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Layout\Index.cshtml" />
     <Content Include="Views\Layout\Create.cshtml" />
@@ -324,6 +323,9 @@
     <Content Include="Views\Layout\Delete.cshtml" />
     <Content Include="Views\User\EmailSent.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Shared\_EditLayout.cshtml" />
+    <Content Include="Views\UserProduct\Edit.cshtml" />
+    <Content Include="Views\UserProduct\EditIndex.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
