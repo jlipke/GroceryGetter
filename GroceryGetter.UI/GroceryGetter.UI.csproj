@@ -269,6 +269,7 @@
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
     <Content Include="Scripts\umd\popper.min.js" />
+    <Content Include="Views\UserProduct\AddProduct.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -327,8 +328,6 @@
     <Content Include="Views\Shared\_EditLayout.cshtml" />
     <Content Include="Views\UserProduct\Edit.cshtml" />
     <Content Include="Views\UserProduct\EditIndex.cshtml" />
-    <Content Include="Views\UserProduct\AddProduct.cshtml" />
-    <Content Include="Views\UserProduct\AddProduct1.cshtml" />
     <Content Include="Views\UserProduct\AddProducts.cshtml" />
   </ItemGroup>
   <ItemGroup>
