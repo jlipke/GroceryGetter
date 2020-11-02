@@ -30,8 +30,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.UserProduct.ProductTitle, htmlAttributes: new { @class = "control-label col-md-2"})
             <div class="listbox">
-                @Html.DropDownListFor(model => model.UserProduct.ProductId, new SelectList(Model.Products, "Id", "Title", Model.Products), null, new { @class = "form-control", style = "width: 220px;" })
-                @Html.ValidationMessageFor(model => model.UserProduct.ProductTitle, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.UserProduct.ProductId, new SelectList(Model.Products, "Id", "Title", Model.UserProduct), null, new { @class = "form-control", style = "width: 220px;" })
+                @Html.ValidationMessageFor(model => model.UserProduct.ProductId, "", new { @class = "text-danger" })
             </div>
         </div>
 

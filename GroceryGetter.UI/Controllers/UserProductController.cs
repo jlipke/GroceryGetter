@@ -61,20 +61,10 @@ namespace GroceryGetter.UI.Controllers
             {
                 UserUserProduct uup = new UserUserProduct();
                 
-                uup.UserProduct = new UserProduct();
                 uup.User = Session["user"] as User;
-                uup.UserProduct.UserId = uup.User.Id;
                 uup.Products = ProductManager.LoadAll();
-                //Product product = ProductManager.LoadById();
-                //uup.UserProduct.ProductId = uup.Products.FirstOrDefault().Id;
-
-                //UserProduct uup = new UserProduct();
-                //var user = Session["user"] as User;
-                //List<Product> products = ProductManager.LoadAll();
-
-
-
-                ViewBag.Message = ViewBag.Message;
+                uup.UserProduct = new UserProduct();
+                uup.UserProduct.UserId = uup.User.Id;
 
                 return View(uup);
             }
@@ -85,19 +75,13 @@ namespace GroceryGetter.UI.Controllers
 
         // POST
         [HttpPost]
-        public ActionResult AddProducts(UserUserProduct uup, FormCollection collection)
+        public ActionResult AddProducts(UserUserProduct uup)
         {
 
             // TODO: Add insert logic here
-            //uup.UserProduct.Id = Guid.NewGuid();
-            //uup.UserProduct.UserId = uup.User.Id;
-            //uup.UserProduct.ProductId = ProductManager.LoadById(uup.Products.);
-            //uup.UserProduct.InCart = uup.UserProduct.InCart;
-            //uup.UserProduct.Amount = uup.UserProduct.Amount;
-            //uup.UserProduct.Notes = uup.UserProduct.Notes;
+
 
             UserProductManager.Insert(uup.UserProduct);
-            //uup.Products.ToList().ForEach(p => ProductManager.)
 
             return RedirectToAction("Index");
 
