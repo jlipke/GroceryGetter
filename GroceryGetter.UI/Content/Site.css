@@ -106,6 +106,10 @@ textarea {
 }
 
 /* ---------- Containers ---------- */
+.login-container {
+    width: 350px;
+}
+
 /* ----- Main ----- */
 .main_content {
     display: block;
