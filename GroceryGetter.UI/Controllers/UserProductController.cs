@@ -69,7 +69,7 @@ namespace GroceryGetter.UI.Controllers
                 return View(uup);
             }
 
-            return View();
+            return View("Index");
 
         }
 
@@ -79,7 +79,6 @@ namespace GroceryGetter.UI.Controllers
         {
 
             // TODO: Add insert logic here
-
 
             UserProductManager.Insert(uup.UserProduct);
 
