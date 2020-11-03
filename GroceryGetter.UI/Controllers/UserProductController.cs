@@ -64,6 +64,7 @@ namespace GroceryGetter.UI.Controllers
                 uup.User = Session["user"] as User;
                 uup.Products = ProductManager.LoadAll();
                 uup.UserProduct = new UserProduct();
+                //uup.Product = ProductManager.LoadById();
                 uup.UserProduct.UserId = uup.User.Id;
 
                 return View(uup);
@@ -81,7 +82,7 @@ namespace GroceryGetter.UI.Controllers
             // TODO: Add insert logic here
 
 
-            UserProductManager.Insert(uup.UserProduct);
+            UserProductManager.Insert(uup.UserProduct); //the insert function needs a product id 
 
             return RedirectToAction("Index");
 
