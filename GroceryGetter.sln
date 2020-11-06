@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30320.27
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryGetter.UI", "GroceryGetter.UI\GroceryGetter.UI.csproj", "{183FF792-9346-43AF-8B11-E45ADFF17574}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GroceryGetter.PL.Test", "GroceryGetter.PL.Test\GroceryGetter.PL.Test.csproj", "{A03C7360-6112-470E-8A31-87094E645980}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "GroceryGetter.DB", "GroceryGetter.DB\GroceryGetter.DB.sqlproj", "{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestBot", "TestBot\TestBot.csproj", "{2B9FECDE-D5C6-4E41-ACD9-DB5348AEEC68}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8908EB59-5746-4EA0-AA1D-06A4BE05E7FA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2B9FECDE-D5C6-4E41-ACD9-DB5348AEEC68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B9FECDE-D5C6-4E41-ACD9-DB5348AEEC68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B9FECDE-D5C6-4E41-ACD9-DB5348AEEC68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B9FECDE-D5C6-4E41-ACD9-DB5348AEEC68}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
