@@ -62,32 +62,6 @@ namespace TestBot
 
 
 
-
-
-
-            ////*[@id="nutrients-table"]/tbody/tr[1]
-
-            //if (locateNutritionVal.TagName.Contains(TagName(), "tr"))
-            //{
-
-
-            //Console.WriteLine("yes");
-            //var NutritionVal = locateNutritionVal.FindElement(By.TagName("tr"));
-
-            //Console.WriteLine("\n\n\nNutrients per serving size:" + "\n\n" + locateNutritionVal);
-
-            //}
-
-            //Console.WriteLine("\n\n\nNutrients per serving size:" + "\n\n" + locateNutritionVal.Text);
-
-            //var ingredients = driver.FindElement(By.ClassName("ingredients ng-star-inserted"));
-
-            //Console.WriteLine(ingredients.Text);
-
-
-
-
-
             //Close the browser window
             //driver.Close();
 
