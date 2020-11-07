@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace TestBot
@@ -20,46 +21,82 @@ namespace TestBot
             IWebElement element = driver.FindElement(By.Name("query"));
 
             //Replaced by variable or product name from db eventually.
-            element.SendKeys("Milk");
+            string productName = "Baby Formula";
+
+            element.SendKeys(productName);
 
             element.SendKeys(Keys.Enter);
 
-            var Click = driver.FindElement(By.Name("food-search-result-description"));
-            Click.Click();
+            Console.WriteLine("\n\n\nThe product you searched for is: " + productName);
+
+            Thread.Sleep(2000);
+
+            var productResult = driver.FindElement(By.Name("food-search-result-description"));
+
+            Console.WriteLine("\nThe closest product match found is: " + productResult.Text);
+
+            var click = driver.FindElement(By.Name("food-search-result-description"));
+            click.Click();
 
             //Need try catch and maybe wait time. It doesnt always find the value but it does exist.
             //This part could also be replaced with plain text.
-            var servingSize = driver.FindElement(By.Name("basic nutrients, nutrient per 100g header"));
-
-            if (servingSize.Text.Contains("100 ml")){
-
-                Console.WriteLine("\n\n\nOne serving size is equal to 100ml");
-            }
-            else if (servingSize.Text.Contains("100 g"))
+            try
             {
 
-                Console.WriteLine("\n\n\nOne serving size is equal to 100g");
+                Thread.Sleep(2000);
+
+                var servingSize = driver.FindElement(By.Name("basic nutrients, nutrient per 100g header"));
+
+                if (servingSize.Text.Contains("100 ml"))
+                {
+
+                    Console.WriteLine("\nOne serving size is equal to 100ml.");
+                }
+                else if (servingSize.Text.Contains("100 g"))
+                {
+
+                    Console.WriteLine("\nOne serving size is equal to 100g.");
+                }
+                else
+                {
+
+                    Console.WriteLine("\nCould not find serving size data");
+                }
+
             }
-            else
+            catch (NoSuchElementException)
             {
 
-                Console.WriteLine("Could not find serving size data");
+                Console.WriteLine("\nA Serving size is equal to 100ml for liquid products.");
+                Console.WriteLine("\nA Serving size is equal to 100g for solid products.");
             }
+
+            Thread.Sleep(2000);
 
             var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));
 
-            Console.WriteLine("\n\n\nNutrients per serving size:");
+            Console.WriteLine("\n\n\n\nNutrients per serving size:");
 
-            foreach (var result in locateNutritionVal)
+            foreach (var NutritionVal in locateNutritionVal)
             {
 
-                Console.WriteLine("\n" + result.Text);
-
+                Console.WriteLine("\n\n" + NutritionVal.Text);
             }
 
-            //Using coordinates to find ingredients or figure out how to get it by class.
-            //Might be able to use XPath
+            try
+            {
 
+                Thread.Sleep(1000);
+
+                var ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));
+
+                Console.WriteLine("\n\n\n\n" + ingredients.Text);
+            }
+            catch (NoSuchElementException)
+            {
+
+                Console.WriteLine("\n\n\n\nSorry, ingredients are not available for this product.");
+            }
 
 
             //Close the browser window
