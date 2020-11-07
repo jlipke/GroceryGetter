@@ -122,7 +122,7 @@ namespace GroceryGetter.UI.Controllers
         // GET
         public ActionResult Edit(Guid id)
         {
-            var user = Session["user"] as User;
+            //var user = Session["user"] as User;
             UserProduct userProduct = UserProductManager.LoadById(id);
             //UserProduct userProduct = UserProductManager.SearchGroceryByProduct(user.Id, product.Title);
 
@@ -131,7 +131,7 @@ namespace GroceryGetter.UI.Controllers
 
         // POST
         [HttpPost]
-        public ActionResult Edit(UserProduct userProduct, FormCollection collection)
+        public ActionResult Edit(UserProduct userProduct)
         {
             try
             {
@@ -145,20 +145,22 @@ namespace GroceryGetter.UI.Controllers
         }
 
         // GET
-        public ActionResult Delete(int id)
+        public ActionResult Delete(Guid id)
         {
-            return View();
+            UserProduct userProduct = UserProductManager.LoadById(id);
+            return View(userProduct);
         }
 
         // POST
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(UserProduct userProduct)
         {
             try
             {
-                // TODO: Add delete logic here
+                UserProductManager.Delete(userProduct.Id);
 
                 return RedirectToAction("Index");
+
             }
             catch
             {

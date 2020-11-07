@@ -1,0 +1,25 @@
+﻿@model GroceryGetter.BL.Models.UserProduct
+
+@{
+    ViewBag.Title = "Remove Item";
+    Layout = "~/Views/Shared/_EditLayout.cshtml";
+}
+
+
+
+<h3>Are you sure you want to remove @Model.ProductTitle?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Remove" class="btn btn-success" />
+    <input type="button" value="Cancel" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("Index", "UserProduct") + "'");"/> 
+</div>
+    }
+</div>
