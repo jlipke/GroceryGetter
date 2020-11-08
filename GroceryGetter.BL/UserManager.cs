@@ -308,13 +308,13 @@ namespace GroceryGetter.BL
                             else
                             {
                                 // return false;
-                                throw new Exception("Cannot log in with these credentials!");
+                                throw new Exception("Login Failed!");   // Cannot log in with these credentials
                             }
                         }
                         else
                         {
                             //return false;
-                            throw new Exception("User could not be found!");
+                            throw new Exception("Login Failed!");    // User not found
                         }
                     }
                 }
@@ -325,7 +325,7 @@ namespace GroceryGetter.BL
             }
             else
             {
-                throw new Exception("User Id was not set!");
+                throw new Exception("Email was not set!");  // This outputs to the view so I changed it to "Email"
             }
 
         }
