@@ -19,19 +19,49 @@ namespace GroceryGetter.BL
             {
                 using (GroceryGetterEntities dc = new GroceryGetterEntities())
                 {
-                    tblUser newrow = new tblUser();
-                    newrow.Id = Guid.NewGuid();
-                    newrow.FirstName = user.FirstName;
-                    newrow.LastName = user.LastName;
-                    newrow.Email = user.Email;
-                    newrow.UserPass = CreateHash(user.UserPass);
-                    user.Id = newrow.Id;
-                    dc.tblUsers.Add(newrow);
+                    if (user.FirstName != null)
+                    {
+                        if (user.LastName != null)
+                        {
+                            if (user.Email != null)
+                            {
+                                if (user.UserPass != null)   // This can be where we test if the password is long enough
+                                {
+                                    tblUser newrow = new tblUser();
+                                    newrow.Id = Guid.NewGuid();
+                                    newrow.FirstName = user.FirstName;
+                                    newrow.LastName = user.LastName;
+                                    newrow.Email = user.Email;
+                                    newrow.UserPass = CreateHash(user.UserPass);
+                                    user.Id = newrow.Id;
+                                    dc.tblUsers.Add(newrow);
 
-                    return dc.SaveChanges();
+                                    return dc.SaveChanges();
+                                }
+                                else
+                                {
+                                    throw new Exception("Password is required");
+                                }
+                            }
+                            else
+                            {
+                                throw new Exception("Email is required");
+                            }
+
+                        }
+                        else
+                        {
+                            throw new Exception("Last Name is required");
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("First name is required");
+                    }
+
                 }
             }
-
+            
             catch (System.Data.Entity.Validation.DbEntityValidationException e)     // Use this to output validation errors in the output window
             {
                 foreach (var eve in e.EntityValidationErrors)

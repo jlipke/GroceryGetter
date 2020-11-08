@@ -172,7 +172,8 @@ namespace GroceryGetter.UI.Controllers
             }
             catch(Exception ex)
             {
-                return View();
+                ViewBag.Message = ex.Message;
+                return View(user);
             }
         }
 
