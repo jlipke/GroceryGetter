@@ -28,6 +28,12 @@ namespace GroceryGetter.UI.Controllers
             }
         }
 
+        public ActionResult Nutrition(Guid id)
+        {
+            Product product = ProductManager.LoadNutritionData(id);
+            return View(product);
+        }
+
         public ActionResult Details(Guid id)
         {
             Product product = ProductManager.LoadById(id);

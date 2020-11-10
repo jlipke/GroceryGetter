@@ -59,6 +59,49 @@ namespace GroceryGetter.BL
             }
         }
 
+        public static Product LoadNutritionData(Guid id)
+        {
+            try
+            {
+                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                {
+                    tblProduct tblProduct = dc.tblProducts.FirstOrDefault(c => c.Id == id);
+                    if (tblProduct != null)
+                    {
+                        Product product = new Product
+                        {
+                            Id = tblProduct.Id,
+                            Title = tblProduct.Title
+                        };
+
+                        IWebDriver driver = new ChromeDriver();
+
+                        driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");
+
+                        IWebElement element = driver.FindElement(By.Name("query"));
+
+                        //string Title = tblProduct.Title;
+
+                        //String proN = Convert.ToString(product);
+
+                        element.SendKeys(tblProduct.Title);
+
+                        element.SendKeys(Keys.Enter);
+
+                        return product;
+                    }
+                    else
+                    {
+                        throw new Exception("Row was not found.");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<Product> LoadByAisleId(Guid aisleId)
         {
             List<Product> products = new List<Product>();
