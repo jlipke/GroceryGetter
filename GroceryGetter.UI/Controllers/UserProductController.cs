@@ -38,7 +38,7 @@ namespace GroceryGetter.UI.Controllers
             {
                 var user = Session["user"] as User;
                 var userProductList = UserProductManager.LoadGroceryByLayout(user.Id, id);
-                ViewBag.Message = ViewBag.Message;
+
                 return View(userProductList);
             }
             else

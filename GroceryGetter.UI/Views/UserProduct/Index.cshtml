@@ -24,9 +24,6 @@
         <th>
             @Html.DisplayNameFor(model => model.Notes)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductAisle)
-        </th>
         <th></th>
     </tr>
 
@@ -37,8 +34,8 @@
                 @Html.DisplayFor(modelItem => item.InCart)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductTitle)
-                @*@Html.ActionLink(item.ProductTitle, "Edit", "UserProduct")*@
+                @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id}, null)
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
@@ -47,10 +44,6 @@
                 @Html.DisplayFor(modelItem => item.Notes)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductAisle)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
