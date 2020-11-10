@@ -31,7 +31,7 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.InCart)
+                @Html.CheckBox("In Cart", item.InCart)
             </td>
             <td>
                 @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id}, null)
@@ -50,3 +50,7 @@
     }
 
 </table>
+
+<p>
+    <input type="button" value="Add Product" class="btn btn-outline-success" onclick="@("window.location.href='" + @Url.Action("AddProducts", "UserProduct") + "'");" />
+</p>
