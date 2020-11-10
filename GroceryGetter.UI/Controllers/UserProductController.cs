@@ -30,6 +30,26 @@ namespace GroceryGetter.UI.Controllers
 
         }
 
+
+        // Order UserProduct List by StoreId
+        public ActionResult LoadByStoreId(Guid id)
+        {
+            if (Authenticate.IsAuthenticated())
+            {
+                var user = Session["user"] as User;
+                var userProductList = UserProductManager.LoadGroceryByLayout(user.Id, id);
+                ViewBag.Message = ViewBag.Message;
+                return View(userProductList);
+            }
+            else
+            {
+                //Need to authenticate
+                return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
+            }
+
+        }
+
+
         // Index used for the Edit screen
         public ActionResult EditIndex()
         {

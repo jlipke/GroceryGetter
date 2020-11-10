@@ -1,0 +1,59 @@
+﻿@model IEnumerable<GroceryGetter.BL.Models.UserProduct>
+
+@{
+    ViewBag.Title = "LoadByStoreId";
+    Layout = "~/Views/Shared/_GGLayout.cshtml";
+}
+
+<h2>LoadByStoreId</h2>
+
+<p>
+    @Html.ActionLink("Add Product", "AddProducts")
+</p>
+<table class="user_products_table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.InCart)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductTitle)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Notes)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductAisle)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InCart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductTitle)
+                @*@Html.ActionLink(item.ProductTitle, "Edit", "UserProduct")*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductAisle)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
