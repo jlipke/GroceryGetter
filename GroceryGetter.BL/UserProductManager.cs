@@ -103,6 +103,7 @@ namespace GroceryGetter.BL
                     var results = (from up in dc.tblUserProducts
                                    join p in dc.tblProducts on up.ProductId equals p.Id
                                    where up.UserId == userId
+                                   orderby p.Title
                                    select new
                                    {
                                        up.Id,

@@ -17,7 +17,7 @@ namespace GroceryGetter.UI.Controllers
             // Remove commenting once login is fixed
             if (Authenticate.IsAuthenticated())
             {
-                var products = ProductManager.LoadAll();
+                var products = ProductManager.Load();
                 ViewBag.Message = ViewBag.Message;
                 return View(products);
             }

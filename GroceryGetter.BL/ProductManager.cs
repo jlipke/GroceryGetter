@@ -26,9 +26,39 @@ namespace GroceryGetter.BL
                 }));
 
                 return products;
-
             }
-            
+        }
+
+        public static List<Product> Load()
+        {
+            try
+            {
+                List<Product> products = new List<Product>();
+
+                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                {
+                    var results = (from p in dc.tblProducts
+                                   orderby p.Title
+                                   select new
+                                   {
+                                       p.Id,
+                                       p.Title
+                                   }).ToList();
+                    foreach (var p in results)
+                    {
+                        Product product = new Product();
+                        product.Id = p.Id;
+                        product.Title = p.Title;
+                        products.Add(product);
+                    }
+                    return products;
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public static Product LoadById(Guid id)
@@ -107,16 +137,16 @@ namespace GroceryGetter.BL
             List<Product> products = new List<Product>();
             using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                    
+
                 var results = (from ap in dc.tblAisleProducts
-                                join p in dc.tblProducts on ap.ProductId equals p.Id
-                                join a in dc.tblAisles on ap.AisleId equals a.Id
-                                where ap.AisleId == aisleId
-                                select new
-                                {
-                                    Id = p.Id,
-                                    Title = p.Title
-                                }).ToList();
+                               join p in dc.tblProducts on ap.ProductId equals p.Id
+                               join a in dc.tblAisles on ap.AisleId equals a.Id
+                               where ap.AisleId == aisleId
+                               select new
+                               {
+                                   Id = p.Id,
+                                   Title = p.Title
+                               }).ToList();
 
 
 
@@ -127,7 +157,7 @@ namespace GroceryGetter.BL
                 }));
             }
             return products;
-          
+
         }
 
         public static int Update(Product product)
@@ -157,7 +187,7 @@ namespace GroceryGetter.BL
 
         public static int Delete(Guid id)
         {
-            
+
             using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
                 tblProduct deleterow = dc.tblProducts.FirstOrDefault(p => p.Id == id);
@@ -171,25 +201,25 @@ namespace GroceryGetter.BL
                     throw new Exception("Row was not found!!");
                 }
             }
-            
+
         }
 
         public static int Insert(Product product)
         {
-           
+
             using (GroceryGetterEntities dc = new GroceryGetterEntities())
             {
-                    
+
                 tblProduct newRow = new tblProduct();
 
-                    
+
                 newRow.Id = Guid.NewGuid();
                 newRow.Title = product.Title;
-                    
+
                 dc.tblProducts.Add(newRow);
                 return dc.SaveChanges();
             }
-           
+
         }
 
     }

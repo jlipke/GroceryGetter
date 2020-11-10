@@ -176,14 +176,23 @@ namespace GroceryGetter.BL
         {
             try
             {
+                List<Store> stores = new List<Store>();
                 using (GroceryGetterEntities dc = new GroceryGetterEntities())
                 {
-                    List<Store> stores = new List<Store>();
-                    dc.tblStores.ToList().ForEach(s => stores.Add(new Store
+                    var results = (from s in dc.tblStores
+                                   orderby s.Title
+                                   select new
+                                   {
+                                       s.Id,
+                                       s.Title
+                                   }).ToList();
+                    foreach (var s in results)
                     {
-                        Id = s.Id,
-                        Title = s.Title
-                    }));
+                        Store store = new Store();
+                        store.Id = s.Id;
+                        store.Title = s.Title;
+                        stores.Add(store);
+                    }
                     return stores;
                 }
             }

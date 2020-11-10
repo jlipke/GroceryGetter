@@ -82,7 +82,7 @@ namespace GroceryGetter.UI.Controllers
                 UserUserProduct uup = new UserUserProduct();
                 
                 uup.User = Session["user"] as User;
-                uup.Products = ProductManager.LoadAll();
+                uup.Products = ProductManager.Load();
                 uup.UserProduct = new UserProduct();
                 uup.UserProduct.UserId = uup.User.Id;
 
@@ -112,7 +112,7 @@ namespace GroceryGetter.UI.Controllers
             if (Authenticate.IsAuthenticated())
             {
                 var user = Session["user"] as User;
-                List<Product> products = ProductManager.LoadAll();
+                List<Product> products = ProductManager.Load();
                 ViewBag.Message = ViewBag.Message;
 
 
