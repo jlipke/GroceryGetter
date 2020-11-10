@@ -7,9 +7,7 @@
 
 <h2>Grocery List</h2>
 
-<p>
-    @Html.ActionLink("Add Product", "AddProducts")
-</p>
+
 <table class="user_products_table">
     <tr>
         <th>
@@ -34,11 +32,10 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.InCart)
+                @Html.CheckBox("In Cart", item.InCart)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ProductTitle)
-                @*@Html.ActionLink(item.ProductTitle, "Edit", "UserProduct")*@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Amount)
@@ -57,3 +54,7 @@
     }
 
 </table>
+
+<p>
+    <input type="button" value="Add Product" class="btn btn-outline-success" onclick="@("window.location.href='" + @Url.Action("AddProducts", "UserProduct") + "'");" />
+</p>

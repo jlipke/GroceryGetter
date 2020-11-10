@@ -7,7 +7,7 @@
 
 
 
-<h3>Are you sure you want to remove @Model.ProductTitle?</h3>
+<h3>Remove @Model.ProductTitle from your list?</h3>
 <div>
     <hr />
     <dl class="dl-horizontal">
@@ -18,7 +18,7 @@
         @Html.AntiForgeryToken()
 
 <div class="form-actions no-color">
-    <input type="submit" value="Remove" class="btn btn-success" />
+    <input type="submit" value="Yes" class="btn btn-success" />
     <input type="button" value="Cancel" class="btn btn-danger" onclick="@("window.location.href='" + @Url.Action("Index", "UserProduct") + "'");"/> 
 </div>
     }

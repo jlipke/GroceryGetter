@@ -12,6 +12,8 @@ namespace GroceryGetter.BL.Models
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid ProductId { get; set; }
+
+        [Display(Name = "In Cart")]
         public bool InCart { get; set; }
         public int Amount { get; set; }
         public string Notes { get; set; }
