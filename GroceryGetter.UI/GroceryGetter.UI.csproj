@@ -330,8 +330,10 @@
     <Content Include="Views\UserProduct\EditIndex.cshtml" />
     <Content Include="Views\UserProduct\AddProducts.cshtml" />
     <Content Include="Views\UserProduct\Delete.cshtml" />
-    <Content Include="Views\Product\Nutrition.cshtml" />
+    <Content Include="Views\Product\Nutrition3.cshtml" />
     <Content Include="Views\UserProduct\LoadByStoreId.cshtml" />
+    <Content Include="Views\Product\Nutrition2.cshtml" />
+    <Content Include="Views\Product\Nutrition.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
