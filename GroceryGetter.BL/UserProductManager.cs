@@ -103,7 +103,7 @@ namespace GroceryGetter.BL
                     var results = (from up in dc.tblUserProducts
                                    join p in dc.tblProducts on up.ProductId equals p.Id
                                    where up.UserId == userId
-                                   orderby p.Title
+                                   orderby up.InCart, p.Title
                                    select new
                                    {
                                        up.Id,
@@ -135,7 +135,7 @@ namespace GroceryGetter.BL
             }
         }
 
-        // Load GroceryList by StoreId and order by...
+        // Load GroceryList by StoreId
         public static List<UserProduct> LoadGroceryByLayout(Guid userId, Guid storeId)
         {
             try
@@ -151,7 +151,7 @@ namespace GroceryGetter.BL
                                    join l in dc.tblLayouts on a.LayoutId equals l.Id
                                    join s in dc.tblStores on l.StoreId equals s.Id
                                    where up.UserId == userId && s.Id == storeId
-                                   orderby a.Lineup, p.Title
+                                   orderby up.InCart, a.Lineup, p.Title 
                                    select new
                                    {
                                        up.Id,
