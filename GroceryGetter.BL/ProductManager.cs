@@ -89,7 +89,7 @@ namespace GroceryGetter.BL
             }
         }
 
-        public static Product LoadNutritionData(Guid id)
+        public static string LoadNutritionData(Guid id)
         {
             try
             {
@@ -98,11 +98,11 @@ namespace GroceryGetter.BL
                     tblProduct tblProduct = dc.tblProducts.FirstOrDefault(c => c.Id == id);
                     if (tblProduct != null)
                     {
-                        Product product = new Product
-                        {
-                            Id = tblProduct.Id,
-                            Title = tblProduct.Title
-                        };
+                        //Product product = new Product
+                        //{
+                            //Id = tblProduct.Id,
+                            //Title = tblProduct.Title
+                        //};
 
                         IWebDriver driver = new ChromeDriver();
 
@@ -118,7 +118,9 @@ namespace GroceryGetter.BL
 
                         element.SendKeys(Keys.Enter);
 
-                        return product;
+                        var pName = "\n\n\nThe product you searched for is: " + tblProduct.Title;
+
+                        return pName;
                     }
                     else
                     {

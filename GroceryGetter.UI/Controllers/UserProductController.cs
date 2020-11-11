@@ -30,7 +30,6 @@ namespace GroceryGetter.UI.Controllers
 
         }
 
-
         // Order UserProduct List by StoreId
         public ActionResult LoadByStoreId(Guid id)
         {
@@ -46,9 +45,7 @@ namespace GroceryGetter.UI.Controllers
                 //Need to authenticate
                 return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
             }
-
         }
-
 
         // Index used for the Edit screen
         public ActionResult EditIndex()

@@ -4,7 +4,8 @@
     ViewBag.Title = "LoadByStoreId";
     Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
-<h2>@*@Html.DisplayNameFor(model => model.StoreTitle )*@ - Grocery List
+<h2>
+    @*@Html.DisplayNameFor(model => model.StoreTitle )*@ - Grocery List
 </h2>
 
 <p>
@@ -33,8 +34,8 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.InCart)
+            <td style="padding-left:18px">
+                @Html.CheckBoxFor(modelItem => item.InCart)
             </td>
             <td>
                 @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id }, null)
@@ -55,3 +56,4 @@
     }
 
 </table>
+
