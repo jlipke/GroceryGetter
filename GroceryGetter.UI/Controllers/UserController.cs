@@ -8,7 +8,7 @@ using GroceryGetter.BL.Models;
 using GroceryGetter.UI.Models;
 using GroceryGetter.UI.ViewModels;
 using GroceryGetter.PL;
-using WebMatrix.WebData;
+
 
 
 namespace GroceryGetter.UI.Controllers
@@ -91,52 +91,53 @@ namespace GroceryGetter.UI.Controllers
         {
             try
             {
-                
-                WebSecurity.InitializeDatabaseConnection("GroceryGetterEntities", "tblUser", "Id", "Email", false);
-                
-                if (ModelState.IsValid)
-                {
+                PasswordResetManager.SendMessage(Email);
 
-                    if (WebSecurity.UserExists(Email))
-                    {
-                        string To = Email, UserID, Password, SMTPPort, Host;
-                        string token = WebSecurity.GeneratePasswordResetToken(Email);
-                        if (token == null)
-                        {
-                            // If user does not exist or is not confirmed.  
+                //WebSecurity.InitializeDatabaseConnection("GroceryGetterEntities", "tblUser", "Id", "Email", false);
 
-                            return View("Index");
+                //if (ModelState.IsValid)
+                //{
 
-                        }
-                        else
-                        {
-                            //Create URL with above token  
+                //    if (WebSecurity.UserExists(Email))
+                //    {
+                //        string To = Email, UserID, Password, SMTPPort, Host;
+                //        string token = WebSecurity.GeneratePasswordResetToken(Email);
+                //        if (token == null)
+                //        {
+                //            // If user does not exist or is not confirmed.  
 
-                            var lnkHref = "<a href='" + Url.Action("ResetPassword", "Account", new { email = Email, code = token }, "http") + "'>Reset Password</a>";
+                //            return View("Index");
 
+                //        }
+                //        else
+                //        {
+                //            //Create URL with above token  
 
-                            //HTML Template for Send email  
-
-                            string subject = "Your changed password";
-
-                            string body = "<b>Please find the Password Reset Link. </b><br/>" + lnkHref;
+                //            var lnkHref = "<a href='" + Url.Action("ResetPassword", "Account", new { email = Email, code = token }, "http") + "'>Reset Password</a>";
 
 
-                            //Get and set the AppSettings using configuration manager.  
+                //            //HTML Template for Send email  
 
-                            EmailManager.AppSettings(out UserID, out Password, out SMTPPort, out Host);
+                //            string subject = "Your changed password";
+
+                //            string body = "<b>Please find the Password Reset Link. </b><br/>" + lnkHref;
 
 
-                            //Call send email methods.  
+                //            //Get and set the AppSettings using configuration manager.  
 
-                            EmailManager.SendEmail(UserID, subject, body, To, UserID, Password, SMTPPort, Host);
+                //            EmailManager.AppSettings(out UserID, out Password, out SMTPPort, out Host);
 
-                        }
 
-                    }
+                //            //Call send email methods.  
 
-                }
-                return View();
+                //            EmailManager.SendEmail(UserID, subject, body, To, UserID, Password, SMTPPort, Host);
+
+                //        }
+
+                //    }
+
+                //}
+                return RedirectToAction("EmailSent", "User");
             }
             catch (Exception ex)
             {

@@ -173,36 +173,36 @@ namespace GroceryGetter.BL
             Insert(user);
         }
 
-        public static User LoadByEmail(string email)
-        {
-            try
-            {
-                List<User> users = new List<User>();
-                using (GroceryGetterEntities dc = new GroceryGetterEntities())
-                {
-                    var results = (from u in dc.tblUsers
-                                   join up in dc.tblUserProducts on u.Id equals up.UserId
-                                   join p in dc.tblProducts on up.ProductId equals p.Id
-                                   where u.Email == email
-                                   select u).ToList();
-                    results.ForEach(u => users.Add(new User
-                    {
-                        Id = u.Id,
-                        FirstName = u.FirstName,
-                        LastName = u.LastName,
-                        Email = u.Email,
-                        UserPass = u.UserPass,
-                        GroceryList = UserProductManager.LoadByUserId(u.Id)
-                    }));
-                }
-                return users.FirstOrDefault();
-            }
-            catch (Exception ex)
-            {
+        //public static User LoadByEmail(string email)
+        //{
+        //    try
+        //    {
+        //        List<User> users = new List<User>();
+        //        using (GroceryGetterEntities dc = new GroceryGetterEntities())
+        //        {
+        //            var results = (from u in dc.tblUsers
+        //                           join up in dc.tblUserProducts on u.Id equals up.UserId
+        //                           join p in dc.tblProducts on up.ProductId equals p.Id
+        //                           where u.Email == email
+        //                           select u).ToList();
+        //            results.ForEach(u => users.Add(new User
+        //            {
+        //                Id = u.Id,
+        //                FirstName = u.FirstName,
+        //                LastName = u.LastName,
+        //                Email = u.Email,
+        //                UserPass = u.UserPass,
+        //                GroceryList = UserProductManager.LoadByUserId(u.Id)
+        //            }));
+        //        }
+        //        return users.FirstOrDefault();
+        //    }
+        //    catch (Exception ex)
+        //    {
 
-                throw ex;
-            }
-        }
+        //        throw ex;
+        //    }
+        //}
 
         public static User LoadById(Guid id)
         {
@@ -223,6 +223,45 @@ namespace GroceryGetter.BL
 
 
                         tblUserProduct tbluserproduct = dc.tblUserProducts.FirstOrDefault(up => up.UserId == id);
+
+                        if (tbluserproduct != null)
+                        {
+                            user.GroceryList = UserProductManager.LoadByUserId(tbluser.Id);
+                        }
+                        return user;
+                    }
+                    else
+                    {
+                        throw new Exception("Row was not found!!!!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        public static User LoadByEmail(string email)
+        {
+            try
+            {
+                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                {
+                    tblUser tbluser = dc.tblUsers.FirstOrDefault(u => u.Email == email);
+                    User user = new User();
+
+                    if (tbluser != null)
+                    {
+                        user.Id = tbluser.Id;
+                        user.FirstName = tbluser.FirstName;
+                        user.LastName = tbluser.LastName;
+                        user.Email = tbluser.Email;
+                        user.UserPass = tbluser.UserPass;
+
+
+                        tblUserProduct tbluserproduct = dc.tblUserProducts.FirstOrDefault(up => up.UserId == user.Id);
 
                         if (tbluserproduct != null)
                         {
