@@ -4,6 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Web;
+using System.IO;
+using System.Text.Encodings.Web;
+using System.Threading;
 using System.Threading.Tasks;
 using GroceryGetter.BL.Models;
 using GroceryGetter.PL;
@@ -98,11 +102,6 @@ namespace GroceryGetter.BL
                     tblProduct tblProduct = dc.tblProducts.FirstOrDefault(c => c.Id == id);
                     if (tblProduct != null)
                     {
-                        //Product product = new Product
-                        //{
-                            //Id = tblProduct.Id,
-                            //Title = tblProduct.Title
-                        //};
 
                         IWebDriver driver = new ChromeDriver();
 
@@ -110,17 +109,27 @@ namespace GroceryGetter.BL
 
                         IWebElement element = driver.FindElement(By.Name("query"));
 
-                        //string Title = tblProduct.Title;
-
-                        //String proN = Convert.ToString(product);
-
                         element.SendKeys(tblProduct.Title);
 
                         element.SendKeys(Keys.Enter);
 
-                        var pName = "\n\n\nThe product you searched for is: " + tblProduct.Title;
+                        var productName = "\n\n\nThe product you searched for is: " + tblProduct.Title;
 
-                        return pName;
+                        Thread.Sleep(2000);
+
+                        var productResult = driver.FindElement(By.Name("food-search-result-description"));
+
+                        var ProductMatch = "\nThe closest product match found is: " + productResult.Text;
+
+                        var click = driver.FindElement(By.Name("food-search-result-description"));
+                        click.Click();
+
+                       // string data = productName + "           " + ProductMatch;
+
+                        //data = data.Replace("@", "@" + System.Environment.NewLine);
+
+                        //returns data to view but there needs to be a newline created between variables
+                        return productName + HttpUtility.HtmlEncode("<br />") + ProductMatch;
                     }
                     else
                     {

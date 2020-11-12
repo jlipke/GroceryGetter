@@ -31,8 +31,8 @@ namespace GroceryGetter.UI.Controllers
         public ActionResult Nutrition(Guid id)
         {
             var product = ProductManager.LoadNutritionData(id);
-            ViewBag.Title = "Nutrition";
-            return View(product);
+            ViewBag.Title = product;
+            return View();
             //"~/Views/Product/Nutrition.cshtml"
 
         }
