@@ -124,11 +124,12 @@ namespace GroceryGetter.BL
                         var click = driver.FindElement(By.Name("food-search-result-description"));
                         click.Click();
 
-                       // string data = productName + "           " + ProductMatch;
+                        // string data = productName + "           " + ProductMatch;
 
                         //data = data.Replace("@", "@" + System.Environment.NewLine);
 
                         //returns data to view but there needs to be a newline created between variables
+                        //Added System.Text.Encodings.Web nuget package that might not be needed
                         return productName + HttpUtility.HtmlEncode("<br />") + ProductMatch;
                     }
                     else
