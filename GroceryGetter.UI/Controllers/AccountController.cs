@@ -68,17 +68,43 @@ namespace GroceryGetter.UI.Controllers
 
         public ActionResult ChangePassword()
         {
-            //var user = Session["user"] as User;
-            //PasswordResetManager.SendMessage(user.Email); 
-            return RedirectToAction("Index");
+            User user = new User();
+            ViewBag.Title = "Change Password";
+            return View(user);
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(User user)
+        public ActionResult ChangePassword(User updateduser)
         {
-            //var user = Session["user"] as User;
-            //PasswordResetManager.SendMessage(user.Email); 
-            return RedirectToAction("Index");
+            var user = Session["user"] as User;
+
+            try
+            {
+                
+                //if (updateduser.UserPass == updateduser.ConfirmPassword)
+                //{
+                //    user.UserPass = updateduser.UserPass;
+                //    user.ConfirmPassword = updateduser.ConfirmPassword;
+                //}
+                //else
+                //{
+                //    ViewBag.Message = "Passwords do not match.";
+                //    return View(user);
+                //}
+                    
+                //if (UserManager.Update(user))
+                //{
+                //    Session["user"] = user;
+                //}
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                ViewBag.Message = ex.Message;
+                return View(user);
+            }
+            
         }
 
         [ChildActionOnly]
