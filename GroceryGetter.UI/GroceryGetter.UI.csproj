@@ -113,6 +113,9 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
@@ -150,6 +153,10 @@
     <Compile Include="ViewModels\UserUserProduct.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="..\packages\Chromium.ChromeDriver.2.37\content\chromedriver.exe">
+      <Link>chromedriver.exe</Link>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -330,9 +337,7 @@
     <Content Include="Views\UserProduct\EditIndex.cshtml" />
     <Content Include="Views\UserProduct\AddProducts.cshtml" />
     <Content Include="Views\UserProduct\Delete.cshtml" />
-    <Content Include="Views\Product\Nutrition3.cshtml" />
     <Content Include="Views\UserProduct\LoadByStoreId.cshtml" />
-    <Content Include="Views\Product\Nutrition2.cshtml" />
     <Content Include="Views\Product\Nutrition.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>

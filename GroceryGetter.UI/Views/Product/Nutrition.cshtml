@@ -1,9 +1,63 @@
-﻿
-
+﻿@using OpenQA.Selenium;
+@using OpenQA.Selenium.Chrome;
+@using System.Threading;
 
 
 <h2>Nutrition</h2>
 
-<br>@ViewBag.Title<br>
+@{var productName = ViewBag.Title;}
+
+@{IWebDriver driver = new ChromeDriver();}
+
+@{driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");}
+
+@{IWebElement element = driver.FindElement(By.Name("query"));}
+
+@{element.SendKeys(productName);}
+
+@{element.SendKeys(Keys.Enter);}
+
+<br>
+
+@{var ResultProductName = "The product you searched for is: " + productName;}
+
+@Html.DisplayFor(modelItem => ResultProductName)
+
+@{Thread.Sleep(2000);}
+
+@{var ProductMatchName = driver.FindElement(By.Name("food-search-result-description"));}
+
+<br><br>
+
+@{var ResultProductMatchName = "The closest product match found is: " + ProductMatchName.Text;}
+@Html.DisplayFor(modelItem => ResultProductMatchName)
+
+@{var click = driver.FindElement(By.Name("food-search-result-description"));}
+@{click.Click();}
+
+<br><br>
+
+@{var LiquidProduct = "A Serving size is equal to 100ml for liquid products.";}
+@Html.DisplayFor(modelItem => LiquidProduct)
+
+<br>
+
+@{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
+@Html.DisplayFor(modelItem => SolidProduct)
+
+@{Thread.Sleep(2000);}
+@{var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));}
+
+@foreach (var NutritionVal in locateNutritionVal)
+{
+    <br><br>
+    @Html.DisplayFor(modelItem => NutritionVal.Text);
+}
+
+<br><br><br>
+@{Thread.Sleep(1000);}
+@{var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));}
+@Html.DisplayFor(modelItem => Ingredients.Text);
 
 
+@* Need to add better style + try catch for error handling *@

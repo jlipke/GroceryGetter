@@ -1,6 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -103,34 +101,8 @@ namespace GroceryGetter.BL
                     if (tblProduct != null)
                     {
 
-                        IWebDriver driver = new ChromeDriver();
+                        return tblProduct.Title;
 
-                        driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");
-
-                        IWebElement element = driver.FindElement(By.Name("query"));
-
-                        element.SendKeys(tblProduct.Title);
-
-                        element.SendKeys(Keys.Enter);
-
-                        var productName = "\n\n\nThe product you searched for is: " + tblProduct.Title;
-
-                        Thread.Sleep(2000);
-
-                        var productResult = driver.FindElement(By.Name("food-search-result-description"));
-
-                        var ProductMatch = "\nThe closest product match found is: " + productResult.Text;
-
-                        var click = driver.FindElement(By.Name("food-search-result-description"));
-                        click.Click();
-
-                        // string data = productName + "           " + ProductMatch;
-
-                        //data = data.Replace("@", "@" + System.Environment.NewLine);
-
-                        //returns data to view but there needs to be a newline created between variables
-                        //Added System.Text.Encodings.Web nuget package that might not be needed
-                        return productName + HttpUtility.HtmlEncode("<br />") + ProductMatch;
                     }
                     else
                     {
