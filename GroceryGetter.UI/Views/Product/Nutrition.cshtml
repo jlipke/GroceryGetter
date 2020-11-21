@@ -21,43 +21,62 @@
 
 @{var ResultProductName = "The product you searched for is: " + productName;}
 
-@Html.DisplayFor(modelItem => ResultProductName)
+<p>@ResultProductName</p>
 
 @{Thread.Sleep(2000);}
 
 @{var ProductMatchName = driver.FindElement(By.Name("food-search-result-description"));}
 
-<br><br>
-
 @{var ResultProductMatchName = "The closest product match found is: " + ProductMatchName.Text;}
-@Html.DisplayFor(modelItem => ResultProductMatchName)
+<p>@ResultProductMatchName</p>
+
+<br>
 
 @{var click = driver.FindElement(By.Name("food-search-result-description"));}
 @{click.Click();}
 
-<br><br>
-
 @{var LiquidProduct = "A Serving size is equal to 100ml for liquid products.";}
-@Html.DisplayFor(modelItem => LiquidProduct)
+<p>@LiquidProduct</p>
+
+@{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
+<p>@SolidProduct</p>
 
 <br>
 
-@{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
-@Html.DisplayFor(modelItem => SolidProduct)
-
-@{Thread.Sleep(2000);}
-@{var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));}
-
-@foreach (var NutritionVal in locateNutritionVal)
+@try
 {
-    <br><br>
-    @Html.DisplayFor(modelItem => NutritionVal.Text);
+
+    Thread.Sleep(2000);
+    var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));
+
+        foreach (var NutritionVal in locateNutritionVal)
+        {
+            <p>@NutritionVal.Text</p>
+        }
+}
+catch (NoSuchElementException)
+{
+
+    var NoNutritionVal = "Sorry, Could not find information on nutritional value.";
+    <p>@NoNutritionVal</p>
 }
 
-<br><br><br>
-@{Thread.Sleep(1000);}
-@{var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));}
-@Html.DisplayFor(modelItem => Ingredients.Text);
+<br>
+
+@try
+{
+
+    Thread.Sleep(1000);
+    var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));
+    <p>@Ingredients.Text</p>
+}
+catch (NoSuchElementException)
+{
+
+    var NoIngredients = "Sorry, ingredients are not available for this product.";
+    <p>@NoIngredients</p>
+}
+
 
 
 @* Need to add better style + try catch for error handling *@
