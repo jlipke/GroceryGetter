@@ -5,11 +5,29 @@
     Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
 
+@section Scripts {
+    <script>
+        function clearList() {
+            //if (confirm('Are you sure you want to clear your grocery list?')) {
+                
+            //    //console.log('Thing was saved to the database.');
+            //} else {
+            //    // Do nothing
+               
+            //}
+            alert(".");
+        }
+    </script>
+    
+    
+    }
+
 <h2>Grocery List</h2>
 
 <p>
-    @Html.ActionLink("Add Product", "AddProducts")
+    @Html.ActionLink("Add Product", "AddProducts")  |  <button onclick="clearList">Clear Shopping list</button>
 </p>
+
 
 <table class="user_products_table">
     <tr>
