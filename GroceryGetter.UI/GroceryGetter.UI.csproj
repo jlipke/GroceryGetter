@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Models\Authenticate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ChangePasswordViewModel.cs" />
     <Compile Include="ViewModels\EmailManager.cs" />
     <Compile Include="ViewModels\StoreUserProducts.cs" />
     <Compile Include="ViewModels\UserUserProduct.cs" />
@@ -342,6 +343,7 @@
     <Content Include="Views\UserProduct\Delete.cshtml" />
     <Content Include="Views\UserProduct\LoadByStoreId.cshtml" />
     <Content Include="Views\Product\Nutrition.cshtml" />
+    <Content Include="Views\Account\jChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>

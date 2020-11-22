@@ -45,17 +45,17 @@ namespace GroceryGetter.UI.Controllers
                 if (updateduser.FirstName != user.FirstName && updateduser.FirstName != null)
                     user.FirstName = updateduser.FirstName;
 
-                if(updateduser.LastName != user.LastName && updateduser.LastName != null)
+                if (updateduser.LastName != user.LastName && updateduser.LastName != null)
                     user.LastName = updateduser.LastName;
 
                 if (updateduser.Email != user.Email && updateduser.Email != null)
                     user.Email = updateduser.Email;
 
-                if(UserManager.Update(user))
+                if (UserManager.Update(user))
                 {
                     Session["user"] = user;
                 }
-                
+
                 return RedirectToAction("Index");
             }
             catch (Exception ex)
@@ -68,43 +68,72 @@ namespace GroceryGetter.UI.Controllers
 
         public ActionResult ChangePassword()
         {
-            User user = new User();
+            ViewModels.ChangePasswordViewModel vm = new ViewModels.ChangePasswordViewModel();
             ViewBag.Title = "Change Password";
-            return View(user);
+            return View(vm);
         }
 
         [HttpPost]
-        public ActionResult ChangePassword(User updateduser)
+        public ActionResult ChangePassword(ViewModels.ChangePasswordViewModel vm)
         {
-            var user = Session["user"] as User;
-
             try
             {
-                
-                //if (updateduser.UserPass == updateduser.ConfirmPassword)
-                //{
-                //    user.UserPass = updateduser.UserPass;
-                //    user.ConfirmPassword = updateduser.ConfirmPassword;
-                //}
-                //else
-                //{
-                //    ViewBag.Message = "Passwords do not match.";
-                //    return View(user);
-                //}
+                //ViewModels.ChangePasswordViewModel oldnewpasswords =  new ViewModels.ChangePasswordViewModel();
+
+                if (vm.newpass1 == vm.newpass2)
+                {
+                    if (vm.newpass1 != null || vm.newpass2 != null)
+                    {
+                        
+                        var oldpass = vm.password;
+                        var newpass = vm.newpass2;
+                        var user = Session["user"] as User;
+
+                        if (oldpass == user.UserPass)
+                        {
+                            user.UserPass = newpass;
+
+                            if (UserManager.Update(user))
+                            {
+                                Session["user"] = user;
+                                return RedirectToAction("Index");
+                            }
+                            else
+                            {
+                                ViewBag.Message = "Something went wrong";
+                                return View();
+                            }
+
+                        }
+                        else
+                        {
+                            ViewBag.Message = "Password does not match our records";
+                            return View();
+                        }
+                    }
+                    else
+                    {
+                        ViewBag.Message = "You must enter a value for all fields";
+                        return View();
+                    }
                     
-                //if (UserManager.Update(user))
-                //{
-                //    Session["user"] = user;
-                //}
-                return RedirectToAction("Index");
+                }
+                else
+                {
+                    ViewBag.Message = "New password and Confirm password do not match";
+                    return View();
+
+                }
+                
             }
             catch (Exception ex)
             {
 
                 ViewBag.Message = ex.Message;
-                return View(user);
+                return View();
             }
-            
+
+
         }
 
         [ChildActionOnly]
@@ -112,7 +141,7 @@ namespace GroceryGetter.UI.Controllers
         {
             var user = Session["user"] as User;
             return PartialView(user);
-                   
+
         }
 
         public ActionResult Settings()

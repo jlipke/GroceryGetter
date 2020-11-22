@@ -92,51 +92,6 @@ namespace GroceryGetter.UI.Controllers
             try
             {
                 PasswordResetManager.SendMessage(Email);
-
-                //WebSecurity.InitializeDatabaseConnection("GroceryGetterEntities", "tblUser", "Id", "Email", false);
-
-                //if (ModelState.IsValid)
-                //{
-
-                //    if (WebSecurity.UserExists(Email))
-                //    {
-                //        string To = Email, UserID, Password, SMTPPort, Host;
-                //        string token = WebSecurity.GeneratePasswordResetToken(Email);
-                //        if (token == null)
-                //        {
-                //            // If user does not exist or is not confirmed.  
-
-                //            return View("Index");
-
-                //        }
-                //        else
-                //        {
-                //            //Create URL with above token  
-
-                //            var lnkHref = "<a href='" + Url.Action("ResetPassword", "Account", new { email = Email, code = token }, "http") + "'>Reset Password</a>";
-
-
-                //            //HTML Template for Send email  
-
-                //            string subject = "Your changed password";
-
-                //            string body = "<b>Please find the Password Reset Link. </b><br/>" + lnkHref;
-
-
-                //            //Get and set the AppSettings using configuration manager.  
-
-                //            EmailManager.AppSettings(out UserID, out Password, out SMTPPort, out Host);
-
-
-                //            //Call send email methods.  
-
-                //            EmailManager.SendEmail(UserID, subject, body, To, UserID, Password, SMTPPort, Host);
-
-                //        }
-
-                //    }
-
-                //}
                 return RedirectToAction("EmailSent", "User");
             }
             catch (Exception ex)
