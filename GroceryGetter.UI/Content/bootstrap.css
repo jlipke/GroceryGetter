@@ -10259,5 +10259,11 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
+
+  #divider1 {
+    border-top:solid 0.10vw maroon; 
+    width:100%;
+  }
+
 }
 /*# sourceMappingURL=bootstrap.css.map */

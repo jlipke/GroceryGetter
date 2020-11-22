@@ -13,8 +13,11 @@ namespace TestBot
     {
         static void Main(string[] args)
         {
+            
+            var options = new ChromeOptions();
+            options.AddArgument("headless");
 
-            IWebDriver driver = new ChromeDriver();
+            IWebDriver driver = new ChromeDriver(options);
 
             driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");
 
@@ -109,7 +112,7 @@ namespace TestBot
                 }
 
                 //Close the browser window
-                //driver.Close();
+                driver.Close();
             }
             catch (NoSuchElementException)
             {
@@ -117,7 +120,7 @@ namespace TestBot
                 Console.WriteLine("\nSorry, The product information you are looking for does not exist.");
 
                 //Close the browser window
-                //driver.Close();
+                driver.Close();
 
             }
         }

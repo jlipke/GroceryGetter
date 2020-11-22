@@ -4,11 +4,14 @@
 
 
 <h2>Nutrition Facts</h2>
-<div style="border-top:solid 0.25vw maroon; width:100%;"></div>
+<div style="border-top:solid 0.10vw maroon; width:100%;"></div>
 
 @{var productName = ViewBag.Title;}
 
-@{IWebDriver driver = new ChromeDriver();}
+@{var options = new ChromeOptions();}
+@{options.AddArgument("headless");}
+
+@{IWebDriver driver = new ChromeDriver(options);}
 
 @{driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");}
 
@@ -21,81 +24,81 @@
 <br><br><br>
 
 <h3>Product</h3>
-<div style="background:white; border:solid 0.25vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
 
-@{var ResultProductName = "The product you searched for is: " + productName;}
+    @{var ResultProductName = "The product you searched for is: " + productName;}
 
-<p style="padding-left:1%; padding-top:1%;">@ResultProductName</p>
+    <p style="padding-left:1%; padding-top:1%;">@ResultProductName</p>
 
-@{Thread.Sleep(2000);}
+    @{Thread.Sleep(2000);}
 
-@{var ProductMatchName = driver.FindElement(By.Name("food-search-result-description"));}
+    @{var ProductMatchName = driver.FindElement(By.Name("food-search-result-description"));}
 
-@{var ResultProductMatchName = "The closest product match found is: " + ProductMatchName.Text;}
-<p style="padding-left:1%; padding-top:1%;">@ResultProductMatchName</p>
+    @{var ResultProductMatchName = "The closest product match found is: " + ProductMatchName.Text;}
+    <p style="padding-left:1%; padding-top:1%;">@ResultProductMatchName</p>
 
 </div>
 
 <br><br>
 
 <h3>Serving Sizes</h3>
-<div style="background:white; border:solid 0.25vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
 
-@{var click = driver.FindElement(By.Name("food-search-result-description"));}
-@{click.Click();}
+    @{var click = driver.FindElement(By.Name("food-search-result-description"));}
+    @{click.Click();}
 
-@{var LiquidProduct = "A Serving size is equal to 100ml for liquid products.";}
-<p style="padding-left:1%; padding-top:1%;">@LiquidProduct</p>
+    @{var LiquidProduct = "A Serving size is equal to 100ml for liquid products.";}
+    <p style="padding-left:1%; padding-top:1%;">@LiquidProduct</p>
 
-@{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
-<p style="padding-left:1%; padding-top:1%;">@SolidProduct</p>
+    @{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
+    <p style="padding-left:1%; padding-top:1%;">@SolidProduct</p>
 
 </div>
 
 <br><br>
 
 <h3>Nutrition</h3>
-<div style="background:white; border:solid 0.25vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
 
-@try
-{
+    @try
+    {
 
-    Thread.Sleep(2000);
-    var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));
+        Thread.Sleep(2500);
+        var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));
 
         foreach (var NutritionVal in locateNutritionVal)
         {
             <p style="padding-left:1%; padding-top:1%;">@NutritionVal.Text</p>
         }
-}
-catch (NoSuchElementException)
-{
+    }
+    catch (NoSuchElementException)
+    {
 
-    var NoNutritionVal = "Sorry, Could not find information on nutritional value.";
-    <p style="padding-left:1%; padding-top:1%;">@NoNutritionVal</p>
-}
+        var NoNutritionVal = "Sorry, Could not find information on nutritional value.";
+        <p style="padding-left:1%; padding-top:1%;">@NoNutritionVal</p>
+    }
 
 </div>
 
 <br><br>
 
 <h3>Ingredients</h3>
-<div style="background:white; border:solid 0.25vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
 
-@try
-{
+    @try
+    {
 
-    Thread.Sleep(1000);
-    var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));
-    <p style="padding-left:1%; padding-top:1%;">@Ingredients.Text</p>
-}
-catch (NoSuchElementException)
-{
+        Thread.Sleep(1000);
+        var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));
+        <p style="padding-left:1%; padding-top:1%;">@Ingredients.Text</p>
+    }
+    catch (NoSuchElementException)
+    {
 
-    var NoIngredients = "Sorry, ingredients are not available for this product.";
-    <p style="padding-left:1%; padding-top:1%;">@NoIngredients</p>
-}
+        var NoIngredients = "Sorry, ingredients are not available for this product.";
+        <p style="padding-left:1%; padding-top:1%;">@NoIngredients</p>
+    }
+
+@{driver.Close();}
 
 </div>
-
-@* Need to add better style + try catch for error handling *@
