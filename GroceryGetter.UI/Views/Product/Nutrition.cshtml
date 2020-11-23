@@ -2,9 +2,10 @@
 @using OpenQA.Selenium.Chrome;
 @using System.Threading;
 
+<br><br>
 
 <h2>Nutrition Facts</h2>
-<div style="border-top:solid 0.10vw maroon; width:100%;"></div>
+<div style="border-top:solid 2px black; width:212.5px;"></div>
 
 @{var productName = ViewBag.Title;}
 
@@ -24,7 +25,7 @@
 <br><br><br>
 
 <h3>Product</h3>
-<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
 
     @{var ResultProductName = "The product you searched for is: " + productName;}
 
@@ -42,7 +43,7 @@
 <br><br>
 
 <h3>Serving Sizes</h3>
-<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
 
     @{var click = driver.FindElement(By.Name("food-search-result-description"));}
     @{click.Click();}
@@ -58,7 +59,7 @@
 <br><br>
 
 <h3>Nutrition</h3>
-<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
 
     @try
     {
@@ -83,7 +84,7 @@
 <br><br>
 
 <h3>Ingredients</h3>
-<div style="background:#e9ecef; border:solid 0.10vw maroon; border-radius:7.5px; width:100%; height:auto">
+<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
 
     @try
     {
@@ -99,6 +100,6 @@
         <p style="padding-left:1%; padding-top:1%;">@NoIngredients</p>
     }
 
-@{driver.Close();}
+    @{driver.Close();}
 
 </div>
