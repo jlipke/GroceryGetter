@@ -5,25 +5,27 @@
     Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
 
-<br />
-<h2>Account Settings</h2>
-<hr />
+<div class="main_container main_content rounded-top">
 
-<div class="body-content">
-    <h4>Personal Information</h4>
-
-    <h6>Full Name: </h6>
-    <p>@Model.FirstName @Model.LastName @Html.ActionLink("edit", "Edit")</p>
-
-    <h6>Email: </h6>
-    <p>@Model.Email @Html.ActionLink("edit", "Edit")</p>
-
-    @Html.ActionLink("Change your Password", "ChangePassword")
     <br />
-    <br />
+    <h2>Account Settings</h2>
+    <hr />
+
+    <div class="body-content">
+        <h4>Personal Information</h4>
+
+        <h6>Full Name: </h6>
+        <p>@Model.FirstName @Model.LastName @Html.ActionLink("edit", "Edit")</p>
+
+        <h6>Email: </h6>
+        <p>@Model.Email @Html.ActionLink("edit", "Edit")</p>
+
+        @Html.ActionLink("Change your Password", "ChangePassword")
+        <br />
+        <br />
+
+    </div>
 
 </div>
-
-
 
 

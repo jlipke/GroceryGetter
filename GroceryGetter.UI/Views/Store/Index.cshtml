@@ -6,31 +6,29 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Available Stores</h2>
+<div class="main_container main_content rounded-top">
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-    </tr>
+    <h2>Available Stores</h2>
 
-    @foreach (var store in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => store.Title)
-            </td>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+    
 
-            <td>
-                @Html.ActionLink("Update", "Edit", new { id = store.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = store.Id })
-            </td>
-        </tr>
-    }
+        @foreach (var store in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => store.Title)
+                </td>
 
-</table>
+                <td>
+                    @Html.ActionLink("Update", "Edit", new { id = store.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = store.Id })
+                </td>
+            </tr>
+        }
 
+    </table>
+</div>

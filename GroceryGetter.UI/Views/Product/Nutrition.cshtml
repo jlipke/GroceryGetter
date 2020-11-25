@@ -2,104 +2,105 @@
 @using OpenQA.Selenium.Chrome;
 @using System.Threading;
 
-<br><br>
+<div class="main_container main_content rounded-top">
+    <h1>Nutrition Facts</h1>
+    <div style="border-top:solid 2px #212529; width:33%;"></div>
 
-<h2>Nutrition Facts</h2>
-<div style="border-top:solid 2px black; width:212.5px;"></div>
+    @{var productName = ViewBag.Title;}
 
-@{var productName = ViewBag.Title;}
+    @{var options = new ChromeOptions();}
+    @{options.AddArgument("headless");}
 
-@{var options = new ChromeOptions();}
-@{options.AddArgument("headless");}
+    @{IWebDriver driver = new ChromeDriver(options);}
 
-@{IWebDriver driver = new ChromeDriver(options);}
+    @{driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");}
 
-@{driver.Navigate().GoToUrl("https://fdc.nal.usda.gov/");}
+    @{IWebElement element = driver.FindElement(By.Name("query"));}
 
-@{IWebElement element = driver.FindElement(By.Name("query"));}
+    @{element.SendKeys(productName);}
 
-@{element.SendKeys(productName);}
+    @{element.SendKeys(Keys.Enter);}
 
-@{element.SendKeys(Keys.Enter);}
+    <br>
 
-<br><br><br>
+    <h3>Product</h3>
+    <div style="background: #f3f3f3; border: solid 1px #212529; width: 100%; height: auto">
 
-<h3>Product</h3>
-<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
+        @{var ResultProductName = "The product you searched for is: " + productName;}
 
-    @{var ResultProductName = "The product you searched for is: " + productName;}
+        <p style="margin:5px;">@ResultProductName</p>
 
-    <p style="padding-left:1%; padding-top:1%;">@ResultProductName</p>
+        @{Thread.Sleep(2000);}
 
-    @{Thread.Sleep(2000);}
+        @{var ProductMatchName = driver.FindElement(By.Name("food-search-result-description"));}
 
-    @{var ProductMatchName = driver.FindElement(By.Name("food-search-result-description"));}
+        @{var ResultProductMatchName = "The closest product match found is: " + ProductMatchName.Text;}
+        <p style="margin: 5px;">@ResultProductMatchName</p>
 
-    @{var ResultProductMatchName = "The closest product match found is: " + ProductMatchName.Text;}
-    <p style="padding-left:1%; padding-top:1%;">@ResultProductMatchName</p>
+    </div>
 
-</div>
+    <br>
 
-<br><br>
+    <h3>Serving Sizes</h3>
+    <div style="background:#f3f3f3; border:solid 1px #212529; width:100%; height:auto">
 
-<h3>Serving Sizes</h3>
-<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
+        @{var click = driver.FindElement(By.Name("food-search-result-description"));}
+        @{click.Click();}
 
-    @{var click = driver.FindElement(By.Name("food-search-result-description"));}
-    @{click.Click();}
+        @{var LiquidProduct = "A Serving size is equal to 100ml for liquid products.";}
+        <p style="margin: 5px;">@LiquidProduct</p>
 
-    @{var LiquidProduct = "A Serving size is equal to 100ml for liquid products.";}
-    <p style="padding-left:1%; padding-top:1%;">@LiquidProduct</p>
+        @{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
+        <p style="margin: 5px;">@SolidProduct</p>
 
-    @{var SolidProduct = "A Serving size is equal to 100g for solid products.";}
-    <p style="padding-left:1%; padding-top:1%;">@SolidProduct</p>
+    </div>
 
-</div>
+    <br>
 
-<br><br>
+    <h3>Nutrition</h3>
+    <div style="background:#f3f3f3; border:solid 1px #212529; width:100%; height:auto">
 
-<h3>Nutrition</h3>
-<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
-
-    @try
-    {
-
-        Thread.Sleep(2500);
-        var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));
-
-        foreach (var NutritionVal in locateNutritionVal)
+        @try
         {
-            <p style="padding-left:1%; padding-top:1%;">@NutritionVal.Text</p>
+
+            Thread.Sleep(2500);
+            var locateNutritionVal = driver.FindElements(By.XPath("//*[@id='nutrients-table']/tbody/tr"));
+
+            foreach (var NutritionVal in locateNutritionVal)
+            {
+                <p style="margin: 5px;">@NutritionVal.Text</p>
+            }
         }
-    }
-    catch (NoSuchElementException)
-    {
+        catch (NoSuchElementException)
+        {
 
-        var NoNutritionVal = "Sorry, Could not find information on nutritional value.";
-        <p style="padding-left:1%; padding-top:1%;">@NoNutritionVal</p>
-    }
+            var NoNutritionVal = "Sorry, Could not find information on nutritional value.";
+            <p style="margin: 5px;">@NoNutritionVal</p>
+        }
 
-</div>
+    </div>
 
-<br><br>
+    <br>
 
-<h3>Ingredients</h3>
-<div style="background:#e9ecef; border:solid 4px white; width:100%; height:auto">
+    <h3>Ingredients</h3>
+    <div style="background:#f3f3f3; border:solid 1px #212529; width:100%; height:auto">
 
-    @try
-    {
+        @try
+        {
 
-        Thread.Sleep(1000);
-        var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));
-        <p style="padding-left:1%; padding-top:1%;">@Ingredients.Text</p>
-    }
-    catch (NoSuchElementException)
-    {
+            Thread.Sleep(1000);
+            var Ingredients = driver.FindElement(By.XPath("//*[@id='nutrients']/app-food-nutrients/div/div[2]/div"));
+            <p style="margin: 5px;">@Ingredients.Text</p>
+        }
+        catch (NoSuchElementException)
+        {
 
-        var NoIngredients = "Sorry, ingredients are not available for this product.";
-        <p style="padding-left:1%; padding-top:1%;">@NoIngredients</p>
-    }
+            var NoIngredients = "Sorry, ingredients are not available for this product.";
+            <p style="margin: 5px;">@NoIngredients</p>
+        }
 
-    @{driver.Close();}
+        @{driver.Close();}
 
+    </div>
+    <br />
 </div>

@@ -4,16 +4,20 @@
     ViewBag.Title = "Delete";
 }
 
-<h3>Are you sure you want to delete @Model.Title?</h3>
-<div>
-    <hr />
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+<div class="main_container main_content rounded-top">
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-danger" />
-            <a href="~/Store"><input type="button" value="Cancel" class="btn btn-secondary" /></a>
-        </div>
-    }
+    <h3>Are you sure you want to delete "@Model.Title"?</h3>
+    <div>
+        <hr />
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a href="~/Store"><input type="button" value="Cancel" class="btn btn-secondary" /></a>
+            </div>
+            <br />
+        }
+    </div>
 </div>

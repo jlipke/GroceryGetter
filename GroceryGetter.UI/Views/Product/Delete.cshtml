@@ -6,17 +6,17 @@
 }
 
 
-<h2>Are you sure you want delete "@Model.Title" from the master list?</h2>
-<div>
-    <hr />
-    
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+    <h2>Are you sure you want delete "@Model.Title" from the master list?</h2>
+    <div>
+        <hr />
 
-<div class="form-actions no-color">
-    <input type="submit" value="Delete" class="btn btn-danger" />
-    <a href="~/Product" ><input type="button" value="Cancel" class="btn btn-secondary" /></a>
-</div>
-    }
-</div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" />
+                <a href="~/Product"><input type="button" value="Cancel" class="btn btn-secondary" /></a>
+            </div>
+        }
+    </div>
