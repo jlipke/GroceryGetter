@@ -6,26 +6,78 @@
 }
 
 @section Scripts {
+    <script src="jquery-3.5.1.min.js"></script>
     <script>
-        function clearList() {
-            //if (confirm('Are you sure you want to clear your grocery list?')) {
+
+        $(document).ready(function () 
+        {
+            //alert("Working");
+        });
+
+        $(function() {
+
+            
+
+            $('.MyCheckBox').change(function () {
+                alert("Working");
+
+                var Id = model.Id;
+                var UserId = model.UserId;
+                var ProductId = model.ProductId;
+                var InCart = model.InCart
+                var Amount = model.Amount;
+                var Notes = model.Notes;
                 
-            //    //console.log('Thing was saved to the database.');
-            //} else {
-            //    // Do nothing
-               
-            //}
-            alert(".");
-        }
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("UpdateCart", "UserProduct")',
+                    data: { "Id": Id }, { "UserId": UserId }, { "ProductId": ProductId }, { "InCart": InCart }, { "Amount": Amount }, { "Notes": Notes },
+                    success: function (data) {
+                        alert("Success");
+                    },
+                    error: function (error) {
+                        alert(JSON.stringify(error));
+                        cache: true;
+                    }
+                })
+                
+
+                //if (this.checked) {
+                //    alert("working");
+                //}
+                //else {
+                    
+                //}
+            })
+        
+        })
+
+        //function clearList() {
+        //    if (confirm('Are you sure you want to clear your grocery list?')) {
+
+
+        //        //console.log('Thing was saved to the database.');
+        //    } else {
+        //        // Do nothing
+
+        //    }
+        //    ;
+        //}
+
+
+
+
+
     </script>
-    
-    
-    }
+
+
+}
 
 <h2>Grocery List</h2>
 
 <p>
-    @Html.ActionLink("Add Product", "AddProducts")  |  <button onclick="clearList">Clear Shopping list</button>
+    @Html.ActionLink("Add Product", "AddProducts")  |  <button onclick="clearList()">Clear Shopping list</button>
 </p>
 
 
@@ -46,27 +98,29 @@
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td id="inCart" style="padding-left:18px">
-                @Html.CheckBox("In Cart", item.InCart)
-                @*<input type="checkbox" class="inCart" checked="@item.InCart" onclick="update(@item.Id)" />*@
-            </td>
-            <td>
-                @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id }, null)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+    
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td id="inCart" class="MyCheckBox" style="padding-left:18px">
+                    @Html.CheckBox("In Cart", item.InCart)
+                    @*<input type="checkbox" class="inCart" checked="@item.InCart" onclick="update(@item.Id)" />*@
+                </td>
+                <td>
+                    @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    
 
 </table>
 

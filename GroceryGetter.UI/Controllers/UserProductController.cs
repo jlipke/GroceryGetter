@@ -29,6 +29,27 @@ namespace GroceryGetter.UI.Controllers
             }
 
         }
+        public ActionResult UpdateCart(Guid id, Guid userId, Guid productId, bool inCart, int amount, string notes)
+        {
+            try
+            {
+                UserProduct up = new UserProduct();
+                up.Id = id;
+                up.UserId = userId;
+                up.ProductId = productId;
+                up.InCart = inCart;
+                up.Amount = amount;
+                up.Notes = notes;
+                
+                UserProductManager.Update(up);
+                return View();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
 
         // Order UserProduct List by StoreId
         public ActionResult LoadByStoreId(Guid id)
