@@ -52,6 +52,13 @@ namespace GroceryGetter.UI.Controllers
                 throw ex;
             }
         }
+        public ActionResult ClearList()
+        {
+            var user = Session["user"] as User;
+            UserProductManager.spClearGroceryList(user.Id);
+
+            return View();
+        }
 
         // Order UserProduct List by StoreId
         public ActionResult LoadByStoreId(Guid id)

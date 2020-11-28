@@ -91,6 +91,24 @@ namespace GroceryGetter.BL
             }
         }
 
+        public static void spClearGroceryList(Guid userId)
+        {
+            try
+            {
+                using (GroceryGetterEntities dc = new GroceryGetterEntities())
+                {
+                    // Stored Proc to delete all things in list
+                    var spResults = dc.ClearGroceryList(userId);
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
         // Load GroceryList by UserId
         public static List<UserProduct> LoadByUserId(Guid userId)
         {

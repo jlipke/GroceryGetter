@@ -77,6 +77,7 @@
     <Build Include="ForeignKeys\tblLayout_StoreId.sql" />
     <Build Include="ForeignKeys\tblUserProduct_UserId.sql" />
     <Build Include="ForeignKeys\tblUserProducts_ProductId.sql" />
+    <Build Include="StoredProcedures\ClearGroceryList.sql" />
   </ItemGroup>
   <ItemGroup>
     <PreDeploy Include="PreDeployment\Script.PreDeployment1.sql" />

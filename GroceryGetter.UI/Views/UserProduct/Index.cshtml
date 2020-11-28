@@ -46,17 +46,19 @@
         
         }
 
-        //function clearList() {
-        //    if (confirm('Are you sure you want to clear your grocery list?')) {
+        function clearList() {
+            if (confirm('Are you sure you want to clear your grocery list?')) {
 
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("ClearList", "UserProduct"))',
+                    
+                })
+                location.reload();
 
-        //        //console.log('Thing was saved to the database.');
-        //    } else {
-        //        // Do nothing
-
-        //    }
-        //    ;
-        //}
+            } 
+            
+        }
 
 
 

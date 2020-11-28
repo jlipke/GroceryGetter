@@ -149,6 +149,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="ClearGroceryList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userid" Type="uniqueidentifier" Mode="In" />
+        </Function>
         <EntityContainer Name="AzureDBModelStoreContainer">
           <EntitySet Name="tblAisle" EntityType="Self.tblAisle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblAisleProduct" EntityType="Self.tblAisleProduct" Schema="dbo" store:Type="Tables" />
@@ -349,6 +352,9 @@
             <End Role="tblUser" EntitySet="tblUsers" />
             <End Role="tblUserProduct" EntitySet="tblUserProducts" />
           </AssociationSet>
+          <FunctionImport Name="ClearGroceryList">
+            <Parameter Name="userid" Mode="In" Type="Guid" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblUser">
           <Key>
@@ -448,6 +454,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ClearGroceryList" FunctionName="AzureDBModel.Store.ClearGroceryList" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
