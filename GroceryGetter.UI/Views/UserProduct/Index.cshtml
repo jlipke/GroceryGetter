@@ -6,7 +6,7 @@
 }
 
 @section Scripts {
-    <script src="jquery-3.5.1.min.js"></script>
+    
     <script>
 
         $(document).ready(function () 
@@ -14,44 +14,37 @@
             //alert("Working");
         });
 
-        $(function() {
-
+        function update(id, userId, productId, inCart, amount, notes, productTitle, productAisle) {
             
-
             $('.MyCheckBox').change(function () {
-                alert("Working");
-
-                var Id = model.Id;
-                var UserId = model.UserId;
-                var ProductId = model.ProductId;
-                var InCart = model.InCart
-                var Amount = model.Amount;
-                var Notes = model.Notes;
                 
-
+                if (inCart == null || inCart == false) {
+                    inCart = true;
+                }
+                else {  // It should only ever be true in this case
+                    inCart = false;
+                }
+                
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("UpdateCart", "UserProduct")',
-                    data: { "Id": Id }, { "UserId": UserId }, { "ProductId": ProductId }, { "InCart": InCart }, { "Amount": Amount }, { "Notes": Notes },
-                    success: function (data) {
-                        alert("Success");
-                    },
-                    error: function (error) {
-                        alert(JSON.stringify(error));
-                        cache: true;
-                    }
+                    url: '@(Url.Action("UpdateCart", "UserProduct"))',
+                    data: {
+                        'Id': id,
+                        'UserId': userId,
+                        'ProductId': productId,
+                        'InCart': inCart,
+                        'Amount': amount,
+                        'Notes': notes,
+                        'ProductTitle': productTitle,
+                        'ProductAisle': productAisle },
+                    
                 })
                 
-
-                //if (this.checked) {
-                //    alert("working");
-                //}
-                //else {
-                    
-                //}
+                location.reload();
+               
             })
         
-        })
+        }
 
         //function clearList() {
         //    if (confirm('Are you sure you want to clear your grocery list?')) {
@@ -103,8 +96,11 @@
         {
             <tr>
                 <td id="inCart" class="MyCheckBox" style="padding-left:18px">
-                    @Html.CheckBox("In Cart", item.InCart)
-                    @*<input type="checkbox" class="inCart" checked="@item.InCart" onclick="update(@item.Id)" />*@
+                    @*@Html.CheckBox("In Cart", item.InCart)*@
+                    <input type="checkbox" class="inCart" checked="@item.InCart" onclick="update('@item.Id', '@item.UserId',
+                                                                                                '@item.ProductId', '@item.InCart',
+                                                                                                @item.Amount, '@item.Notes', 
+                                                                                                '@item.ProductTitle', '@item.ProductAisle')" />
                 </td>
                 <td>
                     @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id }, null)

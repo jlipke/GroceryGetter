@@ -29,7 +29,7 @@ namespace GroceryGetter.UI.Controllers
             }
 
         }
-        public ActionResult UpdateCart(Guid id, Guid userId, Guid productId, bool inCart, int amount, string notes)
+        public ActionResult UpdateCart(Guid id, Guid userId, Guid productId, bool inCart, int amount, string notes, string productTitle, string productAisle)
         {
             try
             {
@@ -40,6 +40,8 @@ namespace GroceryGetter.UI.Controllers
                 up.InCart = inCart;
                 up.Amount = amount;
                 up.Notes = notes;
+                up.ProductTitle = productTitle;
+                up.ProductAisle = productAisle;
                 
                 UserProductManager.Update(up);
                 return View();
