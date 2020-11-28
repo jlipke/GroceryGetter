@@ -4,13 +4,68 @@
     ViewBag.Title = "LoadByStoreId";
     Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
+
+<script>
+
+        $(document).ready(function ()
+        {
+            //alert("Working");
+        });
+
+        function update(id, userId, productId, inCart, amount, notes, productTitle, productAisle) {
+
+                if (inCart == null || inCart == false) {
+                    inCart = true;
+                }
+                else {  // It should only ever be true in this case
+                    inCart = false;
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("UpdateCart", "UserProduct"))',
+                    data: {
+                        'Id': id,
+                        'UserId': userId,
+                        'ProductId': productId,
+                        'InCart': inCart,
+                        'Amount': amount,
+                        'Notes': notes,
+                        'ProductTitle': productTitle,
+                        'ProductAisle': productAisle },
+
+                })
+
+                location.reload();
+
+
+
+        }
+
+        function clearList() {
+            if (confirm('Are you sure you want to clear your grocery list?')) {
+
+                $.ajax({
+                    type: "POST",
+                    url: '@(Url.Action("ClearList", "UserProduct"))',
+
+                })
+                location.reload();
+
+            }
+
+        }
+    
+</script>
+
 <h2>
     @*@Html.DisplayNameFor(model => model.StoreTitle )*@ - Grocery List
 </h2>
 
 <p>
-    @Html.ActionLink("Add Product", "AddProducts")
+    @Html.ActionLink("Add Product", "AddProducts")  |  <button onclick="clearList()">Clear Shopping list</button>
 </p>
+
 <table class="user_products_table">
     <tr>
         <th>
@@ -34,8 +89,11 @@
     @foreach (var item in Model)
     {
         <tr>
-            <td style="padding-left:18px">
-                @Html.CheckBoxFor(modelItem => item.InCart)
+            <td id="inCart" style="padding-left:18px">
+                <input type="checkbox" class="inCart" checked="@item.InCart" onclick="update('@item.Id', '@item.UserId',
+                                                                                                '@item.ProductId', '@item.InCart',
+                                                                                                @item.Amount, '@item.Notes',
+                                                                                                '@item.ProductTitle', '@item.ProductAisle')" />
             </td>
             <td>
                 @Html.ActionLink(item.ProductTitle, "Edit", "UserProduct", new { Id = item.Id }, null)

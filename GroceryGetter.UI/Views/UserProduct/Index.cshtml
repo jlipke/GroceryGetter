@@ -16,8 +16,6 @@
 
         function update(id, userId, productId, inCart, amount, notes, productTitle, productAisle) {
             
-            $('.MyCheckBox').change(function () {
-                
                 if (inCart == null || inCart == false) {
                     inCart = true;
                 }
@@ -42,7 +40,7 @@
                 
                 location.reload();
                
-            })
+            
         
         }
 
@@ -59,13 +57,8 @@
             } 
             
         }
-
-
-
-
-
+        
     </script>
-
 
 }
 
@@ -97,8 +90,7 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td id="inCart" class="MyCheckBox" style="padding-left:18px">
-                    @*@Html.CheckBox("In Cart", item.InCart)*@
+                <td id="inCart" style="padding-left:18px">
                     <input type="checkbox" class="inCart" checked="@item.InCart" onclick="update('@item.Id', '@item.UserId',
                                                                                                 '@item.ProductId', '@item.InCart',
                                                                                                 @item.Amount, '@item.Notes', 
