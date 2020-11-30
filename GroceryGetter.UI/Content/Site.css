@@ -214,3 +214,17 @@ textarea {
 .listbox {
     width: 50px;
 }
+
+#clearList {
+    background: none !important;
+    border: none;
+    padding: 0 !important;
+    color: #007BFF;
+    cursor: pointer;
+}
+
+button:hover {
+    text-decoration: underline;
+    text-decoration-color: #0056B3;
+    color: #0056B3 !important;
+}
