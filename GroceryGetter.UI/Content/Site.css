@@ -228,3 +228,7 @@ button:hover {
     text-decoration-color: #0056B3;
     color: #0056B3 !important;
 }
+
+.main {
+    padding: 15px;
+}
