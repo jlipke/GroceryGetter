@@ -12,6 +12,7 @@ namespace GroceryGetter.UI.ViewModels
         public Product Product { get; set; }
         public User User { get; set; }
         public UserProduct UserProduct { get; set; }
+        public List<UserProduct> ExcludedItems { get; set; }
 
     }
 }

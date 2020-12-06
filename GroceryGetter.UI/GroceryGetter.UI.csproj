@@ -358,6 +358,7 @@
     <Content Include="Views\Product\Nutrition.cshtml" />
     <Content Include="Views\Account\jChangePassword.cshtml" />
     <Content Include="Views\Account\ChangePassword.cshtml" />
+    <Content Include="Views\UserProduct\ExcludedItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

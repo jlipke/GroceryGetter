@@ -204,6 +204,33 @@ namespace GroceryGetter.BL
             }
         }
 
+        public static List<UserProduct> LoadExcludedGroceryItems(Guid userId, Guid storeId)
+        {
+            try
+            {
+                // The point of this method is to make a list of items that are not found in the selected storeid
+
+                List<UserProduct> userList = new List<UserProduct>();
+                List<UserProduct> userListByStore = new List<UserProduct>();
+                //List<UserProduct> userListExcludedItems = new List<UserProduct>();
+
+                userListByStore = LoadGroceryByLayout(userId, storeId);
+                userList = LoadByUserId(userId);
+
+                var ExcludedItems = userList.Except(userListByStore).ToList();
+
+                return ExcludedItems;
+
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+
         public static List<UserProduct> LoadGroceryByLayout(Guid userId)
         {
             try

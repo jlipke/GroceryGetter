@@ -1,0 +1,19 @@
+﻿@model IEnumerable<GroceryGetter.UI.ViewModels.UserUserProduct>
+
+
+<table>
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExcludedItems)
+            </td>
+
+        </tr>
+    }
+
+
+</table>
+

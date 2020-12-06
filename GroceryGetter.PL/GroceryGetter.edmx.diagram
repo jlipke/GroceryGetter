@@ -7,9 +7,9 @@
       <Diagram DiagramId="52f856893eb240f684d9a7916e9f8357" Name="Diagram1">
         <EntityTypeShape EntityType="GroceryGetter.DBModel.tblAisle" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="GroceryGetter.DBModel.tblAisleProduct" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="GroceryGetter.DBModel.tblLayout" Width="1.5" PointX="1.5" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GroceryGetter.DBModel.tblLayout" Width="1.5" PointX="3.75" PointY="8.625" IsExpanded="true" />
         <EntityTypeShape EntityType="GroceryGetter.DBModel.tblProduct" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="GroceryGetter.DBModel.tblStore" Width="1.5" PointX="1.5" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="GroceryGetter.DBModel.tblStore" Width="1.5" PointX="7.625" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GroceryGetter.DBModel.tblUser" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="GroceryGetter.DBModel.tblUserProduct" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GroceryGetter.DBModel.database_firewall_rules" Width="1.5" PointX="5.75" PointY="2" IsExpanded="true" />

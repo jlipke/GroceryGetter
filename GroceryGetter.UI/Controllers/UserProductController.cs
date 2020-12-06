@@ -60,13 +60,19 @@ namespace GroceryGetter.UI.Controllers
             return View();
         }
 
+        public Guid storeId;
         // Order UserProduct List by StoreId
+
         public ActionResult LoadByStoreId(Guid id)
         {
             if (Authenticate.IsAuthenticated())
             {
+                storeId = id;
                 var user = Session["user"] as User;
                 var userProductList = UserProductManager.LoadGroceryByLayout(user.Id, id);
+
+                ViewModels.UserUserProduct uup = new ViewModels.UserUserProduct();
+                uup.ExcludedItems = UserProductManager.LoadExcludedGroceryItems(user.Id, id);
 
                 return View(userProductList);
             }
@@ -75,6 +81,16 @@ namespace GroceryGetter.UI.Controllers
                 //Need to authenticate
                 return RedirectToAction("Login", "User", new { returnurl = HttpContext.Request.Url });
             }
+        }
+
+        [ChildActionOnly]
+        public ActionResult ExcludedItems()
+        {
+            var user = Session["user"] as User;
+            ViewModels.UserUserProduct uup = new ViewModels.UserUserProduct();
+            uup.ExcludedItems = UserProductManager.LoadExcludedGroceryItems(user.Id, storeId);
+
+            return PartialView(uup.ExcludedItems);
         }
 
         // Index used for the Edit screen

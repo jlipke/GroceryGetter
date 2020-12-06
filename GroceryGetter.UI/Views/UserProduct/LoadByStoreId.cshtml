@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<GroceryGetter.BL.Models.UserProduct>
 
 @{
-    ViewBag.Title = "LoadByStoreId";
+    ViewBag.Title = "Load by store";
     Layout = "~/Views/Shared/_GGLayout.cshtml";
 }
 
@@ -55,7 +55,7 @@
             }
 
         }
-    
+
 </script>
 
 <h2>
@@ -114,4 +114,13 @@
     }
 
 </table>
+
+
+@*List of items not found at the selected store*@
+
+<h3>Not found at this location</h3>
+
+@{ Html.RenderAction("StoreSidebar", "Store");}  @*This is where we add our excluded items*@
+
+
 

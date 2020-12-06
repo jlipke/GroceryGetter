@@ -2,15 +2,20 @@
 
 
 <table>
-    
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @*@Html.DisplayFor(modelItem => item.Title)*@
-            @Html.ActionLink(item.Title, "LoadByStoreId", "UserProduct", new { Id = item.Id, Title = item.Title }, null)
-        </td>
-        
-    </tr>
-}
+
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @*@Html.DisplayFor(modelItem => item.Title)*@
+                @Html.ActionLink(item.Title, "LoadByStoreId", "UserProduct", new { Id = item.Id, Title = item.Title }, null)
+            </td>
+
+        </tr>
+    }
+
 
 </table>
+<hr />
+@Html.ActionLink("Full List", "../UserProduct/Index")
